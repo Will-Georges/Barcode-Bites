@@ -23,47 +23,77 @@ Barcode Bites is a Chrome extension that scans food barcodes and alerts users if
 
 ## Versioning Convention
 
-The version number of the extension is specified in the `manifest.json` file. E.g. "1.0.1". A date and time of push is also stated.
+The version number of the extension is specified in the `manifest.json` file. The format used is "Major.Minor.Patch.Revised" (e.g., "1.0.1.0"). Each part of the version number has a specific purpose:
 
-- Major Version: Increased when an API change or significant change is made.
-- Minor Version: Increased when functionality is added, or a medium scale change is made.
-- Patch Version: Increased when bug fixes are made, or minor things updated.
-- Revised Version: Increased when minor wording or detail changed.
+- **Major Version**: Increased when an API change or significant change is made.
+- **Minor Version**: Increased when functionality is added, or a medium-scale change is made.
+- **Patch Version**: Increased when bug fixes are made, or minor things updated.
+- **Revised Version**: Increased when minor wording or detail changed.
 
-## Version History
+### Reset Behavior
 
-1.0.0 - (22/7/24 4:45pm)
+Whenever the number to the left increases, all numbers to its right reset to 0. For example:
+- If `1.1.2` receives a **Minor** version upgrade, it becomes `1.2.0`.
+- If `1.1.2.3` receives a **Patch** version upgrade, it becomes `1.1.3.0`.
+
+## Changelog
+
+<details>
+<summary>1.0.0 - (22/7/24 4:45pm)</summary>
 - Files and IDE Setup
+</details>
 
-1.0.1 - (22/7/24 4:50pm)
-- Update Logo 
+<details>
+<summary>1.0.1 - (22/7/24 4:50pm)</summary>
+- Update Logo
+</details>
 
-1.1.0 - (22/7/24 5:25pm)
-- Connected Project to Github 
+<details>
+<summary>1.1.0 - (22/7/24 5:25pm)</summary>
+- Connected Project to Github
+</details>
 
-1.1.1 - (22/7/24 5:35pm)
-- Set logo on GitHub repository 
+<details>
+<summary>1.1.1 - (22/7/24 5:35pm)</summary>
+- Set logo on GitHub repository
+</details>
 
-1.1.2 - (22/7/24 5:45pm)
+<details>
+<summary>1.1.2 - (22/7/24 5:45pm)</summary>
 - Update README
-- Revert logo change on GitHub repository 
+- Revert logo change on GitHub repository
+</details>
 
-1.2.0 - (22/7/24 9:25pm)
-- Add Permission in manifest.json. 
-- Create a Preference page. 
-- Change icon from dark/light with toggle in preferences. 
+<details>
+<summary>1.2.0 - (22/7/24 9:25pm)</summary>
+- Add Permission in manifest.json.
+- Create a Preference page.
+- Change icon from dark/light with toggle in preferences.
+</details>
 
-1.2.1 - (22/7/24 9:50pm)
+<details>
+<summary>1.2.1 - (22/7/24 9:50pm)</summary>
 - Fixed a bug that caused a scroll bar to appear when in preferences
-- Moved inline CSS into seperate styles.css file. 
+- Moved inline CSS into separate styles.css file.
+</details>
 
-1.2.2 - (22/7/24 10:00pm)
+<details>
+<summary>1.2.2 - (22/7/24 10:00pm)</summary>
 - Reformatted the README to include "Note" sections
+</details>
 
-1.2.2.1 - (22/7/24 10:10pm)
+<details>
+<summary>1.2.2.1 - (22/7/24 10:10pm)</summary>
 - Altered [Versioning Convention](#versioning-convention) in README
 - Changed email in Contact
 - Added same page link in README
+</details>
+
+<details>
+<summary>1.2.2.2 - (23/7/24 8:45am)</summary>
+- Updated Changelog format.
+- Add Reset Behaviour in README
+</details>
 
 ### Contact
 
