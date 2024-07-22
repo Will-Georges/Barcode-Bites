@@ -28,6 +28,7 @@ The version number of the extension is specified in the `manifest.json` file. E.
 - Major Version: Increased when an API change or significant change is made.
 - Minor Version: Increased when functionality is added, or a medium scale change is made.
 - Patch Version: Increased when bug fixes are made, or minor things updated.
+- Revised Version: Increased when minor wording or detail changed.
 
 ## Version History
 
@@ -59,6 +60,11 @@ The version number of the extension is specified in the `manifest.json` file. E.
 1.2.2 - (22/7/24 10:00pm)
 - Reformatted the README to include "Note" sections
 
+1.2.2.1 - (22/7/24 10:10pm)
+- Altered [Versioning Convention](#versioning-convention) in README
+- Changed email in Contact
+- Added same page link in README
+
 ### Contact
 
-For any questions or suggestions, please contact the developer, Will Georges @ georgeswill01@gmail.com
+For any questions or suggestions, please contact the developer, Will Georges @ 25GeorWL@cgs.vic.edu.au
