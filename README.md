@@ -41,7 +41,6 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
 
 <details>
 <summary>1.0</summary>
-    <br>
     <details>
     <summary>1.0.0 - (22/7/24 4:45pm)</summary>
     - Files and IDE Setup
@@ -50,11 +49,11 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     <summary>1.0.1 - (22/7/24 4:50pm)</summary>
     - Update Logo
     </details>
+    <br>
 </details>
 
 <details>
 <summary>1.1</summary>
-    <br>
     <details>
     <summary>1.1.0 - (22/7/24 5:25pm)</summary>
     - Connected Project to Github
@@ -69,70 +68,69 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     <br>
     - Revert logo change on GitHub repository
     </details>
+    <br>
 </details>
 
 <details>
-<summary>1.2.0 - (22/7/24 9:25pm)</summary>
-- Add Permission in manifest.json.
-<br>
-- Create a Preference page.
-<br>
-- Change icon from dark/light with toggle in preferences.
-</details>
-
-<details>
-<summary>1.2.1 - (22/7/24 9:50pm)</summary>
-- Fixed a bug that caused a scroll bar to appear when in preferences
-<br>
-- Moved inline CSS into separate styles.css file.
-</details>
-
-<details>
-<summary>1.2.2 - (22/7/24 10:00pm)</summary>
-- Reformatted the README to include "Note" sections
-</details>
-
-<details>
-<summary>1.2.2.1 - (22/7/24 10:10pm)</summary>
-- Altered [Versioning Convention](#versioning-convention) in README
-<br>
-- Changed email in Contact
-<br>
-- Added same page link in README
-</details>
-
-<details>
-<summary>1.2.2.2 - (23/7/24 8:45am)</summary>
-- Updated Changelog format.
-<br>
-- Add Reset Behaviour in README
-</details>
-
-<details>
-<summary>1.2.2.3 - (23/7/24 8:55am)</summary>
-- Added line breaks in version history.
-<br>
-- Updated Reset Behaviour in README
-</details>
-
-<details>
-<summary>1.2.2.4 - (23/7/24 9:00am)</summary>
-- Minor Wording Changes.
-</details>
-
-<details>
-<summary>1.2.2.5 - (23/7/24 9:20am)</summary>
-- Testing formatting changes.
-</details>
-
-<details>
-<summary>1.2.2.6 - (23/7/24 9:25am)</summary>
-- Fixed formatting bug
-</details>
-
-<details>
-<summary>1.2.2.7 - (23/7/24 9:30am)</summary>
-- Update Formatting
+<summary>1.2</summary>
+    <details>
+    <summary>1.2.0 - (22/7/24 9:25pm)</summary>
+    - Add Permission in manifest.json.
+    <br>
+    - Create a Preference page.
+    <br>
+    - Change icon from dark/light with toggle in preferences.
+    </details>
+    details>
+    <summary>1.2.1 - (22/7/24 9:50pm)</summary>
+    - Fixed a bug that caused a scroll bar to appear when in preferences
+    <br>
+    - Moved inline CSS into separate styles.css file.
+    </details>
+    <details>
+    <summary>1.2.2 - (22/7/24 10:00pm)</summary>
+    - Reformatted the README to include "Note" sections
+    </details>
+        <details>
+        <summary>1.2.2.1 - (22/7/24 10:10pm)</summary>
+        - Altered [Versioning Convention](#versioning-convention) in README
+        <br>
+        - Changed email in Contact
+        <br>
+        - Added same page link in README
+        </details>
+        <details>
+        <summary>1.2.2.2 - (23/7/24 8:45am)</summary>
+        - Updated Changelog format.
+        <br>
+        - Add Reset Behaviour in README
+        </details>
+        <details>
+        <summary>1.2.2.3 - (23/7/24 8:55am)</summary>
+        - Added line breaks in version history.
+        <br>
+        - Updated Reset Behaviour in README
+        </details>
+        <details>
+        <summary>1.2.2.4 - (23/7/24 9:00am)</summary>
+        - Minor Wording Changes.
+        </details>
+        <details>
+        <summary>1.2.2.5 - (23/7/24 9:20am)</summary>
+        - Testing formatting changes.
+        </details>
+        <details>
+        <summary>1.2.2.6 - (23/7/24 9:25am)</summary>
+        - Fixed formatting bug
+        </details>
+        <details>
+        <summary>1.2.2.7 - (23/7/24 9:30am)</summary>
+        - Update Formatting
+        </details>
+        <details>
+        <summary>1.2.2.8 - (23/7/24 9:40am)</summary>
+        - Testing
+        </details>
 </details>
 
 ### Contact
