@@ -40,15 +40,17 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
 ## Changelog
 
 <details>
-<summary>1.0.0 - (22/7/24 4:45pm)</summary>
-- Files and IDE Setup
-</details>
+<summary>1.0</summary>
+    <details>
+    <summary>1.0.0 - (22/7/24 4:45pm)</summary>
+    - Files and IDE Setup
+    </details>
 
-<details>
-<summary>1.0.1 - (22/7/24 4:50pm)</summary>
-- Update Logo
+    <details>
+    <summary>1.0.1 - (22/7/24 4:50pm)</summary>
+    - Update Logo
+    </details>
 </details>
-
 <details>
 <summary>1.1.0 - (22/7/24 5:25pm)</summary>
 - Connected Project to Github
@@ -113,6 +115,11 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
 <details>
 <summary>1.2.2.4 - (23/7/24 9:00am)</summary>
 - Minor Wording Changes.
+</details>
+
+<details>
+<summary>1.2.2.5 - (23/7/24 9:20am)</summary>
+- Testing formatting changes.
 </details>
 
 ### Contact
