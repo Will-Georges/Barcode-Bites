@@ -33,8 +33,9 @@ The version number of the extension is specified in the `manifest.json` file. Th
 ### Reset Behavior
 
 Whenever the number to the left increases, all numbers to its right reset to 0. For example:
-- If `1.1.2` receives a **Minor** version upgrade, it becomes `1.2.0`.
-- If `1.1.2.3` receives a **Patch** version upgrade, it becomes `1.1.3.0`.
+- If `1.1.2.3` receives a **Minor** version upgrade, it becomes `1.2.0.0`.
+
+It is assumed that all releases are **Revised Versions** of 0, unless otherwise specified.
 
 ## Changelog
 
@@ -61,19 +62,23 @@ Whenever the number to the left increases, all numbers to its right reset to 0. 
 <details>
 <summary>1.1.2 - (22/7/24 5:45pm)</summary>
 - Update README
+<br>
 - Revert logo change on GitHub repository
 </details>
 
 <details>
 <summary>1.2.0 - (22/7/24 9:25pm)</summary>
 - Add Permission in manifest.json.
+<br>
 - Create a Preference page.
+<br>
 - Change icon from dark/light with toggle in preferences.
 </details>
 
 <details>
 <summary>1.2.1 - (22/7/24 9:50pm)</summary>
 - Fixed a bug that caused a scroll bar to appear when in preferences
+<br>
 - Moved inline CSS into separate styles.css file.
 </details>
 
@@ -85,14 +90,24 @@ Whenever the number to the left increases, all numbers to its right reset to 0. 
 <details>
 <summary>1.2.2.1 - (22/7/24 10:10pm)</summary>
 - Altered [Versioning Convention](#versioning-convention) in README
+<br>
 - Changed email in Contact
+<br>
 - Added same page link in README
 </details>
 
 <details>
 <summary>1.2.2.2 - (23/7/24 8:45am)</summary>
 - Updated Changelog format.
+<br>
 - Add Reset Behaviour in README
+</details>
+
+<details>
+<summary>1.2.2.3 - (23/7/24 8:55am)</summary>
+- Added line breaks in version history.
+<br>
+- Updated Reset Behaviour in README
 </details>
 
 ### Contact
