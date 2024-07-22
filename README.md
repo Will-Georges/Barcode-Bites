@@ -24,6 +24,7 @@ The version number of the extension is specified in the `manifest.json` file. E.
 - 1.1.1 - Set logo on GitHub repository (22/7/24 5:35pm)
 - 1.1.2 - Update README. Revert logo change on GitHub repository (22/7/24 5:45pm)
 - 1.2.0 - Add Permission in manifest.json. Create a Preference page. Change icon from dark/light with toggle in preferences. (22/7/24 9:25pm)
+- 1.2.1 - Fixed a bug that caused a scroll bar to appear when in preferences. Moved inline css into seperate styles.css file. (27/7/24 9:50pm)
 
 ### Notes
 
