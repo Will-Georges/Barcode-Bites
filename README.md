@@ -95,7 +95,7 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     - Reformatted the README to include "Note" sections
     </details>
     <details>
-    <summary>1.2.2.0<summary>
+    <summary>1.2.2.0</summary>
         <details>
         <summary>1.2.2.1 - (22/7/24 10:10pm)</summary>
         - Altered [Versioning Convention](#versioning-convention) in README
@@ -150,6 +150,10 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
         </details>
         <details>
         <summary>1.2.2.12 - (23/7/24 9:50am)</summary>
+        - Testing
+        </details>
+        <details>
+        <summary>1.2.2.13 - (23/7/24 9:55am)</summary>
         - Testing
         </details>
     </details>
