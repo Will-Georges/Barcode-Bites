@@ -6,7 +6,20 @@ Barcode Bites is a Chrome extension that scans food barcodes and alerts users if
 
 ## Features
 
-- 1 - List will go here.
+> [!NOTE]
+> A list will be created towards the completion of the project.
+
+## Notes
+
+- This project utilises the OpenFoodFacts API.
+
+## Tutorial
+
+> [!NOTE]
+> Tutorial will go here towards the completion of the project
+
+> [!NOTE]
+> The tutorial can also be found by clicking the profile icon, to reveal a dropdown menu.
 
 ## Versioning Convention
 
@@ -18,18 +31,33 @@ The version number of the extension is specified in the `manifest.json` file. E.
 
 ## Version History
 
-- 1.0.0 - Files and IDE Setup (22/7/24 4:45pm)
-- 1.0.1 - Update Logo (22/7/24 4:50pm)
-- 1.1.0 - Connected Project to Github (22/7/24 5:25pm)
-- 1.1.1 - Set logo on GitHub repository (22/7/24 5:35pm)
-- 1.1.2 - Update README. Revert logo change on GitHub repository (22/7/24 5:45pm)
-- 1.2.0 - Add Permission in manifest.json. Create a Preference page. Change icon from dark/light with toggle in preferences. (22/7/24 9:25pm)
-- 1.2.1 - Fixed a bug that caused a scroll bar to appear when in preferences. Moved inline css into seperate styles.css file. (27/7/24 9:50pm)
+1.0.0 - (22/7/24 4:45pm)
+- Files and IDE Setup
 
-### Notes
+1.0.1 - (22/7/24 4:50pm)
+- Update Logo 
 
-- This project utilises the OpenFoodFacts API.
-- A tutorial can be found when first going to the main page, or by clicking on the profile icon, to reveal a dropdown menu.
+1.1.0 - (22/7/24 5:25pm)
+- Connected Project to Github 
+
+1.1.1 - (22/7/24 5:35pm)
+- Set logo on GitHub repository 
+
+1.1.2 - (22/7/24 5:45pm)
+- Update README
+- Revert logo change on GitHub repository 
+
+1.2.0 - (22/7/24 9:25pm)
+- Add Permission in manifest.json. 
+- Create a Preference page. 
+- Change icon from dark/light with toggle in preferences. 
+
+1.2.1 - (22/7/24 9:50pm)
+- Fixed a bug that caused a scroll bar to appear when in preferences
+- Moved inline CSS into seperate styles.css file. 
+
+1.2.2 - (22/7/24 10:00pm)
+- Reformatted the README to include "Note" sections
 
 ### Contact
 
