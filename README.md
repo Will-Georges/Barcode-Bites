@@ -81,7 +81,7 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     <br>
     - Change icon from dark/light with toggle in preferences.
     </details>
-    details>
+    <details>
     <summary>1.2.1 - (22/7/24 9:50pm)</summary>
     - Fixed a bug that caused a scroll bar to appear when in preferences
     <br>
@@ -134,6 +134,10 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
         <details>
         <summary>1.2.2.9 - (23/7/24 9:45am)</summary>
         - Further Testing
+        </details>
+        <details>
+        <summary>1.2.2.10 - (23/7/24 9:46am)</summary>
+        - Fixed Bug
         </details>
     </details>
 </details>
