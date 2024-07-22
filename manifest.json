@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Barcode Bites",
-    "version": "1.2.2.11",
+    "version": "1.2.2.12",
     "description": "Scan food barcodes and get alerted if you have any allergies, or if it does not meet your preferences.",
     "action": {
       "default_popup": "popup.html",
