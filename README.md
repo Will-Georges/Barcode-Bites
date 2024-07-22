@@ -96,6 +96,7 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     </details>
     <details>
     <summary>1.2.2.0</summary>
+        <br>
         <details>
         <summary>1.2.2.1 - (22/7/24 10:10pm)</summary>
         - Altered [Versioning Convention](#versioning-convention) in README
@@ -155,6 +156,10 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
         <details>
         <summary>1.2.2.13 - (23/7/24 9:55am)</summary>
         - Testing
+        </details>
+        <details>
+        <summary>1.2.2.14 - (23/7/24 10:00am)</summary>
+        - README formatted.
         </details>
     </details>
     <br>
