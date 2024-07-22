@@ -21,6 +21,7 @@ The version number of the extension is specified in the `manifest.json` file. E.
 - 1.0.0 - Files and IDE Setup (22/7/24)
 - 1.0.1 - Update Logo (22/7/24)
 - 1.1.0 - Connected Project to Github (22/7/24)
+- 1.1.1 - Set logo on GitHub repository (22/7/24)
 
 ## Notes
 
