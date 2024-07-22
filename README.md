@@ -2,7 +2,7 @@
 
 ## Description
 
-A Chrome extension that scans food barcodes and you get alerted if you have any allergies, or if it does not meet your preferences.
+Barcode Bites is a Chrome extension that scans food barcodes and alerts users if they have any allergies, or if it does not meet their preferences. The extension will also output other health information.
 
 ## Features
 
@@ -22,11 +22,13 @@ The version number of the extension is specified in the `manifest.json` file. E.
 - 1.0.1 - Update Logo (22/7/24)
 - 1.1.0 - Connected Project to Github (22/7/24)
 - 1.1.1 - Set logo on GitHub repository (22/7/24)
+- 1.1.2 - Update README. Revert logo change on GitHub repository (22/7/24)
 
-## Notes
+### Notes
 
 - This project utilitises the OpenFoodFacts API.
+- A tutorial can be found when first going to the main page, or by clicking on the profile icon, to reveal a dropdown menu.
 
-## Contact
+### Contact
 
-For any questions or suggestions, please contact the developer, Will Georges @ 25GeorWL@cgs.vic.edu.au
+For any questions or suggestions, please contact the developer, Will Georges @ georgeswill01@gmail.com
