@@ -41,6 +41,7 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
 
 <details>
 <summary>1.0</summary>
+    <br>
     <details>
     <summary>1.0.0 - (22/7/24 4:45pm)</summary>
     - Files and IDE Setup
@@ -54,6 +55,7 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
 
 <details>
 <summary>1.1</summary>
+    <br>
     <details>
     <summary>1.1.0 - (22/7/24 5:25pm)</summary>
     - Connected Project to Github
@@ -73,6 +75,7 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
 
 <details>
 <summary>1.2</summary>
+    <br>
     <details>
     <summary>1.2.0 - (22/7/24 9:25pm)</summary>
     - Add Permission in manifest.json.
@@ -91,6 +94,8 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     <summary>1.2.2 - (22/7/24 10:00pm)</summary>
     - Reformatted the README to include "Note" sections
     </details>
+    <details>
+    <summary>1.2.2<summary>
         <details>
         <summary>1.2.2.1 - (22/7/24 10:10pm)</summary>
         - Altered [Versioning Convention](#versioning-convention) in README
@@ -139,7 +144,13 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
         <summary>1.2.2.10 - (23/7/24 9:46am)</summary>
         - Fixed Bug
         </details>
+        <details>
+        <summary>1.2.2.11 - (23/7/24 9:46am)</summary>
+        - Testing
+        </details>
     </details>
+    </details>
+    <br>
 </details>
 
 ### Contact
