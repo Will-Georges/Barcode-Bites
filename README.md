@@ -45,7 +45,6 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     <summary>1.0.0 - (22/7/24 4:45pm)</summary>
     - Files and IDE Setup
     </details>
-
     <details>
     <summary>1.0.1 - (22/7/24 4:50pm)</summary>
     - Update Logo
@@ -120,6 +119,11 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
 <details>
 <summary>1.2.2.5 - (23/7/24 9:20am)</summary>
 - Testing formatting changes.
+</details>
+
+<details>
+<summary>1.2.2.6 - (23/7/24 9:25am)</summary>
+- Fixed formatting bug
 </details>
 
 ### Contact
