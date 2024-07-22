@@ -23,7 +23,7 @@ Barcode Bites is a Chrome extension that scans food barcodes and alerts users if
 
 ## Versioning Convention
 
-The version number of the extension is specified in the `manifest.json` file. The format used is "Major.Minor.Patch.Revised" (e.g., "1.0.1.0"). Each part of the version number has a specific purpose:
+The version number of the extension is specified in the `manifest.json` file. The format used is "Major.Minor.Patch.Revised" (E.g. "1.0.1.0"). Each part of the version number has a specific purpose:
 
 - **Major Version**: Increased when an API change or significant change is made.
 - **Minor Version**: Increased when functionality is added, or a medium-scale change is made.
@@ -33,7 +33,7 @@ The version number of the extension is specified in the `manifest.json` file. Th
 ### Reset Behavior
 
 Whenever the number to the left increases, all numbers to its right reset to 0. For example:
-- If `1.1.2.3` receives a **Minor** version upgrade, it becomes `1.2.0.0`.
+- If `1.1.2.3` receives a **Minor** version upgrade, it becomes `1.2.0`.
 
 It is assumed that all releases are **Revised Versions** of 0, unless otherwise specified.
 
@@ -108,6 +108,11 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
 - Added line breaks in version history.
 <br>
 - Updated Reset Behaviour in README
+</details>
+
+<details>
+<summary>1.2.2.4 - (23/7/24 9:00am)</summary>
+- Minor Wording Changes.
 </details>
 
 ### Contact
