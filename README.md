@@ -6,21 +6,21 @@ A Chrome extension that scans food barcodes and you get alerted if you have any 
 
 ## Features
 
-- 1
-- 2
+- 1 - List will go here.
 
 ## Versioning Convention
 
 The version number of the extension is specified in the `manifest.json` file. E.g. "1.0.1"
 
 - Major Version: Increased when an API change or significant change is made.
-- Minor Version: Increased when functionality is added.
+- Minor Version: Increased when functionality is added, or a medium scale change is made.
 - Patch Version: Increased when bug fixes are made, or minor things updated.
 
 ## Version History
 
-1.0.0 - Files and IDE Setup.
-1.0.1 - Update Logo
+- 1.0.0 - Files and IDE Setup (22/7/24)
+- 1.0.1 - Update Logo (22/7/24)
+- 1.1.0 - Connected Project to Github (22/7/24)
 
 ## Notes
 
