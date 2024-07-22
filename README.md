@@ -41,6 +41,7 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
 
 <details>
 <summary>1.0</summary>
+    <br>
     <details>
     <summary>1.0.0 - (22/7/24 4:45pm)</summary>
     - Files and IDE Setup
@@ -50,21 +51,24 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     - Update Logo
     </details>
 </details>
-<details>
-<summary>1.1.0 - (22/7/24 5:25pm)</summary>
-- Connected Project to Github
-</details>
 
 <details>
-<summary>1.1.1 - (22/7/24 5:35pm)</summary>
-- Set logo on GitHub repository
-</details>
-
-<details>
-<summary>1.1.2 - (22/7/24 5:45pm)</summary>
-- Update README
-<br>
-- Revert logo change on GitHub repository
+<summary>1.1</summary>
+    <br>
+    <details>
+    <summary>1.1.0 - (22/7/24 5:25pm)</summary>
+    - Connected Project to Github
+    </details>
+    <details>
+    <summary>1.1.1 - (22/7/24 5:35pm)</summary>
+    - Set logo on GitHub repository
+    </details>
+    <details>
+    <summary>1.1.2 - (22/7/24 5:45pm)</summary>
+    - Update README
+    <br>
+    - Revert logo change on GitHub repository
+    </details>
 </details>
 
 <details>
@@ -124,6 +128,11 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
 <details>
 <summary>1.2.2.6 - (23/7/24 9:25am)</summary>
 - Fixed formatting bug
+</details>
+
+<details>
+<summary>1.2.2.7 - (23/7/24 9:30am)</summary>
+- Update Formatting
 </details>
 
 ### Contact
