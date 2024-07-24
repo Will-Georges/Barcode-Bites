@@ -171,6 +171,7 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     <br>
 </details>
 
+<details>
 <summary>1.3</summary>
     <br>
     <details>
@@ -178,6 +179,10 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     - Created Button for Modal with Input for Barcode Number to be entered in.
     <br>
     - Retrieve Barcode Number from input.
+    </details>
+    <details>
+    <summary>1.3.0.1 - (24/7/24 6:25pm)</summary>
+    - Fixed formatting error on README
     </details>
     <br>
 </details>
