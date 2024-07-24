@@ -187,6 +187,18 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     <br>
 </details>
 
+<details>
+<summary>2.0</summary>
+    <br>
+    <details>
+    <summary>2.0.0 - (25/7/24 9:50am)</summary>
+    - Send request for product informaiton to OpenFoodFacts API
+    <br>
+    - Retrieve data from API.
+    </details>
+    <br>
+</details>
+
 ### Contact
 
 For any questions or suggestions, please contact the developer, Will Georges @ 25GeorWL@cgs.vic.edu.au
