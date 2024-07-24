@@ -95,78 +95,74 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     - Reformatted the README to include "Note" sections
     </details>
     <details>
-    <summary>1.2.2.0</summary>
-        <br>
-        <details>
-        <summary>1.2.2.1 - (22/7/24 10:10pm)</summary>
-        - Altered [Versioning Convention](#versioning-convention) in README
-        <br>
-        - Changed email in Contact
-        <br>
-        - Added same page link in README
-        </details>
-        <details>
-        <summary>1.2.2.2 - (23/7/24 8:45am)</summary>
-        - Updated Changelog format.
-        <br>
-        - Add Reset Behaviour in README
-        </details>
-        <details>
-        <summary>1.2.2.3 - (23/7/24 8:55am)</summary>
-        - Added line breaks in version history.
-        <br>
-        - Updated Reset Behaviour in README
-        </details>
-        <details>
-        <summary>1.2.2.4 - (23/7/24 9:00am)</summary>
-        - Minor Wording Changes.
-        </details>
-        <details>
-        <summary>1.2.2.5 - (23/7/24 9:20am)</summary>
-        - Testing formatting changes.
-        </details>
-        <details>
-        <summary>1.2.2.6 - (23/7/24 9:25am)</summary>
-        - Fixed formatting bug
-        </details>
-        <details>
-        <summary>1.2.2.7 - (23/7/24 9:30am)</summary>
-        - Update Formatting
-        </details>
-        <details>
-        <summary>1.2.2.8 - (23/7/24 9:40am)</summary>
-        - Testing
-        </details>
-        <details>
-        <summary>1.2.2.9 - (23/7/24 9:45am)</summary>
-        - Further Testing
-        </details>
-        <details>
-        <summary>1.2.2.10 - (23/7/24 9:46am)</summary>
-        - Fixed Bug
-        </details>
-        <details>
-        <summary>1.2.2.11 - (23/7/24 9:46am)</summary>
-        - Testing
-        </details>
-        <details>
-        <summary>1.2.2.12 - (23/7/24 9:50am)</summary>
-        - Testing
-        </details>
-        <details>
-        <summary>1.2.2.13 - (23/7/24 9:55am)</summary>
-        - Testing
-        </details>
-        <details>
-        <summary>1.2.2.14 - (23/7/24 10:00am)</summary>
-        - README formatted.
-        </details>
-        <details>
-        <summary>1.2.2.15 - (23/7/24 10:45am)</summary>
-        - Further Testing of iframe.
-        <br>
-        - Moved Bulma link
-        </details>
+    <summary>1.2.2.1 - (22/7/24 10:10pm)</summary>
+    - Altered [Versioning Convention](#versioning-convention) in README
+    <br>
+    - Changed email in Contact
+    <br>
+    - Added same page link in README
+    </details>
+    <details>
+    <summary>1.2.2.2 - (23/7/24 8:45am)</summary>
+    - Updated Changelog format.
+    <br>
+    - Add Reset Behaviour in README
+    </details>
+    <details>
+    <summary>1.2.2.3 - (23/7/24 8:55am)</summary>
+    - Added line breaks in version history.
+    <br>
+    - Updated Reset Behaviour in README
+    </details>
+    <details>
+    <summary>1.2.2.4 - (23/7/24 9:00am)</summary>
+    - Minor Wording Changes.
+    </details>
+    <details>
+    <summary>1.2.2.5 - (23/7/24 9:20am)</summary>
+    - Testing formatting changes.
+    </details>
+    <details>
+    <summary>1.2.2.6 - (23/7/24 9:25am)</summary>
+    - Fixed formatting bug
+    </details>
+    <details>
+    <summary>1.2.2.7 - (23/7/24 9:30am)</summary>
+    - Update Formatting
+    </details>
+    <details>
+    <summary>1.2.2.8 - (23/7/24 9:40am)</summary>
+    - Testing
+    </details>
+    <details>
+    <summary>1.2.2.9 - (23/7/24 9:45am)</summary>
+    - Further Testing
+    </details>
+    <details>
+    <summary>1.2.2.10 - (23/7/24 9:46am)</summary>
+    - Fixed Bug
+    </details>
+    <details>
+    <summary>1.2.2.11 - (23/7/24 9:46am)</summary>
+    - Testing
+    </details>
+    <details>
+    <summary>1.2.2.12 - (23/7/24 9:50am)</summary>
+    - Testing
+    </details>
+    <details>
+    <summary>1.2.2.13 - (23/7/24 9:55am)</summary>
+    - Testing
+    </details>
+    <details>
+    <summary>1.2.2.14 - (23/7/24 10:00am)</summary>
+    - README formatted.
+    </details>
+    <details>
+    <summary>1.2.2.15 - (23/7/24 10:45am)</summary>
+    - Further Testing of iframe.
+    <br>
+    - Moved Bulma link
     </details>
     <br>
 </details>
@@ -183,6 +179,10 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     <details>
     <summary>1.3.0.1 - (24/7/24 6:25pm)</summary>
     - Fixed formatting error on README
+    </details>
+    <details>
+    <summary>1.3.0.2 - (24/7/24 8:00pm)</summary>
+    - Update Formatting
     </details>
     <br>
 </details>
