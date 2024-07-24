@@ -171,6 +171,17 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     <br>
 </details>
 
+<summary>1.3</summary>
+    <br>
+    <details>
+    <summary>1.3.0 - (24/7/24 6:20pm)</summary>
+    - Created Button for Modal with Input for Barcode Number to be entered in.
+    <br>
+    - Retrieve Barcode Number from input.
+    </details>
+    <br>
+</details>
+
 ### Contact
 
 For any questions or suggestions, please contact the developer, Will Georges @ 25GeorWL@cgs.vic.edu.au

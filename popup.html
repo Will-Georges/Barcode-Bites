@@ -13,6 +13,7 @@
             <div id="mainContent">
                 <h1 class="title">Barcode Bites</h1>
                 <p class="subtitle">Homepage</p>
+                <button id="manualEntryButton" class="button is-primary">Manual Entry</button>
                 <button id="openPreferences" class="button is-primary">Preferences</button>
             </div>
             <div id="preferencesContent">
@@ -21,8 +22,25 @@
             </div>
         </div>
     </section>
+
+    <div class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content has-background-warning has-text-black px-3">
+            <div class="title"> Manual Entry </div>
+
+            <div class="field has-addons">
+                <div class="control">
+                    <input class="input" type="number" placeholder="Barcode Number" id="barcodeEntry">
+                </div>
+                <div class="control">
+                    <button class="button is-info" id="submitBarcode">Submit</button>
+                </div>
+           </div>
+
+        </div>
+    </div>
+
     <script src="popup.js"></script>
+
 </body>
 </html>
-
-<!-- Create modal to put entry -->
