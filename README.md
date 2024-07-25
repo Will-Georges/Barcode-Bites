@@ -196,6 +196,16 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     <br>
     - Retrieve data from API.
     </details>
+    <details>
+    <summary>2.0.1 - (25/7/24 10:30am)</summary>
+    - Commented out code.
+    <br>
+    - Added more error detection in API requests.
+    <br>
+    - Added more debugging statements
+    <br>
+    - Updated icons
+    </details>
     <br>
 </details>
 
