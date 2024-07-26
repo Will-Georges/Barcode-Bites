@@ -219,12 +219,16 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     - Create folder for all additional HTML pages.
     </details>
     <details>
-    <summary>2.0.4 - (26/7/24 10:35am)</summary>
+    <summary>2.0.4 - (26/7/24 10:30am)</summary>
     - Added basic footer code.
+    </details>
+    <details>
+    <summary>2.0.4.1 - (26/7/24 10:35am)</summary>
+    - Bug Fix
     </details>
     <br>
 </details>
 
-### Contact
+## Contact
 
 For any questions or suggestions, please contact the developer, Will Georges @ 25GeorWL@cgs.vic.edu.au
