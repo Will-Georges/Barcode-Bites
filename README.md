@@ -218,6 +218,10 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     <summary>2.0.3 - (26/7/24 10:25am)</summary>
     - Create folder for all additional HTML pages.
     </details>
+    <details>
+    <summary>2.0.4 - (26/7/24 10:35am)</summary>
+    - Added basic footer code.
+    </details>
     <br>
 </details>
 
