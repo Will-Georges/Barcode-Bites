@@ -206,6 +206,14 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     <br>
     - Updated icons
     </details>
+    <details>
+    <summary>2.0.2 - (26/7/24 10:20am)</summary>
+    - Create Functions to load or remove HTML content.
+    <br>
+    - Created basic navbar code.
+    <br>
+    - Minor wording changes.
+    </details>
     <br>
 </details>
 

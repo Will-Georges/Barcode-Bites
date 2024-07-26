@@ -8,6 +8,22 @@ const backToMainButton = document.getElementById('backToMain');
 const mainContent = document.getElementById('mainContent');
 const preferencesContent = document.getElementById('preferencesContent');
 
+
+// Function to load HTML content into a container
+function loadHTML(containerId, url) {
+    fetch(url)
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById(containerId).innerHTML = data;
+        })
+        .catch(error => console.error('Error loading HTML:', error));
+}
+
+// Function to remove HTML content from a container
+function removeHTML(containerId) {
+    document.getElementById(containerId).innerHTML = '';
+}
+
 // If preferences is opened, the main content should be hidden
 openPreferencesButton.addEventListener('click', () => {
     mainContent.style.display = 'none';
@@ -23,6 +39,7 @@ backToMainButton.addEventListener('click', () => {
 // Open Modal
 manualEntryButton.addEventListener('click', () => {
     modal.classList.add('is-active');
+    removeHTML('navbar-container');
 })
 
 // Close Modal
@@ -59,9 +76,9 @@ async function fetchData(barcode) {
             console.log(`Brand: ${productBrand}`);
             console.log(`Ingredients: ${productIngredients}`);
         } else if (data.status === 0) { // If product not found
-            console.log("Product not found");
+            console.log("Product Not Found");
         } else { // If there is a response but an unknown error.
-            console.log("Unknown error");
+            console.log("Unknown Error");
         }
     } catch (error) { // Block of code to be executed, if an error occurs in the try block.
         // If try block of code fails.
@@ -69,5 +86,8 @@ async function fetchData(barcode) {
     }
 }
   
-  
+// Load navbar HTML on page load
+document.addEventListener('DOMContentLoaded', () => {
+    loadHTML('navbar-container', 'navbar.html');
+});
    
