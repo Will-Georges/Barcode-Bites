@@ -45,6 +45,7 @@ manualEntryButton.addEventListener('click', () => {
 // Close Modal
 modalBackground.addEventListener('click', () => {
     modal.classList.remove('is-active');
+    loadHTML('navbar-container', 'pages/navbar.html');
 })
 
 // Run when the manual entry submit button is clicked, and runs the API fetch function
@@ -88,6 +89,6 @@ async function fetchData(barcode) {
   
 // Load navbar HTML on page load
 document.addEventListener('DOMContentLoaded', () => {
-    loadHTML('navbar-container', 'navbar.html');
+    loadHTML('navbar-container', 'pages/navbar.html');
 });
    
