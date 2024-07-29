@@ -56,6 +56,8 @@ submitBarcode.addEventListener('click', () => {
     var barcodeNumber = barcodeEntry.value;
     console.log(barcodeNumber);
     fetchData(barcodeNumber)
+    modal.classList.remove('is-active');
+    loadHTML('output-container', 'pages/output.html');
 })
 
 // Featches Data
@@ -75,6 +77,11 @@ async function fetchData(barcode) {
             const productBrand = data.product.brands;
             const productIngredients = data.product.ingredients_text;
 
+            // Print data in output page
+            document.getElementById("product-name-output").innerHTML = "Product: " + productName;
+            document.getElementById("brand-output").innerHTML = "Brand: " + productBrand;
+            document.getElementById("ingredients-output").innerHTML = "Ingredients: " + productIngredients;
+
             console.log(`Product Name: ${productName}`);
             console.log(`Brand: ${productBrand}`);
             console.log(`Ingredients: ${productIngredients}`);
@@ -88,7 +95,7 @@ async function fetchData(barcode) {
         console.error("There was a problem with your fetch request: ", error);
     }
 }
-  
+
 // Load navbar HTML on page load
 document.addEventListener('DOMContentLoaded', () => {
     loadHTML('navbar-container', 'pages/navbar.html');

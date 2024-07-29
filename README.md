@@ -229,6 +229,18 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     <br>
 </details>
 
+<details>
+<summary>2.1</summary>
+    <br>
+    <details>
+    <summary>2.1.0 - (29/7/24 1:50pm)</summary>
+    - Create seperate output page that embeds in main page.
+    <br>
+    - Output data retrieved through API.
+    </details>
+    <br>
+</details>
+
 ## Contact
 
 For any questions or suggestions, please contact the developer, Will Georges @ 25GeorWL@cgs.vic.edu.au
