@@ -258,6 +258,12 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     <br>
     - Testing translation tools
     </details>
+    <details>
+    <summary>2.1.3 - (30/7/24 9:50pm)</summary>
+    - Changed the color of the footer.
+    <br>
+    - Fixed an error where outputted data would be in another language.
+    </details>
     <br>
 </details>
 

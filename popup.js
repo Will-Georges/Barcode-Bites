@@ -73,9 +73,9 @@ async function fetchData(barcode) {
         if (data.status === 1) { // If product found
             console.log("Product Found");
             // Set the data to individual variables
-            const productName = data.product.product_name;
+            const productName = data.product.product_name_en;
             const productBrand = data.product.brands;
-            const productIngredients = data.product.ingredients_text;
+            const productIngredients = data.product.ingredients_text_en;
 
             // Print data in output page
             document.getElementById("product-name-output").innerHTML = "Product: " + productName;
