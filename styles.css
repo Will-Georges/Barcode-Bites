@@ -15,3 +15,7 @@ html, body {
     width: 100%;
     height: 100%;
 }
+
+.has-background-orange {
+    background-color: rgb(254,108,9);
+}

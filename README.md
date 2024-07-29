@@ -244,6 +244,14 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     <br>
     - Fixed header and footer to top and bottom of page.
     </details>
+    <details>
+    <summary>2.1.2 - (29/7/24 3:15pm)</summary>
+    - Added css properties
+    <br>
+    - Created a header.
+    <br>
+    - Added another logo
+    </details>
     <br>
 </details>
 
