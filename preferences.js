@@ -19,4 +19,4 @@ document.addEventListener('DOMContentLoaded', () => { // Makes sure to load all 
         const iconPath = isDarkMode ? "images/icon-light.png" : "images/icon-dark.png"; // says where the file is.
         chrome.action.setIcon({ path: iconPath }); // Sets the icon
     }
-  });
+});

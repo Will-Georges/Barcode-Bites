@@ -252,6 +252,12 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     <br>
     - Added another logo
     </details>
+    <details>
+    <summary>2.1.2.1 - (29/7/24 6:05pm)</summary>
+    - Minor Formatting Changes.
+    <br>
+    - Testing translation tools
+    </details>
     <br>
 </details>
 
