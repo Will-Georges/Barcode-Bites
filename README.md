@@ -238,6 +238,12 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     <br>
     - Output data retrieved through API.
     </details>
+    <details>
+    <summary>2.1.1 - (29/7/24 2:40pm)</summary>
+    - Updated footer
+    <br>
+    - Fixed header and footer to top and bottom of page.
+    </details>
     <br>
 </details>
 
