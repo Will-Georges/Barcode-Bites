@@ -73,14 +73,26 @@ async function fetchData(barcode) {
         if (data.status === 1) { // If product found
             console.log("Product Found");
             // Set the data to individual variables
-            const productName = data.product.product_name_en;
-            const productBrand = data.product.brands;
-            const productIngredients = data.product.ingredients_text_en;
+            var productName = data.product.product_name_en;
+            var productBrand = data.product.brands;
+            var productIngredients = data.product.ingredients_text_en;
+            var note = "";
+
+            if (productName === "") { // Checks if there is no specified English, and puts the original language as the output
+                productName = data.product.product_name;
+                note += "Product Name, ";
+            }
+
+            if (productIngredients === "") { // Checks if there is no specified English, and puts the original language as the output
+                productIngredients = data.product.ingredients_text;
+                note += "Ingredients could not be found in English.";
+            }
 
             // Print data in output page
             document.getElementById("product-name-output").innerHTML = "Product: " + productName;
             document.getElementById("brand-output").innerHTML = "Brand: " + productBrand;
             document.getElementById("ingredients-output").innerHTML = "Ingredients: " + productIngredients;
+            document.getElementById("note-output").innerHTML = "Notes: " + note;
 
             console.log(`Product Name: ${productName}`);
             console.log(`Brand: ${productBrand}`);
