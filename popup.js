@@ -39,8 +39,6 @@ backToMainButton.addEventListener('click', () => {
 // Open Modal
 manualEntryButton.addEventListener('click', () => {
     modal.classList.add('is-active');
-    removeHTML('navbar-container');
-    removeHTML('footer-container');
 })
 
 // Close Modal

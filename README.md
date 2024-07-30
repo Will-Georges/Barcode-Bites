@@ -268,7 +268,10 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     <summary>2.1.3.1 - (30/7/24 10:20pm)</summary>
     - Added a Note output field to state if English is not available.
     </details>
-    <br>
+    <details>
+    <summary>2.1.3.2 - (30/7/24 10:25pm)</summary>
+    - Fixed a bug where navbar and footer would disappear when manual entry modal was opened.
+    </details>
     <br>
 </details>
 
