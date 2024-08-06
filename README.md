@@ -259,18 +259,34 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     - Testing translation tools
     </details>
     <details>
-    <summary>2.1.3 - (30/7/24 9:50pm)</summary>
+    <summary>2.1.3 - (30/7/24 9:50am)</summary>
     - Changed the color of the footer.
     <br>
     - Fixed an error where outputted data would be in another language.
     </details>
     <details>
-    <summary>2.1.3.1 - (30/7/24 10:20pm)</summary>
+    <summary>2.1.3.1 - (30/7/24 10:20am)</summary>
     - Added a Note output field to state if English is not available.
     </details>
     <details>
-    <summary>2.1.3.2 - (30/7/24 10:25pm)</summary>
+    <summary>2.1.3.2 - (30/7/24 10:25am)</summary>
     - Fixed a bug where navbar and footer would disappear when manual entry modal was opened.
+    </details>
+    <br>
+</details>
+
+<details>
+<summary>2.2</summary>
+    <br>
+    <details>
+    <summary>2.2.0 - (6/8/24 10:45am)</summary>
+    - Created form for account creation
+    <br>
+    - Edited Navbar
+    <br>
+    - Added another image.
+    <br>
+    - Added more minor changes.
     </details>
     <br>
 </details>

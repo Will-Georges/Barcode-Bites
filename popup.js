@@ -1,13 +1,22 @@
 // Set initial variables
 const manualEntryButton = document.querySelector('#manualEntryButton');
-const modalBackground = document.querySelector('.modal-background');
-const modal = document.querySelector('.modal');
+const modalBackgroundEntry = document.querySelector('#modal-background-entry');
+const modalEntry = document.querySelector('#modal-entry');
+
+const openSignup = document.querySelector('#openSignup');
+const modalBackgroundSignup = document.querySelector('#modal-background-signup');
+const modalSignup = document.querySelector('#modal-signup');
+
 const submitBarcode = document.getElementById("submitBarcode");
 const openPreferencesButton = document.getElementById('openPreferences');
 const backToMainButton = document.getElementById('backToMain');
 const mainContent = document.getElementById('mainContent');
 const preferencesContent = document.getElementById('preferencesContent');
 
+const username = document.querySelector("#username");
+const email = document.querySelector("#email");
+const password = document.querySelector("#password");
+const submitSignup = document.querySelector("#submit-signup");
 
 // Function to load HTML content into a container
 function loadHTML(containerId, url) {
@@ -36,14 +45,31 @@ backToMainButton.addEventListener('click', () => {
     mainContent.style.display = 'block';
 });
 
+// submit signup
+submitSignup.addEventListener('click', () => {
+    handleSignup();
+})
+
 // Open Modal
 manualEntryButton.addEventListener('click', () => {
-    modal.classList.add('is-active');
+    modalEntry.classList.add('is-active');
+})
+
+// Open Signup Modal
+openSignup.addEventListener('click', () => {
+    modalSignup.classList.add('is-active');
 })
 
 // Close Modal
-modalBackground.addEventListener('click', () => {
-    modal.classList.remove('is-active');
+modalBackgroundEntry.addEventListener('click', () => {
+    modalEntry.classList.remove('is-active');
+    loadHTML('navbar-container', 'pages/navbar.html');
+    loadHTML('footer-container', 'pages/footer.html');
+})
+
+// Close Modal
+modalBackgroundSignup.addEventListener('click', () => {
+    modalSignup.classList.remove('is-active');
     loadHTML('navbar-container', 'pages/navbar.html');
     loadHTML('footer-container', 'pages/footer.html');
 })
@@ -106,9 +132,18 @@ async function fetchData(barcode) {
     }
 }
 
+function handleSignup() {
+    console.log("sign up submitted");
+    if (username.value.length > 0 && email.value.length > 0 && password.value.length > 0) {
+        modalSignup.classList.remove('is-active');
+        console.log("long enough");
+    } else {
+        console.log("didnt type in one of them.");
+    }
+}
+
 // Load navbar HTML on page load
 document.addEventListener('DOMContentLoaded', () => {
     loadHTML('navbar-container', 'pages/navbar.html');
     loadHTML('footer-container', 'pages/footer.html');
-});
-   
+}); 

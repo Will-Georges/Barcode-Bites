@@ -6,6 +6,7 @@
     <title>Barcode Bites</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div id="navbar-container"></div>
@@ -17,6 +18,7 @@
                 <p class="subtitle">Homepage</p>
                 <button id="manualEntryButton" class="button is-primary">Manual Entry</button>
                 <button id="openPreferences" class="button is-primary">Preferences</button>
+                <button id="openSignup" class="button is-primary">Signup</button>
             </div>
             <!--Preferences Page in an iframe-->
             <div id="preferencesContent">
@@ -26,8 +28,8 @@
         </div>
     </section>
     <!--Manual Entry Modal-->
-    <div class="modal">
-        <div class="modal-background"></div>
+    <div class="modal" id="modal-entry">
+        <div class="modal-background" id="modal-background-entry"></div>
         <div class="modal-content has-background-warning has-text-black px-3">
             <div class="title"> Manual Entry </div>
 
@@ -42,6 +44,44 @@
 
         </div>
     </div>
+
+    <!--Log In-->
+    <div class="modal" id="modal-signup">
+        <div class="modal-background" id="modal-background-signup"></div>
+        <div class="modal-content has-background-warning has-text-black px-3">
+            <div class="title"> Signup </div>
+
+            <div class="field">
+                <p class="control has-icons-left">
+                  <input class="input" type="text" placeholder="Username" id="username" autocomplete="on"/>
+                  <span class="icon is-small is-left">
+                    <i class="fas fa-signature"></i>
+                  </span>
+                </p>
+              </div>
+            <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                  <input class="input" type="email" placeholder="Email" id="email" autocomplete="on"/>
+                  <span class="icon is-small is-left">
+                    <i class="fas fa-envelope"></i>
+                  </span>
+                </p>
+              </div>
+              <div class="field">
+                <p class="control has-icons-left">
+                  <input class="input" type="password" placeholder="Password" id="password" autocomplete="on"/>
+                  <span class="icon is-small is-left">
+                    <i class="fas fa-lock"></i>
+                  </span>
+                </p>
+              </div>
+              <button class="button is-info" id="submit-signup">Signup</button>
+                
+           </div>
+
+        </div>
+    </div>
+
     <div id="output-container"></div>
     <div id="footer-container"></div>
     <script src="popup.js"></script>
