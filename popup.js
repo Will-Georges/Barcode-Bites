@@ -151,6 +151,7 @@ function handleSignup() {
 document.addEventListener('DOMContentLoaded', () => {
     loadHTML('navbar-container', 'pages/navbar.html');
     loadHTML('footer-container', 'pages/footer.html');
+    loadHTML('signup-container', 'pages/signup.html');
 });
 
 function clearStorage() {
