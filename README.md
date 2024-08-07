@@ -288,6 +288,10 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     <br>
     - Added more minor changes.
     </details>
+    <details>
+    <summary>2.2.1 - (7/8/24 1:45pm)</summary>
+    - Saved details to local storage.
+    </details>
     <br>
 </details>
 

@@ -18,6 +18,8 @@ const email = document.querySelector("#email");
 const password = document.querySelector("#password");
 const submitSignup = document.querySelector("#submit-signup");
 
+let hasSignedUp = false;
+
 // Function to load HTML content into a container
 function loadHTML(containerId, url) {
     fetch(url)
@@ -136,7 +138,10 @@ function handleSignup() {
     console.log("sign up submitted");
     if (username.value.length > 0 && email.value.length > 0 && password.value.length > 0) {
         modalSignup.classList.remove('is-active');
-        console.log("long enough");
+        hasSignedUp = true;
+        localStorage.setItem("username", username.value);
+        localStorage.setItem("email", email.value);
+        localStorage.setItem("password", password.value);
     } else {
         console.log("didnt type in one of them.");
     }
@@ -146,4 +151,8 @@ function handleSignup() {
 document.addEventListener('DOMContentLoaded', () => {
     loadHTML('navbar-container', 'pages/navbar.html');
     loadHTML('footer-container', 'pages/footer.html');
-}); 
+});
+
+function clearStorage() {
+    localStorage.clear();
+}
