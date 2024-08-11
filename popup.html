@@ -9,7 +9,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div id="navbar-container"></div>
+  <nav class="navbar is-fixed-top has-text-white" id="navbar"> <!--outer container-->
+    <div class="navbar-brand has-background-orange"> <!--left hand side-->
+      <img class="image is-inline-block is-64x64" src="images/cropped-logo.png">
+      <div class="navbar-item">
+        <button class="button has-background-orange">Settings</button>
+      </div>
+    </div>
+  </nav>
     <section class="section">
         <div class="container">
             <!--Main Page-->
@@ -84,7 +91,16 @@
     </div>
 
     <div id="output-container"></div>
-    <div id="footer-container"></div>
+    <nav class="navbar is-fixed-bottom has-text-white" id="navbar">
+      <!-- Outer container -->
+      <div class="navbar-brand has-background-orange">
+          <!-- Left-hand side -->
+          <div class="navbar-item">My Account</div>
+      </div>
+      <div class="navbar-menu">
+        <!-- Right-hand side -->
+      </div>
+  </nav>
     <script src="popup.js"></script>
 
 </body>

@@ -296,6 +296,14 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     <summary>2.2.2 - (7/8/24 2:05pm)</summary>
     - Create signup page
     </details>
+    <details>
+    <summary>2.2.3 - (11/8/24 5:00pm)</summary>
+    - Code Restructure
+    <br>
+    - Fixed a bug with the modal
+    <br>
+    - Adjusted Permissions
+    </details>
     <br>
 </details>
 

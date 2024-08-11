@@ -65,15 +65,11 @@ openSignup.addEventListener('click', () => {
 // Close Modal
 modalBackgroundEntry.addEventListener('click', () => {
     modalEntry.classList.remove('is-active');
-    loadHTML('navbar-container', 'pages/navbar.html');
-    loadHTML('footer-container', 'pages/footer.html');
 })
 
 // Close Modal
 modalBackgroundSignup.addEventListener('click', () => {
     modalSignup.classList.remove('is-active');
-    loadHTML('navbar-container', 'pages/navbar.html');
-    loadHTML('footer-container', 'pages/footer.html');
 })
 
 // Run when the manual entry submit button is clicked, and runs the API fetch function
@@ -82,7 +78,7 @@ submitBarcode.addEventListener('click', () => {
     var barcodeNumber = barcodeEntry.value;
     console.log(barcodeNumber);
     fetchData(barcodeNumber)
-    modal.classList.remove('is-active');
+    modalEntry.classList.remove('is-active');
     loadHTML('output-container', 'pages/output.html');
 })
 
@@ -149,8 +145,6 @@ function handleSignup() {
 
 // Load navbar HTML on page load
 document.addEventListener('DOMContentLoaded', () => {
-    loadHTML('navbar-container', 'pages/navbar.html');
-    loadHTML('footer-container', 'pages/footer.html');
     loadHTML('signup-container', 'pages/signup.html');
 });
 
