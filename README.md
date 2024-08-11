@@ -311,6 +311,16 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     <br>
 </details>
 
+<details>
+<summary>2.3</summary>
+    <br>
+    <details>
+    <summary>2.3.0 - (11/8/24 5:25pm)</summary>
+    - Major Code Structure Rework
+    </details>
+    <br>
+</details>
+
 ## Contact
 
 For any questions or suggestions, please contact the developer, Will Georges @ 25GeorWL@cgs.vic.edu.au
