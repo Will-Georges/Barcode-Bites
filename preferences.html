@@ -9,12 +9,12 @@
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar is-fixed-top has-text-white" id="navbar"> <!--outer container-->
+    <nav class="navbar is-fixed-top" id="navbar"> <!--outer container-->
         <div class="navbar-brand has-background-orange"> <!--left hand side-->
-          <img class="image is-inline-block is-64x64" src="images/cropped-logo.png">
-          <div class="navbar-item">
-            <button class="button has-background-orange">Settings</button>
-          </div>
+            <img class="image is-inline-block is-64x64" src="images/cropped-logo.png">
+            <a class="navbar-item has-text-white" id="openPreferences">
+                Settings
+            </a>
         </div>
     </nav>
 
@@ -42,7 +42,7 @@
           <!-- Right-hand side -->
         </div>
     </nav>
-    
+
     <script src="popup.js"></script>
 </body>
 </html>

@@ -326,6 +326,14 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     <br>
     - Commented and Formatted Code
     </details>
+    <details>
+    <summary>2.3.2 - (11/8/24 6:10pm)</summary>
+    - Fixed navbar item colouring
+    <br>
+    - Fixed column width to fit smaller size
+    <br>
+    - Use navbar settings button instead
+    </details>
     <br>
 </details>
 

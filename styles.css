@@ -19,3 +19,12 @@ html, body {
 .has-background-orange {
     background-color: rgb(254,108,9);
 }
+
+.no-wrap {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.column {
+    flex: 1 0 50%; /* Adjust column widths as needed */
+  }
