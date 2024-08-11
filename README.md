@@ -304,6 +304,10 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     <br>
     - Adjusted Permissions
     </details>
+    <details>
+    <summary>2.2.3.1 - (11/8/24 5:05pm)</summary>
+    - Removed sign up page
+    </details>
     <br>
 </details>
 

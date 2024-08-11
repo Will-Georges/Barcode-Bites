@@ -145,7 +145,7 @@ function handleSignup() {
 
 // Load navbar HTML on page load
 document.addEventListener('DOMContentLoaded', () => {
-    loadHTML('signup-container', 'pages/signup.html');
+
 });
 
 function clearStorage() {
