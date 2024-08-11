@@ -155,7 +155,14 @@ document.addEventListener('DOMContentLoaded', function() {
         
                 // Display results
                 if (barcodes.length > 0) {
-                    document.getElementById('barcodeResult').textContent = 'Barcode Detected: ' + barcodes[0].rawValue;
+                    const barcodeNumber = barcodes[0].rawValue;
+                    document.getElementById('barcodeResult').textContent = 'Barcode Detected: ' + barcodeNumber;
+        
+                    // Call fetchData with the detected barcode number
+                    fetchData(barcodeNumber);
+        
+                    // update the output container
+                    loadHTML('output-container', 'pages/output.html');
                 } else {
                     document.getElementById('barcodeResult').textContent = 'No barcode detected.';
                 }

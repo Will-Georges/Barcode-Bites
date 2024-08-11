@@ -347,6 +347,16 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     <br>
 </details>
 
+<details>
+<summary>3.1</summary>
+    <br>
+    <details>
+    <summary>3.1.0 - (11/8/24 8:55pm)</summary>
+    - Output data after barcode number is scanned from an image
+    </details>
+    <br>
+</details>
+
 ## Contact
 
 For any questions or suggestions, please contact the developer, Will Georges @ 25GeorWL@cgs.vic.edu.au
