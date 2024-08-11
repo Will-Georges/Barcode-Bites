@@ -318,6 +318,14 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     <summary>2.3.0 - (11/8/24 5:25pm)</summary>
     - Major Code Structure Rework
     </details>
+    <details>
+    <summary>2.3.1 - (11/8/24 5:35pm)</summary>
+    - Added Navbar and Footer to preferences
+    <br>
+    - Fixed Styling bug for preferences
+    <br>
+    - Commented and Formatted Code
+    </details>
     <br>
 </details>
 

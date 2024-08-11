@@ -1,12 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="has-navbar-fixed-top has-navbar-fixed-bottom">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Preferences</title>
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css">
 </head>
 <body>
+    <!-- Navbar -->
+    <nav class="navbar is-fixed-top has-text-white" id="navbar"> <!--outer container-->
+        <div class="navbar-brand has-background-orange"> <!--left hand side-->
+          <img class="image is-inline-block is-64x64" src="images/cropped-logo.png">
+          <div class="navbar-item">
+            <button class="button has-background-orange">Settings</button>
+          </div>
+        </div>
+    </nav>
+
+    <!-- Main Section -->
     <section class="section">
         <div class="container">
             <h1 class="title">Preferences</h1>
@@ -18,6 +30,19 @@
             </div>
         </div>
     </section>
+
+    <!-- Footer -->
+    <nav class="navbar is-fixed-bottom has-text-white" id="navbar">
+        <!-- Outer container -->
+        <div class="navbar-brand has-background-orange">
+            <!-- Left-hand side -->
+            <div class="navbar-item">My Account</div>
+        </div>
+        <div class="navbar-menu">
+          <!-- Right-hand side -->
+        </div>
+    </nav>
+    
     <script src="popup.js"></script>
 </body>
 </html>
