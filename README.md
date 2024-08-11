@@ -337,6 +337,16 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     <br>
 </details>
 
+<details>
+<summary>3.0</summary>
+    <br>
+    <details>
+    <summary>3.0.0 - (11/8/24 8:20pm)</summary>
+    - Detect Barcode Number from an image Uploaded
+    </details>
+    <br>
+</details>
+
 ## Contact
 
 For any questions or suggestions, please contact the developer, Will Georges @ 25GeorWL@cgs.vic.edu.au

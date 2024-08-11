@@ -122,6 +122,48 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log("didnt type in one of them.");
             }
         }
+
+        document.getElementById('fileInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (!file) {
+                return;
+            }
+        
+            const img = document.getElementById('uploadedImage');
+            img.src = URL.createObjectURL(file);
+            img.onload = () => {
+                URL.revokeObjectURL(img.src); // Clean up the URL object
+                scanBarcode(img);
+            };
+        });
+        
+        async function scanBarcode(imageEl) {
+            // Check if BarcodeDetector is supported
+            if (!('BarcodeDetector' in globalThis)) {
+                console.log('Barcode Detector is not supported by this browser.');
+                document.getElementById('barcodeResult').textContent = 'Barcode Detector is not supported by this browser.';
+                return;
+            }
+        
+            try {
+                const barcodeDetector = new BarcodeDetector({
+                    formats: ['code_39', 'codabar', 'ean_13']
+                });
+        
+                // Detect barcodes from the image
+                const barcodes = await barcodeDetector.detect(imageEl);
+        
+                // Display results
+                if (barcodes.length > 0) {
+                    document.getElementById('barcodeResult').textContent = 'Barcode Detected: ' + barcodes[0].rawValue;
+                } else {
+                    document.getElementById('barcodeResult').textContent = 'No barcode detected.';
+                }
+            } catch (err) {
+                console.error('Error detecting barcode:', err);
+                document.getElementById('barcodeResult').textContent = 'Error detecting barcode: ' + err.message;
+            }
+        }
     }
 
     // Code for preferences.html

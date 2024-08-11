@@ -16,5 +16,5 @@
         "matches": ["<all_urls>"]
       }
     ],
-    "permissions": ["storage", "activeTab"]
+    "permissions": ["storage", "activeTab", "tabs"]
 }
