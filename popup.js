@@ -27,6 +27,54 @@ document.addEventListener('DOMContentLoaded', function() {
             window.location.href = chrome.runtime.getURL('preferences.html');
         });
 
+        // Add an event listener to the capture screenshot button
+        document.getElementById('captureScreenshotButton').addEventListener('click', captureScreenshot);
+
+        // Function to capture the screenshot
+        async function captureScreenshot() {
+            // Request desktop capture permission
+            chrome.desktopCapture.chooseDesktopMedia(["screen"], (streamId) => {
+            // Create a new MediaStream object
+            navigator.mediaDevices.getUserMedia({
+                video: {
+                mandatory: {
+                    chromeMediaSource: 'desktop',
+                    chromeMediaSourceId: streamId,
+                },
+                },
+            })
+            .then((stream) => {
+                // Create a video element to capture the screen
+                const video = document.createElement('video');
+                video.srcObject = stream;
+        
+                // Create a canvas element to capture the screenshot
+                const canvas = document.createElement('canvas');
+                canvas.width = screen.availWidth;
+                canvas.height = screen.availHeight;
+        
+                // Draw the video on the canvas
+                video.play().then(() => {
+                canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+        
+                // Get the screenshot as a data URL
+                const dataUrl = canvas.toDataURL();
+        
+                // Create an image element from the screenshot
+                const img = new Image();
+                img.src = dataUrl;
+                img.onload = () => {
+                    // Run the scanBarcode function with the screenshot
+                    scanBarcode(img);
+                };
+                });
+            })
+            .catch((error) => {
+                console.error("Error getting user media:", error);
+            });
+            });
+        }
+
         // submit signup
         submitSignup.addEventListener('click', () => {
             handleSignup();
@@ -64,48 +112,53 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Featches Data
         async function fetchData(barcode) {
-            try { // Code can be tested for errors while it is being executed
-                const response = await fetch(`https://world.openfoodfacts.net/api/v2/product/${barcode}`); // Makes API call
+            try {
+                const response = await fetch(`https://world.openfoodfacts.net/api/v2/product/${barcode}`);
                 if (!response.ok) {
-                    throw new Error("Network response was not OK"); // Give error if no response.
+                    throw new Error("Network response was not OK");
                 }
-                const data = await response.json(); // Assigned responded data to a variable
-                console.log(data);
-
-                if (data.status === 1) { // If product found
-                    console.log("Product Found");
+                const data = await response.json();
+        
+                // Load the output HTML content
+                await loadHTML('output-container', 'pages/output.html');
+        
+                // Wait for the HTML content to be loaded
+                await new Promise(resolve => {
+                    setTimeout(resolve, 100); // You can adjust the timeout value as needed
+                });
+        
+                if (data.status === 1) {
                     // Set the data to individual variables
                     var productName = data.product.product_name_en;
                     var productBrand = data.product.brands;
                     var productIngredients = data.product.ingredients_text_en;
                     var note = "";
-
-                    if (productName === "") { // Checks if there is no specified English, and puts the original language as the output
+        
+                    if (productName === "") {
                         productName = data.product.product_name;
                         note += "Product Name, ";
                     }
-
-                    if (productIngredients === "") { // Checks if there is no specified English, and puts the original language as the output
+        
+                    if (productIngredients === "") {
                         productIngredients = data.product.ingredients_text;
                         note += "Ingredients could not be found in English.";
                     }
-
+        
                     // Print data in output page
                     document.getElementById("product-name-output").innerHTML = "Product: " + productName;
                     document.getElementById("brand-output").innerHTML = "Brand: " + productBrand;
                     document.getElementById("ingredients-output").innerHTML = "Ingredients: " + productIngredients;
                     document.getElementById("note-output").innerHTML = "Notes: " + note;
-
+        
                     console.log(`Product Name: ${productName}`);
                     console.log(`Brand: ${productBrand}`);
                     console.log(`Ingredients: ${productIngredients}`);
-                } else if (data.status === 0) { // If product not found
+                } else if (data.status === 0) {
                     console.log("Product Not Found");
-                } else { // If there is a response but an unknown error.
+                } else {
                     console.log("Unknown Error");
                 }
-            } catch (error) { // Block of code to be executed, if an error occurs in the try block.
-                // If try block of code fails.
+            } catch (error) {
                 console.error("There was a problem with your fetch request: ", error);
             }
         }
@@ -137,39 +190,49 @@ document.addEventListener('DOMContentLoaded', function() {
             };
         });
         
-        async function scanBarcode(imageEl) {
-            // Check if BarcodeDetector is supported
-            if (!('BarcodeDetector' in globalThis)) {
-                console.log('Barcode Detector is not supported by this browser.');
-                document.getElementById('barcodeResult').textContent = 'Barcode Detector is not supported by this browser.';
-                return;
-            }
+        // Function to scan the barcode
+        async function scanBarcode(img) {
+            // Create a new BarcodeDetector
+            const detector = new BarcodeDetector({
+                formats: ['code_39', 'codabar', 'ean_13']
+            });
         
-            try {
-                const barcodeDetector = new BarcodeDetector({
-                    formats: ['code_39', 'codabar', 'ean_13']
-                });
-        
-                // Detect barcodes from the image
-                const barcodes = await barcodeDetector.detect(imageEl);
-        
-                // Display results
+            // Convert the HTMLImageElement to a Blob
+            imgToBlob(img).then((blob) => {
+            // Create an ImageBitmap from the Blob
+            createImageBitmap(blob).then((imageBitmap) => {
+                // Detect the barcode
+                detector.detect(imageBitmap).then((barcodes) => {
+                // Process the detected barcode
                 if (barcodes.length > 0) {
-                    const barcodeNumber = barcodes[0].rawValue;
-                    document.getElementById('barcodeResult').textContent = 'Barcode Detected: ' + barcodeNumber;
-        
-                    // Call fetchData with the detected barcode number
-                    fetchData(barcodeNumber);
-        
-                    // update the output container
-                    loadHTML('output-container', 'pages/output.html');
+                    console.log('Barcode detected:', barcodes[0].rawValue);
+                    fetchData(barcodes[0].rawValue);
                 } else {
-                    document.getElementById('barcodeResult').textContent = 'No barcode detected.';
+                    console.log('No barcode detected');
                 }
-            } catch (err) {
-                console.error('Error detecting barcode:', err);
-                document.getElementById('barcodeResult').textContent = 'Error detecting barcode: ' + err.message;
-            }
+                }).catch((error) => {
+                console.error('Error detecting barcode:', error);
+                });
+            }).catch((error) => {
+                console.error('Error creating ImageBitmap:', error);
+            });
+            }).catch((error) => {
+            console.error('Error converting image to Blob:', error);
+            });
+        }
+
+        // Function to convert an HTMLImageElement to a Blob
+        function imgToBlob(img) {
+            return new Promise((resolve, reject) => {
+            const canvas = document.createElement('canvas');
+            canvas.width = img.width;
+            canvas.height = img.height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0);
+            canvas.toBlob((blob) => {
+                resolve(blob);
+            }, 'image/png', 1.0);
+            });
         }
     }
 

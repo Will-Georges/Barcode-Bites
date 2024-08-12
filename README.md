@@ -367,6 +367,18 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     <br>
 </details>
 
+<details>
+<summary>4.0</summary>
+    <br>
+    <details>
+    <summary>4.0.0 - (12/8/24 8:45pm)</summary>
+    - Automatic Scan implemented
+    <br>
+    - Styling improvements
+    </details>
+    <br>
+</details>
+
 ## Contact
 
 For any questions or suggestions, please contact the developer, Will Georges @ 25GeorWL@cgs.vic.edu.au
