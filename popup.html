@@ -37,17 +37,18 @@
                 Column 2
               </div>
             </div>
+
+            <input type="file" id="fileInput" accept="image/*">
+            <img id="uploadedImage" style="display: none;" />
+            <p id="barcodeResult"></p>
+
         </div>
     </section>
-
-    <input type="file" id="fileInput" accept="image/*">
-    <img id="uploadedImage" style="display: none;" />
-    <p id="barcodeResult"></p>
-
+    
     <!--Manual Entry Modal-->
     <div class="modal" id="modal-entry">
         <div class="modal-background" id="modal-background-entry"></div>
-        <div class="modal-content has-background-warning has-text-black px-3">
+        <div class="modal-content modal-width has-background-warning has-text-black px-3">
             <div class="title"> Manual Entry </div>
             <div class="field has-addons">
                 <div class="control">
@@ -63,7 +64,7 @@
     <!--Log In-->
     <div class="modal" id="modal-signup">
         <div class="modal-background" id="modal-background-signup"></div>
-        <div class="modal-content has-background-warning has-text-black px-3">
+        <div class="modal-content modal-width has-background-warning has-text-black px-3">
             <div class="title"> Signup </div>
             <div class="field">
                 <p class="control has-icons-left">

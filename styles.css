@@ -27,4 +27,9 @@ html, body {
 
 .column {
     flex: 1 0 50%; /* Adjust column widths as needed */
-  }
+}
+
+.modal-width {
+    width: 375px;
+    border-radius: 5px;
+}

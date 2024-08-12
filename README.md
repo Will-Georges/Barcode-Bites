@@ -354,6 +354,12 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     <summary>3.1.0 - (11/8/24 8:55pm)</summary>
     - Output data after barcode number is scanned from an image
     </details>
+    <details>
+    <summary>3.1.0.1 - (12/8/24 1:45pm)</summary>
+    - Fixed modal sizing
+    <br>
+    - Moved image upload into section
+    </details>
     <br>
 </details>
 
