@@ -360,6 +360,10 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     <br>
     - Moved image upload into section
     </details>
+    <details>
+    <summary>3.1.0.2 - (12/8/24 2:05pm)</summary>
+    - Minor Changes
+    </details>
     <br>
 </details>
 
