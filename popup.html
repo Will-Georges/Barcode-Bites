@@ -16,6 +16,9 @@
             <a class="navbar-item has-text-white" id="openPreferences">
                 Settings
             </a>
+            <a class="navbar-item has-text-white" id="openSignup">
+              Signup
+            </a>
         </div>
     </nav>
 
@@ -24,26 +27,34 @@
         <div class="container">
             <!--Main Page-->
             <div id="mainContent">
-                <h1 class="title">Barcode Bites</h1>
-                <p class="subtitle">Homepage</p>
-                <button id="manualEntryButton" class="button is-primary">Manual Entry</button>
-                <button id="openSignup" class="button is-primary">Signup</button>
+                <h1 class="title has-text-centered">Barcode Bites</h1>
             </div>
+            <br>
             <div class="columns no-wrap">
               <div class="column">
-                Column 1
+                <button id="manualEntryButton" class="button is-primary">Manual Entry</button>
               </div>
               <div class="column">
-                Column 2
+                <!-- Add a button to capture the screenshot -->
+            <button class="button is-primary" id="captureScreenshotButton">Capture Screenshot</button>
               </div>
             </div>
 
-            <input type="file" id="fileInput" accept="image/*">
-            <img id="uploadedImage" style="display: none;" />
-            <p id="barcodeResult"></p>
+            <div class="file is-primary">
+              <label class="file-label">
+                  <input class="file-input" type="file" id="fileInput" accept="image/*" />
+                  <span class="file-cta">
+                      <span class="file-icon">
+                          <i class="fas fa-upload"></i>
+                      </span>
+                      <span class="file-label">Upload Barcode</span>
+                  </span>
+              </label>
+          </div>
+          <img id="uploadedImage" style="display: none;" />
+          <p id="barcodeResult"></p>
 
-            <!-- Add a button to capture the screenshot -->
-            <button class="button is-primary" id="captureScreenshotButton">Capture Screenshot</button>
+            
         </div>
     </section>
 

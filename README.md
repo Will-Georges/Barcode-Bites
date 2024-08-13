@@ -376,6 +376,12 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     <br>
     - Styling improvements
     </details>
+    <details>
+    <summary>4.0.1 - (13/8/24 10:20am)</summary>
+    - Moved signup button to navbar, and only accessible from main page.
+    <br>
+    - Improved file upload styling
+    </details>
     <br>
 </details>
 
