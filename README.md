@@ -382,6 +382,12 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     <br>
     - Improved file upload styling
     </details>
+    <details>
+    <summary>4.0.1.1 - (13/8/24 10:45am)</summary>
+    - Added profile navbar-item
+    <br>
+    - Added class to hide or view signup/profile depending on the user's circumstances.
+    </details>
     <br>
 </details>
 

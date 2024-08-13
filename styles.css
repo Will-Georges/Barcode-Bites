@@ -33,3 +33,9 @@ html, body {
     width: 375px;
     border-radius: 5px;
 }
+
+.remove-navbar-item {
+    width: 0px;
+    padding: 0px;
+    margin: 0px;
+}
