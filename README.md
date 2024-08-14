@@ -388,6 +388,10 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     <br>
     - Added class to hide or view signup/profile depending on the user's circumstances.
     </details>
+    <details>
+    <summary>4.0.2 - (14/8/24 1:55pm)</summary>
+    - Greeting depending on time with username added
+    </details>
     <br>
 </details>
 

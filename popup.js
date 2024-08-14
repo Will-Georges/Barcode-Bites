@@ -19,6 +19,11 @@ const password = document.querySelector("#password");
 const submitSignup = document.querySelector("#submit-signup");
 
 let hasSignedUp = false;
+const openProfile = document.querySelector('#openProfile');
+const nameWelcome = document.querySelector('#name-welcome');
+const now = new Date();
+const hours = now.getHours();
+
 
 document.addEventListener('DOMContentLoaded', function() {
     // Code for popup.html
@@ -171,6 +176,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 localStorage.setItem("username", username.value);
                 localStorage.setItem("email", email.value);
                 localStorage.setItem("password", password.value);
+                setWelcomeName();
+                openSignup.innerHTML = "";
+                openSignup.classList.add("remove-navbar-item");
+                openProfile.innerHTML = "Profile";
+                openProfile.classList.remove("remove-navbar-item");
             } else {
                 console.log("didnt type in one of them.");
             }
@@ -284,3 +294,19 @@ function removeHTML(containerId) {
 function clearStorage() {
     localStorage.clear();
 }
+
+function setWelcomeName() {
+    let greeting = "";
+    if (hours < 12) {
+        greeting = "Good Morning, ";
+    } else {
+        greeting = "Good Afternoon, ";
+    }
+    if (localStorage.getItem("username") === null) {
+        nameWelcome.innerHTML = greeting + "Guest";
+    } else {
+        nameWelcome.innerHTML = greeting + localStorage.getItem("username");
+    }
+    
+}
+setWelcomeName();
