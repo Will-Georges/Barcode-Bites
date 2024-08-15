@@ -392,6 +392,14 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     <summary>4.0.2 - (14/8/24 1:55pm)</summary>
     - Greeting depending on time with username added
     </details>
+    <details>
+    <summary>4.1.0 - (15/8/24 10:15am)</summary>
+    - Added Password Validity Tests.
+    <br>
+    - Alert user of invalid password or blank field.
+    <br>
+    - Added signup check on load.
+    </details>
     <br>
 </details>
 

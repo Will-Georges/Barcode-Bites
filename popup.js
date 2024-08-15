@@ -32,6 +32,43 @@ document.addEventListener('DOMContentLoaded', function() {
             window.location.href = chrome.runtime.getURL('preferences.html');
         });
 
+        const password = document.querySelector("#password");
+        const lengthCriteria = document.querySelector("#length");
+        const specialCriteria = document.querySelector("#special");
+        const numberCriteria = document.querySelector("#number");
+
+        password.addEventListener('input', () => {
+            passwordValidity();
+        });
+
+        function passwordValidity() {
+            const passwordValue = password.value;
+            const lengthValid = passwordValue.length >= 8;
+            const specialValid = /[!@#$%^&*(),.?":{}|<>]/.test(passwordValue);
+            const numberValid = /\d/.test(passwordValue);
+
+            updateCriteria(lengthCriteria, lengthValid);
+            updateCriteria(specialCriteria, specialValid);
+            updateCriteria(numberCriteria, numberValid);
+
+            return lengthValid && specialValid && numberValid;
+        }
+
+        function updateCriteria(element, isValid) {
+            if (isValid) {
+                element.classList.remove('has-text-danger');
+                element.classList.add('has-text-success');
+                element.querySelector('i').classList.remove('fa-times');
+                element.querySelector('i').classList.add('fa-check');
+            } else {
+                element.classList.remove('has-text-success');
+                element.classList.add('has-text-danger');
+                element.querySelector('i').classList.remove('fa-check');
+                element.querySelector('i').classList.add('fa-times');
+            }
+        }
+
+
         // Add an event listener to the capture screenshot button
         document.getElementById('captureScreenshotButton').addEventListener('click', captureScreenshot);
 
@@ -82,8 +119,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // submit signup
         submitSignup.addEventListener('click', () => {
-            handleSignup();
-        })
+            if (passwordValidity()) {
+                handleSignup();
+            } else {
+                alert("Password does not meet the criteria");
+            }
+        });
 
         // Open Modal
         manualEntryButton.addEventListener('click', () => {
@@ -169,20 +210,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         function handleSignup() {
-            console.log("sign up submitted");
             if (username.value.length > 0 && email.value.length > 0 && password.value.length > 0) {
                 modalSignup.classList.remove('is-active');
                 hasSignedUp = true;
+                localStorage.setItem("hasSignedUp", hasSignedUp);
                 localStorage.setItem("username", username.value);
                 localStorage.setItem("email", email.value);
                 localStorage.setItem("password", password.value);
                 setWelcomeName();
-                openSignup.innerHTML = "";
-                openSignup.classList.add("remove-navbar-item");
-                openProfile.innerHTML = "Profile";
-                openProfile.classList.remove("remove-navbar-item");
+                checkSignedUp();
             } else {
-                console.log("didnt type in one of them.");
+                alert("One or more fields are blank.");
             }
         }
 
@@ -294,6 +332,18 @@ function removeHTML(containerId) {
 function clearStorage() {
     localStorage.clear();
 }
+
+function checkSignedUp() {
+    if (localStorage.getItem("hasSignedUp") === "true") {
+        console.log("signed up");
+        openSignup.innerHTML = "";
+        openSignup.classList.add("remove-navbar-item");
+        openProfile.innerHTML = "Profile";
+        openProfile.classList.remove("remove-navbar-item");
+    }
+}
+
+checkSignedUp();
 
 function setWelcomeName() {
     let greeting = "";
