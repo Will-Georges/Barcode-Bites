@@ -246,12 +246,36 @@ document.addEventListener('DOMContentLoaded', function() {
                 localStorage.setItem("username", username.value);
                 localStorage.setItem("email", email.value);
                 localStorage.setItem("password", password.value);
-                setWelcomeName();
                 checkSignedUp();
             } else {
                 alert("One or more fields are blank.");
             }
         }
+
+        function checkSignedUp() {
+            let greeting = "";
+            if (hours < 12) {
+                greeting = "Good Morning, ";
+            } else {
+                greeting = "Good Afternoon, ";
+            }
+            if (localStorage.getItem("username") === null) {
+                nameWelcome.innerHTML = greeting + "Guest";
+            } else {
+                nameWelcome.innerHTML = greeting + localStorage.getItem("username");
+            }
+            if (localStorage.getItem("hasSignedUp") === "true") {
+                console.log("signed up");
+                openSignup.innerHTML = "";
+                openSignup.classList.add("remove-navbar-item");
+                openProfile.innerHTML = "Profile";
+                openProfile.classList.remove("remove-navbar-item");
+                openPreferencesButton.classList.remove("remove-navbar-item");
+                openPreferencesButton.innerHTML = "Settings";
+            }
+        }
+
+        checkSignedUp();
 
         document.getElementById('fileInput').addEventListener('change', function(event) {
             const file = event.target.files[0];
@@ -361,31 +385,3 @@ function removeHTML(containerId) {
 function clearStorage() {
     localStorage.clear();
 }
-
-function checkSignedUp() {
-    if (localStorage.getItem("hasSignedUp") === "true") {
-        console.log("signed up");
-        openSignup.innerHTML = "";
-        openSignup.classList.add("remove-navbar-item");
-        openProfile.innerHTML = "Profile";
-        openProfile.classList.remove("remove-navbar-item");
-    }
-}
-
-checkSignedUp();
-
-function setWelcomeName() {
-    let greeting = "";
-    if (hours < 12) {
-        greeting = "Good Morning, ";
-    } else {
-        greeting = "Good Afternoon, ";
-    }
-    if (localStorage.getItem("username") === null) {
-        nameWelcome.innerHTML = greeting + "Guest";
-    } else {
-        nameWelcome.innerHTML = greeting + localStorage.getItem("username");
-    }
-    
-}
-setWelcomeName();

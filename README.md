@@ -192,7 +192,7 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     <br>
     <details>
     <summary>2.0.0 - (25/7/24 9:50am)</summary>
-    - Send request for product informaiton to OpenFoodFacts API
+    - Send request for product information to OpenFoodFacts API
     <br>
     - Retrieve data from API.
     </details>
@@ -405,6 +405,14 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     - Added Email Validity Tests
     <br>
     - Styled Signup
+    </details>
+    <details>
+    <summary>4.2.1 - (15/8/24 10:45am)</summary>
+    - Only show preferences button if signed up
+    <br>
+    - Added home redirect in preferences page.
+    <br>
+    - Bug fixes and improvements
     </details>
     <br>
 </details>
