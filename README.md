@@ -400,6 +400,12 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     <br>
     - Added signup check on load.
     </details>
+    <details>
+    <summary>4.2.0 - (15/8/24 10:30am)</summary>
+    - Added Email Validity Tests
+    <br>
+    - Styled Signup
+    </details>
     <br>
 </details>
 

@@ -32,6 +32,35 @@ document.addEventListener('DOMContentLoaded', function() {
             window.location.href = chrome.runtime.getURL('preferences.html');
         });
 
+        const emailValidityDiv = document.querySelector("#email-validity");
+
+        email.addEventListener('input', () => {
+            emailValidity();
+        });
+
+        function emailValidity() {
+            const emailValue = email.value;
+            const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue);
+
+            updateEmailValidity(emailValidityDiv, emailValid);
+
+            return emailValid;
+        }
+
+        function updateEmailValidity(element, isValid) {
+            if (isValid) {
+                element.classList.remove('has-text-danger');
+                element.classList.add('has-text-success');
+                element.querySelector('i').classList.remove('fa-times');
+                element.querySelector('i').classList.add('fa-check');
+            } else {
+                element.classList.remove('has-text-success');
+                element.classList.add('has-text-danger');
+                element.querySelector('i').classList.remove('fa-check');
+                element.querySelector('i').classList.add('fa-times');
+            }
+        }
+
         const password = document.querySelector("#password");
         const lengthCriteria = document.querySelector("#length");
         const specialCriteria = document.querySelector("#special");
@@ -119,10 +148,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // submit signup
         submitSignup.addEventListener('click', () => {
-            if (passwordValidity()) {
+            if (passwordValidity() && emailValidity()) {
                 handleSignup();
             } else {
-                alert("Password does not meet the criteria");
+                alert("Email or password does not meet the criteria");
             }
         });
 
