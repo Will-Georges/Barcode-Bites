@@ -414,6 +414,10 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     <br>
     - Bug fixes and improvements
     </details>
+    <details>
+    <summary>4.2.2 - (19/8/24 5:40pm)</summary>
+    - Added vegan and vegetarian selection option that saves to local storage.
+    </details>
     <br>
 </details>
 

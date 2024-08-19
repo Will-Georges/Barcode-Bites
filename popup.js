@@ -343,20 +343,44 @@ document.addEventListener('DOMContentLoaded', function() {
             window.location.href = chrome.runtime.getURL('popup.html');
         });
 
-        const checkbox = document.getElementById('darkModeCheckbox');
-  
+        const darkModeCheckbox = document.getElementById('darkModeCheckbox');
+        const vegetarianCheckbox = document.getElementById('vegetarianCheckbox');
+        const veganCheckbox = document.getElementById('veganCheckbox');
         // Load the saved state
         chrome.storage.sync.get('darkMode', (data) => {
-            checkbox.checked = data.darkMode || false; // Checks if it already exists in chrome storage.
-            updateIcon(checkbox.checked);
+            darkModeCheckbox.checked = data.darkMode || false; // Checks if it already exists in chrome storage.
+            updateIcon(darkModeCheckbox.checked);
         });
     
-        // Handle checkbox change
-        checkbox.addEventListener('change', () => {
-            const isDarkMode = checkbox.checked; // Sets variable depending on if checkbox is ticked.
+        // Handle dark mode checkbox change
+        darkModeCheckbox.addEventListener('change', () => {
+            const isDarkMode = darkModeCheckbox.checked; // Sets variable depending on if checkbox is ticked.
             chrome.storage.sync.set({ darkMode: isDarkMode }); // stores this setting in chrome storage.
             updateIcon(isDarkMode);
         });
+
+        // Handle vegetarian checkbox change
+        vegetarianCheckbox.addEventListener('change', () => {
+            if (vegetarianCheckbox.checked) {
+                console.log('Vegetarian selected');
+                localStorage.setItem("isVegetarian", true);
+            } else {
+                console.log('Vegetarian deselected');
+                localStorage.setItem("isVegetarian", false);
+            }
+        });
+
+        // Handle vegan checkbox change
+        veganCheckbox.addEventListener('change', () => {
+            if (veganCheckbox.checked) {
+                console.log('Vegan selected');
+                localStorage.setItem("isVegan", true);
+            } else {
+                console.log('Vegan deselected');
+                localStorage.setItem("isVegan", false);
+            }
+        });
+
     
         // Function to update the extension icon
         function updateIcon(isDarkMode) {
