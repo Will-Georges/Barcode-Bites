@@ -1,141 +1,159 @@
 <!DOCTYPE html>
 <html lang="en" class="has-navbar-fixed-top has-navbar-fixed-bottom">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Barcode Bites</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barcode Bites</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <!-- Navbar -->
-    <nav class="navbar is-fixed-top" id="navbar"> <!--outer container-->
-        <div class="navbar-brand has-background-orange"> <!--left hand side-->
-            <img class="image is-inline-block is-64x64" src="images/cropped-logo.png">
-            <a class="navbar-item has-text-white remove-navbar-item" id="openPreferences">
+  <!-- Navbar -->
+  <nav class="navbar is-fixed-top" id="navbar"> <!--outer container-->
+    <div class="navbar-brand has-background-orange"> <!--left hand side-->
+      <img class="image is-inline-block is-64x64" src="images/cropped-logo.png">
+      <a class="navbar-item has-text-white remove-navbar-item" id="openPreferences">
 
-            </a>
-            <a class="navbar-item has-text-white" id="openSignup">
-              Signup
-            </a>
-            <a class="navbar-item has-text-white remove-navbar-item" id="openProfile">
-              <!-- Set inner HTML for the word profile and remove the 'remove navbar item' class -->
-            </a>
-        </div>
-    </nav>
-
-    <!-- Main Section-->
-    <section class="section">
-        <div class="container">
-            <!--Main Page-->
-            <div id="mainContent">
-                <h1 class="title has-text-centered">Barcode Bites</h1>
-                <h2 class="subtitle has-text-centered" id="name-welcome">Welcome, Guest</h2>
-            </div>
-            <br>
-            <div class="columns no-wrap">
-              <div class="column">
-                <button id="manualEntryButton" class="button is-primary">Manual Entry</button>
-              </div>
-              <div class="column">
-                <!-- Add a button to capture the screenshot -->
-            <button class="button is-primary" id="captureScreenshotButton">Capture Screenshot</button>
-              </div>
-            </div>
-
-            <div class="file is-primary">
-              <label class="file-label">
-                  <input class="file-input" type="file" id="fileInput" accept="image/*" />
-                  <span class="file-cta">
-                      <span class="file-icon">
-                          <i class="fas fa-upload"></i>
-                      </span>
-                      <span class="file-label">Upload Barcode</span>
-                  </span>
-              </label>
-            </div>
-            <img id="uploadedImage" style="display: none;" />
-            <p id="barcodeResult"></p>
-        </div>
-    </section>
-
-    <!--Manual Entry Modal-->
-    <div class="modal" id="modal-entry">
-        <div class="modal-background" id="modal-background-entry"></div>
-        <div class="modal-content modal-width has-background-warning has-text-black px-3">
-            <div class="title"> Manual Entry </div>
-            <div class="field has-addons">
-                <div class="control">
-                    <input class="input" type="number" placeholder="Barcode Number" id="barcodeEntry">
-                </div>
-                <div class="control">
-                    <button class="button is-info" id="submitBarcode">Submit</button>
-                </div>
-           </div>
-        </div>
+      </a>
+      <a class="navbar-item has-text-white" id="openSignup">
+        Signup
+      </a>
+      <a class="navbar-item has-text-white remove-navbar-item" id="openProfile">
+        <!-- Set inner HTML for the word profile and remove the 'remove navbar item' class -->
+      </a>
     </div>
+  </nav>
 
-    <!--Log In-->
-    <div class="modal" id="modal-signup">
-        <div class="modal-background" id="modal-background-signup"></div>
-        <div class="modal-content modal-width has-background-warning has-text-black px-3">
-            <br>
-            <div class="title"> Signup </div>
-            <div class="field">
-                <p class="control has-icons-left">
-                  <input class="input" type="text" placeholder="Username" id="username" autocomplete="on"/>
-                  <span class="icon is-small is-left">
-                    <i class="fas fa-signature"></i>
-                  </span>
-                </p>
-            </div>
-            <div class="field">
-                <p class="control has-icons-left has-icons-right">
-                  <input class="input" type="email" placeholder="Email" id="email" autocomplete="on"/>
-                  <span class="icon is-small is-left">
-                    <i class="fas fa-envelope"></i>
-                  </span>
-                </p>
-                <br>
-                <div id="email-validity" class="has-text-danger"><i class="fas fa-times"></i> Invalid email address</div>
-            </div>
-            <div class="field">
-              <p class="control has-icons-left">
-                <input class="input" type="password" placeholder="Password" id="password" autocomplete="on"/>
-                <span class="icon is-small is-left">
-                  <i class="fas fa-lock"></i>
-                </span>
-              </p>
-            </div>
-            <div id="password-criteria">
-              <p id="length" class="has-text-danger"><i class="fas fa-times"></i> At least 8 characters</p>
-              <p id="special" class="has-text-danger"><i class="fas fa-times"></i> At least 1 special character</p>
-              <p id="number" class="has-text-danger"><i class="fas fa-times"></i> At least 1 number</p>
-            </div>
-            <br>
-            <button class="button is-info" id="submit-signup">Signup</button> 
-            <br>
-            <br>  
+  <!-- Main Section-->
+  <section class="section">
+    <div class="container">
+      <!--Main Page-->
+      <div id="mainContent">
+        <h1 class="title has-text-centered">Barcode Bites</h1>
+        <h2 class="subtitle has-text-centered" id="name-welcome">Welcome, Guest</h2>
+      </div>
+      <br>
+      <div class="columns no-wrap">
+        <div class="column">
+          <button id="manualEntryButton" class="button is-primary">Manual Entry</button>
         </div>
+        <div class="column">
+          <!-- Add a button to capture the screenshot -->
+          <button class="button is-primary" id="captureScreenshotButton">Capture Screenshot</button>
+        </div>
+      </div>
+
+      <div class="file is-primary">
+        <label class="file-label">
+          <input class="file-input" type="file" id="fileInput" accept="image/*" />
+          <span class="file-cta">
+            <span class="file-icon">
+              <i class="fas fa-upload"></i>
+            </span>
+            <span class="file-label">Upload Barcode</span>
+          </span>
+        </label>
+      </div>
+      <img id="uploadedImage" style="display: none;" />
+      <p id="barcodeResult"></p>
     </div>
+  </section>
 
-    <!-- Output Container -->
-    <div id="output-container"></div>
+  <!--Manual Entry Modal-->
+  <div class="modal" id="modal-entry">
+    <div class="modal-background" id="modal-background-entry"></div>
+    <div class="modal-content modal-width has-background-warning has-text-black px-3">
+      <div class="title"> Manual Entry </div>
+      <div class="field has-addons">
+        <div class="control">
+          <input class="input" type="number" placeholder="Barcode Number" id="barcodeEntry">
+        </div>
+        <div class="control">
+          <button class="button is-info" id="submitBarcode">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <!-- Footer -->
-    <nav class="navbar is-fixed-bottom has-text-white" id="navbar">
-        <!-- Outer container -->
-        <div class="navbar-brand has-background-orange">
-            <!-- Left-hand side -->
-            <div class="navbar-item has-text-white">My Account</div>
+  <!--Log In-->
+  <div class="modal" id="modal-signup">
+    <div class="modal-background" id="modal-background-signup"></div>
+    <div class="modal-content modal-width has-background-warning has-text-black px-3">
+      <br>
+      <div class="title"> Signup </div>
+      <div class="field">
+        <p class="control has-icons-left">
+          <input class="input" type="text" placeholder="Username" id="username" autocomplete="on" />
+          <span class="icon is-small is-left">
+            <i class="fas fa-signature"></i>
+          </span>
+        </p>
+      </div>
+      <div class="field">
+        <p class="control has-icons-left has-icons-right">
+          <input class="input" type="email" placeholder="Email" id="email" autocomplete="on" />
+          <span class="icon is-small is-left">
+            <i class="fas fa-envelope"></i>
+          </span>
+        </p>
+        <br>
+        <div id="email-validity" class="has-text-danger"><i class="fas fa-times"></i> Invalid email address</div>
+      </div>
+      <div class="field">
+        <p class="control has-icons-left">
+          <input class="input" type="password" placeholder="Password" id="password" autocomplete="on" />
+          <span class="icon is-small is-left">
+            <i class="fas fa-lock"></i>
+          </span>
+        </p>
+      </div>
+      <div id="password-criteria">
+        <p id="length" class="has-text-danger"><i class="fas fa-times"></i> At least 8 characters</p>
+        <p id="special" class="has-text-danger"><i class="fas fa-times"></i> At least 1 special character</p>
+        <p id="number" class="has-text-danger"><i class="fas fa-times"></i> At least 1 number</p>
+      </div>
+      <br>
+      <button class="button is-info" id="submit-signup">Signup</button>
+      <br>
+      <br>
+    </div>
+  </div>
+
+  <div class="general__content">
+    <div class="outer-container">
+      <div class="carousel-container">
+        <div class="carousel">
+          <div class="carousel-item">Hello World does this fit</div>
+          <div class="carousel-item"></div>
+          <div class="carousel-item"></div>
+          <div class="carousel-item"></div>
+          <div class="carousel-item"></div>
+          <div class="carousel-item"></div>
         </div>
-        <div class="navbar-menu">
-            <!-- Right-hand side -->
-        </div>
-    </nav>
-    
-    <script src="popup.js"></script>
+      </div>
+    </div>
+  </div>
+
+  <!-- Output Container -->
+  <div id="output-container"></div>
+
+  <!-- Footer -->
+  <nav class="navbar is-fixed-bottom has-text-white" id="navbar">
+    <!-- Outer container -->
+    <div class="navbar-brand has-background-orange">
+      <!-- Left-hand side -->
+      <div class="navbar-item has-text-white">My Account</div>
+    </div>
+    <div class="navbar-menu">
+      <!-- Right-hand side -->
+    </div>
+  </nav>
+
+  <script src="popup.js"></script>
 
 </body>
+
 </html>

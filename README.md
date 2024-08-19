@@ -430,6 +430,12 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     <summary>4.2.3.1 - (19/8/24 8:25pm)</summary>
     - Minor Changes
     </details>
+    <details>
+    <summary>4.3.0 - (19/8/24 9:45pm)</summary>
+    - Implemented Carousel
+    <br>
+    - Formatting Changes
+    </details>
     <br>
 </details>
 
