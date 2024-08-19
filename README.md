@@ -1,7 +1,5 @@
 # Barcode Bites
 
-## Description
-
 Barcode Bites is a Chrome extension that scans food barcodes and alerts users if they have any allergies, or if it does not meet their preferences. The extension will also output other health information.
 
 ## Features
@@ -36,6 +34,10 @@ Whenever the number to the left increases, all numbers to its right reset to 0. 
 - If `1.1.2.3` receives a **Minor** version upgrade, it becomes `1.2.0`.
 
 It is assumed that all releases are **Revised Versions** of 0, unless otherwise specified.
+
+## Browser Compatability
+
+- This extension only works with browsers that support Google Accounts Integration (GAIA). This includes browsers like Chrome and Brave, but does not support Arc browser
 
 ## Changelog
 
@@ -417,6 +419,12 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     <details>
     <summary>4.2.2 - (19/8/24 5:40pm)</summary>
     - Added vegan and vegetarian selection option that saves to local storage.
+    </details>
+    <details>
+    <summary>4.2.3 - (19/8/24 8:15pm)</summary>
+    - Output now also includes the image
+    <br>
+    - README also includes compatability section
     </details>
     <br>
 </details>

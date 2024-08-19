@@ -185,7 +185,6 @@ document.addEventListener('DOMContentLoaded', function() {
             loadHTML('output-container', 'pages/output.html');
         })
 
-        // Featches Data
         async function fetchData(barcode) {
             try {
                 const response = await fetch(`https://world.openfoodfacts.net/api/v2/product/${barcode}`);
@@ -207,6 +206,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     var productName = data.product.product_name_en;
                     var productBrand = data.product.brands;
                     var productIngredients = data.product.ingredients_text_en;
+                    var productImageUrl = data.product.image_url;
                     var note = "";
         
                     if (productName === "") {
@@ -224,10 +224,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     document.getElementById("brand-output").innerHTML = "Brand: " + productBrand;
                     document.getElementById("ingredients-output").innerHTML = "Ingredients: " + productIngredients;
                     document.getElementById("note-output").innerHTML = "Notes: " + note;
+                    document.getElementById("product-image-output").src = productImageUrl;
         
                     console.log(`Product Name: ${productName}`);
                     console.log(`Brand: ${productBrand}`);
                     console.log(`Ingredients: ${productIngredients}`);
+                    console.log(`Image URL: ${productImageUrl}`);
                 } else if (data.status === 0) {
                     console.log("Product Not Found");
                 } else {
