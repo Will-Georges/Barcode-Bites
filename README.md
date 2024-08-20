@@ -436,6 +436,14 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     <br>
     - Formatting Changes
     </details>
+    <details>
+    <summary>4.4.0 - (20/8/24 9:55am)</summary>
+    - Fixed Height of Carousel
+    <br>
+    - Output information on carousel.
+    <br>
+    - Removed need for output page.
+    </details>
     <br>
 </details>
 

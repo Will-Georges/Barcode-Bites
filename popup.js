@@ -320,7 +320,6 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log(barcodeNumber);
       fetchData(barcodeNumber);
       modalEntry.classList.remove("is-active");
-      loadHTML("output-container", "pages/output.html");
     });
 
     async function fetchData(barcode) {
@@ -332,9 +331,6 @@ document.addEventListener("DOMContentLoaded", function () {
           throw new Error("Network response was not OK");
         }
         const data = await response.json();
-
-        // Load the output HTML content
-        await loadHTML("output-container", "pages/output.html");
 
         // Wait for the HTML content to be loaded
         await new Promise((resolve) => {
@@ -360,12 +356,9 @@ document.addEventListener("DOMContentLoaded", function () {
           }
 
           // Print data in output page
-          document.getElementById("product-name-output").innerHTML =
-            "Product: " + productName;
-          document.getElementById("brand-output").innerHTML =
-            "Brand: " + productBrand;
-          document.getElementById("ingredients-output").innerHTML =
-            "Ingredients: " + productIngredients;
+          document.getElementById("product-name-output").innerHTML = "Product: " + productName;
+          document.getElementById("brand-output").innerHTML = "Brand: " + productBrand;
+          document.getElementById("ingredients-output").innerHTML = "Ingredients: " + productIngredients;
           document.getElementById("note-output").innerHTML = "Notes: " + note;
           document.getElementById("product-image-output").src = productImageUrl;
 
