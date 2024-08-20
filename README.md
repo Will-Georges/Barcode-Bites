@@ -37,7 +37,7 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
 
 ## Browser Compatability
 
-- This extension only works with browsers that support Google Accounts Integration (GAIA). This includes browsers like Chrome and Brave, but does not support Arc browser
+This extension only works with browsers that support Google Accounts Integration (GAIA). This includes browsers like Chrome and Brave, but does not support Arc browser.
 
 ## Changelog
 
@@ -449,6 +449,10 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     - Added carousel filler image for before an image is loaded
     <br>
     - Put product name on first carousel item with the image
+    </details>
+    <details>
+    <summary>4.4.2 - (20/8/24 10:25am)</summary>
+    - Vegan and Vegetarian checkboxes now use Chrome storage sync instead of local storage
     </details>
     <br>
 </details>

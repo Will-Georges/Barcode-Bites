@@ -503,39 +503,33 @@ document.addEventListener("DOMContentLoaded", function () {
     const darkModeCheckbox = document.getElementById("darkModeCheckbox");
     const vegetarianCheckbox = document.getElementById("vegetarianCheckbox");
     const veganCheckbox = document.getElementById("veganCheckbox");
+
     // Load the saved state
     chrome.storage.sync.get("darkMode", (data) => {
       darkModeCheckbox.checked = data.darkMode || false; // Checks if it already exists in chrome storage.
       updateIcon(darkModeCheckbox.checked);
     });
 
-    // Handle dark mode checkbox change
-    darkModeCheckbox.addEventListener("change", () => {
-      const isDarkMode = darkModeCheckbox.checked; // Sets variable depending on if checkbox is ticked.
-      chrome.storage.sync.set({ darkMode: isDarkMode }); // stores this setting in chrome storage.
-      updateIcon(isDarkMode);
+    // Load the saved state
+    chrome.storage.sync.get("vegetarian", (data) => {
+        vegetarianCheckbox.checked = data.vegetarian || false; // Checks if it already exists in chrome storage.
+    });
+
+    // Load the saved state
+    chrome.storage.sync.get("vegan", (data) => {
+        veganCheckbox.checked = data.vegan || false; // Checks if it already exists in chrome storage.
     });
 
     // Handle vegetarian checkbox change
     vegetarianCheckbox.addEventListener("change", () => {
-      if (vegetarianCheckbox.checked) {
-        console.log("Vegetarian selected");
-        localStorage.setItem("isVegetarian", true);
-      } else {
-        console.log("Vegetarian deselected");
-        localStorage.setItem("isVegetarian", false);
-      }
+      const isVegetarian = vegetarianCheckbox.checked; // Sets variable depending on if checkbox is ticked.
+      chrome.storage.sync.set({ vegetarian: isVegetarian }); // stores this setting in chrome storage.
     });
 
     // Handle vegan checkbox change
     veganCheckbox.addEventListener("change", () => {
-      if (veganCheckbox.checked) {
-        console.log("Vegan selected");
-        localStorage.setItem("isVegan", true);
-      } else {
-        console.log("Vegan deselected");
-        localStorage.setItem("isVegan", false);
-      }
+        const isVegan = veganCheckbox.checked; // Sets variable depending on if checkbox is ticked.
+        chrome.storage.sync.set({ vegan: isVegan }); // stores this setting in chrome storage.
     });
 
     // Function to update the extension icon
