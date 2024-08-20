@@ -444,6 +444,12 @@ It is assumed that all releases are **Revised Versions** of 0, unless otherwise 
     <br>
     - Removed need for output page.
     </details>
+    <details>
+    <summary>4.4.1 - (20/8/24 10:25am)</summary>
+    - Added carousel filler image for before an image is loaded
+    <br>
+    - Put product name on first carousel item with the image
+    </details>
     <br>
 </details>
 
