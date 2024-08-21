@@ -384,10 +384,10 @@ document.addEventListener("DOMContentLoaded", function () {
       ) {
         modalSignup.classList.remove("is-active");
         hasSignedUp = true;
-        localStorage.setItem("hasSignedUp", hasSignedUp);
-        localStorage.setItem("username", username.value);
-        localStorage.setItem("email", email.value);
-        localStorage.setItem("password", password.value);
+        chrome.storage.sync.set({ username: username.value });
+        chrome.storage.sync.set({ email: email.value });
+        chrome.storage.sync.set({ password: password.value });
+        chrome.storage.sync.set({ hasSignedUp: hasSignedUp });
         checkSignedUp();
       } else {
         alert("One or more fields are blank.");
@@ -395,26 +395,27 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function checkSignedUp() {
-      let greeting = "";
-      if (hours < 12) {
-        greeting = "Good Morning, ";
-      } else {
-        greeting = "Good Afternoon, ";
-      }
-      if (localStorage.getItem("username") === null) {
-        nameWelcome.innerHTML = greeting + "Guest";
-      } else {
-        nameWelcome.innerHTML = greeting + localStorage.getItem("username");
-      }
-      if (localStorage.getItem("hasSignedUp") === "true") {
-        console.log("signed up");
-        openSignup.innerHTML = "";
-        openSignup.classList.add("remove-navbar-item");
-        openProfile.innerHTML = "Profile";
-        openProfile.classList.remove("remove-navbar-item");
-        openPreferencesButton.classList.remove("remove-navbar-item");
-        openPreferencesButton.innerHTML = "Settings";
-      }
+        let greeting = hours < 12 ? "Good Morning, " : "Good Afternoon, ";
+
+        chrome.storage.sync.get("username", (result) => {
+          if (result.username) {
+            nameWelcome.innerHTML = greeting + result.username;
+          } else {
+            nameWelcome.innerHTML = greeting + "Guest";
+          }
+        });
+    
+        chrome.storage.sync.get("hasSignedUp", (result) => {
+          if (result.hasSignedUp === true) {
+            console.log("signed up");
+            openSignup.innerHTML = "";
+            openSignup.classList.add("remove-navbar-item");
+            openProfile.innerHTML = "Profile";
+            openProfile.classList.remove("remove-navbar-item");
+            openPreferencesButton.classList.remove("remove-navbar-item");
+            openPreferencesButton.innerHTML = "Settings";
+          }
+        });
     }
 
     checkSignedUp();
@@ -555,8 +556,4 @@ function loadHTML(containerId, url) {
 // Function to remove HTML content from a container
 function removeHTML(containerId) {
   document.getElementById(containerId).innerHTML = "";
-}
-
-function clearStorage() {
-  localStorage.clear();
 }

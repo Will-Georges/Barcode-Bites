@@ -454,6 +454,10 @@ This extension only works with browsers that support Google Accounts Integration
     <summary>4.4.2 - (20/8/24 10:25am)</summary>
     - Vegan and Vegetarian checkboxes now use Chrome storage sync instead of local storage
     </details>
+    <details>
+    <summary>4.4.3 - (22/8/24 9:55am)</summary>
+    - All items that previously used localStorage now use Chrome storage sync.
+    </details>
     <br>
 </details>
 
