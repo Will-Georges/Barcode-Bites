@@ -339,26 +339,47 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (data.status === 1) {
           // Set the data to individual variables
-          var productName = data.product.product_name_en;
-          var productBrand = data.product.brands;
-          var productIngredients = data.product.ingredients_text_en;
-          var productImageUrl = data.product.image_url;
-          var note = "";
+          const product = data.product;
+          const productName = product.product_name_en || product.product_name;
+          const productBrand = product.brands || "Unknown Brand";
+          const productIngredients =
+            product.ingredients_text_en ||
+            product.ingredients_text ||
+            "Ingredients not available";
+          const productImageUrl = product.image_url || "default_image_url"; // Replace with a default image URL if needed
+          let isProductVegetarian = false;
+          let isProductVegan = false;
+          let note = "";
+          let vegeTest = "";
 
-          if (productName === "") {
-            productName = data.product.product_name;
-            note += "Product Name, ";
+          // Check keywords
+          const keywords = product._keywords || [];
+
+          if (keywords.includes("vegetarian")) {
+            isProductVegetarian = true;
+            vegeTest = "Yes";
+          } else {
+            isProductVegetarian = false;
+            vegeTest = "No";
           }
 
-          if (productIngredients === "") {
-            productIngredients = data.product.ingredients_text;
-            note += "Ingredients could not be found in English.";
+          if (keywords.includes("vegan")) {
+            isProductVegan = true;
+            vegeTest = "Yes";
+          } else {
+            isProductVegan = false;
+            vegeTest = "No";
           }
 
           // Print data in output page
-          document.getElementById("product-name-output").innerHTML = "Product: " + productName;
-          document.getElementById("brand-output").innerHTML = "Brand: " + productBrand;
-          document.getElementById("ingredients-output").innerHTML = "Ingredients: " + productIngredients;
+          document.getElementById("vegetarian-vegan-output").innerHTML =
+            "Vegetarian: " + vegeTest;
+          document.getElementById("product-name-output").innerHTML =
+            "Product: " + productName;
+          document.getElementById("brand-output").innerHTML =
+            "Brand: " + productBrand;
+          document.getElementById("ingredients-output").innerHTML =
+            "Ingredients: " + productIngredients;
           document.getElementById("note-output").innerHTML = "Notes: " + note;
           document.getElementById("product-image-output").src = productImageUrl;
 
@@ -395,27 +416,27 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function checkSignedUp() {
-        let greeting = hours < 12 ? "Good Morning, " : "Good Afternoon, ";
+      let greeting = hours < 12 ? "Good Morning, " : "Good Afternoon, ";
 
-        chrome.storage.sync.get("username", (result) => {
-          if (result.username) {
-            nameWelcome.innerHTML = greeting + result.username;
-          } else {
-            nameWelcome.innerHTML = greeting + "Guest";
-          }
-        });
-    
-        chrome.storage.sync.get("hasSignedUp", (result) => {
-          if (result.hasSignedUp === true) {
-            console.log("signed up");
-            openSignup.innerHTML = "";
-            openSignup.classList.add("remove-navbar-item");
-            openProfile.innerHTML = "Profile";
-            openProfile.classList.remove("remove-navbar-item");
-            openPreferencesButton.classList.remove("remove-navbar-item");
-            openPreferencesButton.innerHTML = "Settings";
-          }
-        });
+      chrome.storage.sync.get("username", (result) => {
+        if (result.username) {
+          nameWelcome.innerHTML = greeting + result.username;
+        } else {
+          nameWelcome.innerHTML = greeting + "Guest";
+        }
+      });
+
+      chrome.storage.sync.get("hasSignedUp", (result) => {
+        if (result.hasSignedUp === true) {
+          console.log("signed up");
+          openSignup.innerHTML = "";
+          openSignup.classList.add("remove-navbar-item");
+          openProfile.innerHTML = "Profile";
+          openProfile.classList.remove("remove-navbar-item");
+          openPreferencesButton.classList.remove("remove-navbar-item");
+          openPreferencesButton.innerHTML = "Settings";
+        }
+      });
     }
 
     checkSignedUp();
@@ -513,12 +534,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Load the saved state
     chrome.storage.sync.get("vegetarian", (data) => {
-        vegetarianCheckbox.checked = data.vegetarian || false; // Checks if it already exists in chrome storage.
+      vegetarianCheckbox.checked = data.vegetarian || false; // Checks if it already exists in chrome storage.
     });
 
     // Load the saved state
     chrome.storage.sync.get("vegan", (data) => {
-        veganCheckbox.checked = data.vegan || false; // Checks if it already exists in chrome storage.
+      veganCheckbox.checked = data.vegan || false; // Checks if it already exists in chrome storage.
     });
 
     // Handle vegetarian checkbox change
@@ -529,8 +550,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Handle vegan checkbox change
     veganCheckbox.addEventListener("change", () => {
-        const isVegan = veganCheckbox.checked; // Sets variable depending on if checkbox is ticked.
-        chrome.storage.sync.set({ vegan: isVegan }); // stores this setting in chrome storage.
+      const isVegan = veganCheckbox.checked; // Sets variable depending on if checkbox is ticked.
+      chrome.storage.sync.set({ vegan: isVegan }); // stores this setting in chrome storage.
     });
 
     // Function to update the extension icon

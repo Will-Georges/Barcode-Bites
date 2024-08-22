@@ -458,6 +458,13 @@ This extension only works with browsers that support Google Accounts Integration
     <summary>4.4.3 - (22/8/24 9:55am)</summary>
     - All items that previously used localStorage now use Chrome storage sync.
     </details>
+    </details>
+    <details>
+    <summary>4.4.4 - (22/8/24 10:20am)</summary>
+    - Output checks if it is vegan/vegetarian safe
+    <br>
+    - Other changes to how the output functions
+    </details>
     <br>
 </details>
 
