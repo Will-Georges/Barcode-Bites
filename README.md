@@ -468,6 +468,10 @@ This extension only works with browsers that support Google Accounts Integration
     <summary>4.4.4.1 - (22/8/24 10:25am)</summary>
     - Minor Changes to way vegetarian/vegan check works.
     </details>
+    <details>
+    <summary>4.4.5 - (22/8/24 10:45am)</summary>
+    - Alerts user if the product is not vegetarian
+    </details>
     <br>
 </details>
 
