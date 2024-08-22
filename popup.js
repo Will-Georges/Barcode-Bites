@@ -355,21 +355,13 @@ document.addEventListener("DOMContentLoaded", function () {
           // Check keywords
           const keywords = product._keywords || [];
 
-          if (keywords.includes("vegetarian")) {
-            isProductVegetarian = true;
-            vegeTest = "Yes";
-          } else {
-            isProductVegetarian = false;
-            vegeTest = "No";
-          }
+          // Check if the keywords array includes "vegetarian"
+         isProductVegetarian = keywords.includes("vegetarian");
+         vegeTest = isProductVegetarian ? "Yes" : "No";
 
-          if (keywords.includes("vegan")) {
-            isProductVegan = true;
-            vegeTest = "Yes";
-          } else {
-            isProductVegan = false;
-            vegeTest = "No";
-          }
+          // Check if the keywords array includes "vegan"
+         isProductVegan = keywords.includes("vegetarian");
+         vegeTest = isProductVegan ? "Yes" : "No";
 
           // Print data in output page
           document.getElementById("vegetarian-vegan-output").innerHTML =
