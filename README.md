@@ -488,6 +488,10 @@ This extension only works with browsers that support Google Accounts Integration
     <summary>4.4.9 - (26/8/24 10:20pm)</summary>
     - Detects if the product is allergy safe.
     </details>
+    <details>
+    <summary>4.4.9.1 - (27/8/24 9:35am)</summary>
+    - Fixed bug where light/dark mode icon was permanently stuck on the dark icon.
+    </details>
     <br>
 </details>
 

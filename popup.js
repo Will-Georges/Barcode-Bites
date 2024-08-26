@@ -624,6 +624,13 @@ document.addEventListener("DOMContentLoaded", function () {
       veganCheckbox.checked = data.vegan || false; // Checks if it already exists in chrome storage.
     });
 
+    // Handle dark mode checkbox change
+    darkModeCheckbox.addEventListener("change", () => {
+      const isDarkMode = darkModeCheckbox.checked; // Sets variable depending on if checkbox is ticked.
+      chrome.storage.sync.set({ darkMode: isDarkMode }); // stores this setting in chrome storage.
+      updateIcon(darkModeCheckbox.checked);
+    });
+
     // Handle vegetarian checkbox change
     vegetarianCheckbox.addEventListener("change", () => {
       const isVegetarian = vegetarianCheckbox.checked; // Sets variable depending on if checkbox is ticked.
