@@ -534,6 +534,60 @@ document.addEventListener("DOMContentLoaded", function () {
     const vegetarianCheckbox = document.getElementById("vegetarianCheckbox");
     const veganCheckbox = document.getElementById("veganCheckbox");
 
+    const allergyInput = document.getElementById('allergy-input');
+    const addAllergyButton = document.getElementById('add-allergy');
+    const allergyList = document.getElementById('allergy-list');
+
+    // Load stored allergies and display them
+    chrome.storage.sync.get(['allergies'], function (result) {
+        const allergies = result.allergies || [];
+        allergies.forEach(function (allergy) {
+            displayAllergy(allergy);
+        });
+    });
+
+    // Add allergy to the list and store it in Chrome Sync
+    addAllergyButton.addEventListener('click', function () {
+        const allergy = allergyInput.value.trim();
+        if (allergy) {
+            chrome.storage.sync.get(['allergies'], function (result) {
+                const allergies = result.allergies || [];
+                allergies.push(allergy);
+                chrome.storage.sync.set({ 'allergies': allergies }, function () {
+                    displayAllergy(allergy);
+                });
+            });
+            allergyInput.value = '';
+        }
+    });
+
+    // Display allergy in the list with a remove button
+    function displayAllergy(allergy) {
+        const li = document.createElement('li');
+        li.classList.add('is-flex', 'is-align-items-center');
+
+        const removeButton = document.createElement('button');
+        removeButton.classList.add('delete', 'mr-2');
+        removeButton.addEventListener('click', function () {
+            removeAllergy(allergy, li);
+        });
+
+        li.appendChild(removeButton);
+        li.appendChild(document.createTextNode(allergy));
+        allergyList.appendChild(li);
+    }
+
+    // Remove allergy from the list and Chrome Sync
+    function removeAllergy(allergy, listItem) {
+        chrome.storage.sync.get(['allergies'], function (result) {
+            let allergies = result.allergies || [];
+            allergies = allergies.filter(item => item !== allergy);
+            chrome.storage.sync.set({ 'allergies': allergies }, function () {
+                listItem.remove();
+            });
+        });
+    }
+
     // Load the saved state
     chrome.storage.sync.get("darkMode", (data) => {
       darkModeCheckbox.checked = data.darkMode || false; // Checks if it already exists in chrome storage.
@@ -571,18 +625,3 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 });
-
-// Function to load HTML content into a container
-function loadHTML(containerId, url) {
-  fetch(url)
-    .then((response) => response.text())
-    .then((data) => {
-      document.getElementById(containerId).innerHTML = data;
-    })
-    .catch((error) => console.error("Error loading HTML:", error));
-}
-
-// Function to remove HTML content from a container
-function removeHTML(containerId) {
-  document.getElementById(containerId).innerHTML = "";
-}
