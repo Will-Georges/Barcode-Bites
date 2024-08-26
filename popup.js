@@ -323,67 +323,84 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     async function fetchData(barcode) {
-        try {
-          const response = await fetch(
-            `https://world.openfoodfacts.net/api/v2/product/${barcode}`
-          );
-          if (!response.ok) {
-            throw new Error("Network response was not OK");
-          }
-          const data = await response.json();
-      
-          // Wait for the HTML content to be loaded
-          await new Promise((resolve) => {
-            setTimeout(resolve, 100); // You can adjust the timeout value as needed
-          });
-      
-          if (data.status === 1) {
-            // Set the data to individual variables
-            const product = data.product;
-            const productName = product.product_name_en || product.product_name;
-            const productBrand = product.brands || "Unknown Brand";
-            const productIngredients =
-              product.ingredients_text_en || product.ingredients_text || "Ingredients not available";
-            const productImageUrl = product.image_url || "default_image_url"; // Replace with a default image URL if needed
-            
-            // Check ingredients analysis tags
-            const ingredientsAnalysisTags = product.ingredients_analysis_tags || [];
-            const isProductVegetarian = ingredientsAnalysisTags.includes("vegetarian");
-            const isProductVegan = ingredientsAnalysisTags.includes("vegan");
-      
-            // Retrieve vegetarian preference from storage and compare
-            chrome.storage.sync.get("vegetarian", (data) => {
-              const userPrefersVegetarian = data.vegetarian || false;
-              if (userPrefersVegetarian && !isProductVegetarian) {
-                alert("This is not vegetarian safe for you. You might want to avoid it.");
-              }
-            });
-      
-            // Print data in output page
-            document.getElementById("vegetarian-vegan-output").innerHTML =
-              "Vegetarian: " + (isProductVegetarian ? "Yes" : "No");
-            document.getElementById("product-name-output").innerHTML =
-              "Product: " + productName;
-            document.getElementById("brand-output").innerHTML =
-              "Brand: " + productBrand;
-            document.getElementById("ingredients-output").innerHTML =
-              "Ingredients: " + productIngredients;
-            document.getElementById("note-output").innerHTML = "Notes: ";
-            document.getElementById("product-image-output").src = productImageUrl;
-      
-            console.log(`Product Name: ${productName}`);
-            console.log(`Brand: ${productBrand}`);
-            console.log(`Ingredients: ${productIngredients}`);
-            console.log(`Image URL: ${productImageUrl}`);
-          } else if (data.status === 0) {
-            console.log("Product Not Found");
-          } else {
-            console.log("Unknown Error");
-          }
-        } catch (error) {
-          console.error("There was a problem with your fetch request: ", error);
+      try {
+        const response = await fetch(
+          `https://world.openfoodfacts.net/api/v2/product/${barcode}`
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not OK");
         }
+        const data = await response.json();
+
+        // Wait for the HTML content to be loaded
+        await new Promise((resolve) => {
+          setTimeout(resolve, 100); // You can adjust the timeout value as needed
+        });
+
+        if (data.status === 1) {
+          // Set the data to individual variables
+          const product = data.product;
+          const productName = product.product_name_en || product.product_name;
+          const productBrand = product.brands || "Unknown Brand";
+          const productIngredients =
+            product.ingredients_text_en ||
+            product.ingredients_text ||
+            "Ingredients not available";
+          const productImageUrl = product.image_url || "default_image_url"; // Replace with a default image URL if needed
+
+          // Check ingredients analysis tags
+          const ingredientsAnalysisTags =
+            product.ingredients_analysis_tags || [];
+          const isProductVegetarian =
+            ingredientsAnalysisTags.includes("vegetarian");
+          const isProductVegan = ingredientsAnalysisTags.includes("vegan");
+
+          // Retrieve vegetarian preference from storage and compare
+          chrome.storage.sync.get(["vegetarian", "vegan"], (data) => {
+            const userPrefersVegetarian = data.vegetarian || false;
+            const userPrefersVegan = data.vegan || false;
+
+            if (userPrefersVegetarian && !isProductVegetarian) {
+              alert(
+                "This is not vegetarian safe for you. You might want to avoid it."
+              );
+            }
+
+            if (userPrefersVegan && !isProductVegan) {
+              alert(
+                "This is not vegan safe for you. You might want to avoid it."
+              );
+            }
+          });
+
+          // Print data in output page
+          document.getElementById(
+            "vegetarian-vegan-output"
+          ).innerHTML = `Vegetarian: ${
+            isProductVegetarian ? "Yes" : "No"
+          }, Vegan: ${isProductVegan ? "Yes" : "No"}`;
+          document.getElementById("product-name-output").innerHTML =
+            "Product: " + productName;
+          document.getElementById("brand-output").innerHTML =
+            "Brand: " + productBrand;
+          document.getElementById("ingredients-output").innerHTML =
+            "Ingredients: " + productIngredients;
+          document.getElementById("note-output").innerHTML = "Notes: ";
+          document.getElementById("product-image-output").src = productImageUrl;
+
+          console.log(`Product Name: ${productName}`);
+          console.log(`Brand: ${productBrand}`);
+          console.log(`Ingredients: ${productIngredients}`);
+          console.log(`Image URL: ${productImageUrl}`);
+        } else if (data.status === 0) {
+          console.log("Product Not Found");
+        } else {
+          console.log("Unknown Error");
+        }
+      } catch (error) {
+        console.error("There was a problem with your fetch request: ", error);
       }
+    }
 
     function handleSignup() {
       if (

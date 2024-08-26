@@ -472,6 +472,10 @@ This extension only works with browsers that support Google Accounts Integration
     <summary>4.4.5 - (22/8/24 10:45am)</summary>
     - Alerts user if the product is not vegetarian
     </details>
+    <details>
+    <summary>4.4.6 - (26/8/24 1:55pm)</summary>
+    - Also alerts users if it is not vegan.
+    </details>
     <br>
 </details>
 
