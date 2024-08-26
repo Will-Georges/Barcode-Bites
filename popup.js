@@ -342,6 +342,7 @@ document.addEventListener("DOMContentLoaded", function () {
           const product = data.product;
           const productName = product.product_name_en || product.product_name;
           const productBrand = product.brands || "Unknown Brand";
+          const productGrade = product.nutriscore_data.grade;
           const productIngredients =
             product.ingredients_text_en ||
             product.ingredients_text ||
@@ -385,6 +386,8 @@ document.addEventListener("DOMContentLoaded", function () {
             "Brand: " + productBrand;
           document.getElementById("ingredients-output").innerHTML =
             "Ingredients: " + productIngredients;
+          document.getElementById("grade-output").innerHTML =
+            "Grade: " + productGrade;
           document.getElementById("note-output").innerHTML = "Notes: ";
           document.getElementById("product-image-output").src = productImageUrl;
 

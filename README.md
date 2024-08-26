@@ -476,6 +476,10 @@ This extension only works with browsers that support Google Accounts Integration
     <summary>4.4.6 - (26/8/24 1:55pm)</summary>
     - Also alerts users if it is not vegan.
     </details>
+    <details>
+    <summary>4.4.7 - (26/8/24 9:15pm)</summary>
+    - Displays the Nutritional Score on one of the Carousel Items.
+    </details>
     <br>
 </details>
 
