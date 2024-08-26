@@ -484,6 +484,10 @@ This extension only works with browsers that support Google Accounts Integration
     <summary>4.4.8 - (26/8/24 9:35pm)</summary>
     - Can add allergies to account and outputs in a list in settings page.
     </details>
+    <details>
+    <summary>4.4.9 - (26/8/24 10:20pm)</summary>
+    - Detects if the product is allergy safe.
+    </details>
     <br>
 </details>
 

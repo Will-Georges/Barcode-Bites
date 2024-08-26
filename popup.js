@@ -373,13 +373,33 @@ document.addEventListener("DOMContentLoaded", function () {
               );
             }
           });
+          
+          const allergens = product.allergens || [];
+          var allergySafe = false;
+
+          // Retrieve the user's allergy list from Chrome Sync
+          chrome.storage.sync.get(['allergies'], function(result) {
+            const userAllergies = result.allergies || [];
+            for (const allergy of userAllergies) {
+              if (allergens.includes(allergy)) {
+                alert(
+                  "This is not allergy safe for you. You might want to avoid it."
+                );
+                allergySafe = false;
+              } else {
+                console.log("ain't got it");
+                allergySafe = true;
+              }
+            }
+          });
 
           // Print data in output page
           document.getElementById(
             "vegetarian-vegan-output"
           ).innerHTML = `Vegetarian: ${
             isProductVegetarian ? "Yes" : "No"
-          }, Vegan: ${isProductVegan ? "Yes" : "No"}`;
+          }, Vegan: ${isProductVegan ? "Yes" : "No"
+          }, Allergy Safe: ${allergySafe ? "Yes" : "No"}`;
           document.getElementById("product-name-output").innerHTML =
             "Product: " + productName;
           document.getElementById("brand-output").innerHTML =
