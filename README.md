@@ -543,6 +543,10 @@ This extension only works with browsers that support Google Accounts Integration
     <br>
     - Added License section to README.
     </details>
+    <details>
+    <summary>4.5.2.1 - (27/8/24 6:05pm)</summary>
+    - Minor LICENSE format change
+    </details>
     <br>
 </details>
 
