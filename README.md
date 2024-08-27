@@ -500,6 +500,10 @@ This extension only works with browsers that support Google Accounts Integration
     <summary>4.4.10.1 - (27/8/24 10:20am)</summary>
     - Added tutorial button in the navbar which is only available after signup
     </details>
+    <details>
+    <summary>4.4.11 - (27/8/24 10:35am)</summary>
+    - Added a LICENSE.
+    </details>
     <br>
 </details>
 
