@@ -559,12 +559,16 @@ This extension only works with browsers that support Google Accounts Integration
     <summary>4.5.2.4 - (27/8/24 7:50pm)</summary>
     - Fix README and License bugs
     </details>
+    <details>
+    <summary>4.5.2.5 - (27/8/24 7:55pm)</summary>
+    - Minor wording change
+    </details>
     <br>
 </details>
 
 ## License
 
-Shield: [![CC BY-NC 4.0][cc-by-nc-shield]][cc-by-nc]
+[![CC BY-NC 4.0][cc-by-nc-shield]][cc-by-nc]
 
 This work is licensed under a
 [Creative Commons Attribution-NonCommercial 4.0 International License][cc-by-nc].
