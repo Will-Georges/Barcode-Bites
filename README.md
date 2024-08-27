@@ -544,8 +544,12 @@ This extension only works with browsers that support Google Accounts Integration
     - Added License section to README.
     </details>
     <details>
-    <summary>4.5.2.1 - (27/8/24 6:05pm)</summary>
+    <summary>4.5.2.1 - (27/8/24 6:00pm)</summary>
     - Minor LICENSE format change
+    </details>
+    <details>
+    <summary>4.5.2.2 - (27/8/24 6:05pm)</summary>
+    - Revert Change
     </details>
     <br>
 </details>
