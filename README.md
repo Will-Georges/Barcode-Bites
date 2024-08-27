@@ -551,6 +551,10 @@ This extension only works with browsers that support Google Accounts Integration
     <summary>4.5.2.2 - (27/8/24 6:05pm)</summary>
     - Revert Change
     </details>
+    details>
+    <summary>4.5.2.3 - (27/8/24 7:45pm)</summary>
+    - Fix merging and syncing problem
+    </details>
     <br>
 </details>
 
