@@ -496,6 +496,10 @@ This extension only works with browsers that support Google Accounts Integration
     <summary>4.4.10 - (27/8/24 10:05am)</summary>
     - Added a tutorial modal that opens after signup.
     </details>
+    <details>
+    <summary>4.4.10.1 - (27/8/24 10:20am)</summary>
+    - Added tutorial button in the navbar which is only available after signup
+    </details>
     <br>
 </details>
 

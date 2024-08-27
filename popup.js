@@ -31,6 +31,8 @@ const nameWelcome = document.querySelector("#name-welcome");
 const now = new Date();
 const hours = now.getHours();
 
+const openTutorial = document.querySelector("#openTutorial");
+
 document.addEventListener("DOMContentLoaded", function () {
   // Code for popup.html
   if (window.location.pathname.endsWith("popup.html")) {
@@ -309,6 +311,11 @@ document.addEventListener("DOMContentLoaded", function () {
       modalSignup.classList.add("is-active");
     });
 
+    // Open Tutorial Modal
+    openTutorial.addEventListener("click", () => {
+      modalTutorial.classList.add("is-active");
+    });
+
     // Close Modal
     modalBackgroundEntry.addEventListener("click", () => {
       modalEntry.classList.remove("is-active");
@@ -473,6 +480,8 @@ document.addEventListener("DOMContentLoaded", function () {
           openSignup.classList.add("remove-navbar-item");
           openProfile.innerHTML = "Profile";
           openProfile.classList.remove("remove-navbar-item");
+          openTutorial.innerHTML = "Tutorial";
+          openTutorial.classList.remove("remove-navbar-item");
           openPreferencesButton.classList.remove("remove-navbar-item");
           openPreferencesButton.innerHTML = "Settings";
         }
