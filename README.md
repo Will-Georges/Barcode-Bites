@@ -533,6 +533,10 @@ This extension only works with browsers that support Google Accounts Integration
     <br>
     - Commented out popup.js
     </details>
+    <details>
+    <summary>4.5.1.1 - (27/8/24 5:35pm)</summary>
+    - Styling Changes
+    </details>
     <br>
 </details>
 
