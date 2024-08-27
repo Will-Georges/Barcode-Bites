@@ -3,6 +3,11 @@ const manualEntryButton = document.querySelector("#manualEntryButton");
 const modalBackgroundEntry = document.querySelector("#modal-background-entry");
 const modalEntry = document.querySelector("#modal-entry");
 
+const modalBackgroundTutorial = document.querySelector(
+  "#modal-background-tutorial"
+);
+const modalTutorial = document.querySelector("#modal-tutorial");
+
 const openSignup = document.querySelector("#openSignup");
 const modalBackgroundSignup = document.querySelector(
   "#modal-background-signup"
@@ -288,6 +293,7 @@ document.addEventListener("DOMContentLoaded", function () {
     submitSignup.addEventListener("click", () => {
       if (passwordValidity() && emailValidity()) {
         handleSignup();
+        modalTutorial.classList.add("is-active");
       } else {
         alert("Email or password does not meet the criteria");
       }
@@ -311,6 +317,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // Close Modal
     modalBackgroundSignup.addEventListener("click", () => {
       modalSignup.classList.remove("is-active");
+    });
+
+    // Close Modal
+    modalBackgroundTutorial.addEventListener("click", () => {
+      modalTutorial.classList.remove("is-active");
     });
 
     // Run when the manual entry submit button is clicked, and runs the API fetch function
@@ -373,12 +384,12 @@ document.addEventListener("DOMContentLoaded", function () {
               );
             }
           });
-          
+
           const allergens = product.allergens || [];
           var allergySafe = false;
 
           // Retrieve the user's allergy list from Chrome Sync
-          chrome.storage.sync.get(['allergies'], function(result) {
+          chrome.storage.sync.get(["allergies"], function (result) {
             const userAllergies = result.allergies || [];
             for (const allergy of userAllergies) {
               if (allergens.includes(allergy)) {
@@ -398,8 +409,9 @@ document.addEventListener("DOMContentLoaded", function () {
             "vegetarian-vegan-output"
           ).innerHTML = `Vegetarian: ${
             isProductVegetarian ? "Yes" : "No"
-          }, Vegan: ${isProductVegan ? "Yes" : "No"
-          }, Allergy Safe: ${allergySafe ? "Yes" : "No"}`;
+          }, Vegan: ${isProductVegan ? "Yes" : "No"}, Allergy Safe: ${
+            allergySafe ? "Yes" : "No"
+          }`;
           document.getElementById("product-name-output").innerHTML =
             "Product: " + productName;
           document.getElementById("brand-output").innerHTML =
@@ -554,58 +566,58 @@ document.addEventListener("DOMContentLoaded", function () {
     const vegetarianCheckbox = document.getElementById("vegetarianCheckbox");
     const veganCheckbox = document.getElementById("veganCheckbox");
 
-    const allergyInput = document.getElementById('allergy-input');
-    const addAllergyButton = document.getElementById('add-allergy');
-    const allergyList = document.getElementById('allergy-list');
+    const allergyInput = document.getElementById("allergy-input");
+    const addAllergyButton = document.getElementById("add-allergy");
+    const allergyList = document.getElementById("allergy-list");
 
     // Load stored allergies and display them
-    chrome.storage.sync.get(['allergies'], function (result) {
-        const allergies = result.allergies || [];
-        allergies.forEach(function (allergy) {
-            displayAllergy(allergy);
-        });
+    chrome.storage.sync.get(["allergies"], function (result) {
+      const allergies = result.allergies || [];
+      allergies.forEach(function (allergy) {
+        displayAllergy(allergy);
+      });
     });
 
     // Add allergy to the list and store it in Chrome Sync
-    addAllergyButton.addEventListener('click', function () {
-        const allergy = allergyInput.value.trim();
-        if (allergy) {
-            chrome.storage.sync.get(['allergies'], function (result) {
-                const allergies = result.allergies || [];
-                allergies.push(allergy);
-                chrome.storage.sync.set({ 'allergies': allergies }, function () {
-                    displayAllergy(allergy);
-                });
-            });
-            allergyInput.value = '';
-        }
+    addAllergyButton.addEventListener("click", function () {
+      const allergy = allergyInput.value.trim();
+      if (allergy) {
+        chrome.storage.sync.get(["allergies"], function (result) {
+          const allergies = result.allergies || [];
+          allergies.push(allergy);
+          chrome.storage.sync.set({ allergies: allergies }, function () {
+            displayAllergy(allergy);
+          });
+        });
+        allergyInput.value = "";
+      }
     });
 
     // Display allergy in the list with a remove button
     function displayAllergy(allergy) {
-        const li = document.createElement('li');
-        li.classList.add('is-flex', 'is-align-items-center');
+      const li = document.createElement("li");
+      li.classList.add("is-flex", "is-align-items-center");
 
-        const removeButton = document.createElement('button');
-        removeButton.classList.add('delete', 'mr-2');
-        removeButton.addEventListener('click', function () {
-            removeAllergy(allergy, li);
-        });
+      const removeButton = document.createElement("button");
+      removeButton.classList.add("delete", "mr-2");
+      removeButton.addEventListener("click", function () {
+        removeAllergy(allergy, li);
+      });
 
-        li.appendChild(removeButton);
-        li.appendChild(document.createTextNode(allergy));
-        allergyList.appendChild(li);
+      li.appendChild(removeButton);
+      li.appendChild(document.createTextNode(allergy));
+      allergyList.appendChild(li);
     }
 
     // Remove allergy from the list and Chrome Sync
     function removeAllergy(allergy, listItem) {
-        chrome.storage.sync.get(['allergies'], function (result) {
-            let allergies = result.allergies || [];
-            allergies = allergies.filter(item => item !== allergy);
-            chrome.storage.sync.set({ 'allergies': allergies }, function () {
-                listItem.remove();
-            });
+      chrome.storage.sync.get(["allergies"], function (result) {
+        let allergies = result.allergies || [];
+        allergies = allergies.filter((item) => item !== allergy);
+        chrome.storage.sync.set({ allergies: allergies }, function () {
+          listItem.remove();
         });
+      });
     }
 
     // Load the saved state

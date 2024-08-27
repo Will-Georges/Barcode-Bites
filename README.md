@@ -492,6 +492,10 @@ This extension only works with browsers that support Google Accounts Integration
     <summary>4.4.9.1 - (27/8/24 9:35am)</summary>
     - Fixed bug where light/dark mode icon was permanently stuck on the dark icon.
     </details>
+    <details>
+    <summary>4.4.10 - (27/8/24 10:05am)</summary>
+    - Added a tutorial modal that opens after signup.
+    </details>
     <br>
 </details>
 
