@@ -527,6 +527,12 @@ This extension only works with browsers that support Google Accounts Integration
     <br>
     - Commented out styles.css
     </details>
+    <details>
+    <summary>4.5.1 - (27/8/24 5:30pm)</summary>
+    - Removed Profile item from navbar
+    <br>
+    - Commented out popup.js
+    </details>
     <br>
 </details>
 
