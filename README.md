@@ -518,6 +518,17 @@ This extension only works with browsers that support Google Accounts Integration
     </details>
     <br>
 </details>
+<details>
+<summary>4.5</summary>
+    <br>
+    <details>
+    <summary>4.5.0 - (27/8/24 3:20pm)</summary>
+    - Added Bulma locally instead of through web link.
+    <br>
+    - Commented out styles.css
+    </details>
+    <br>
+</details>
 
 ## Contact
 

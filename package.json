@@ -1,0 +1,15 @@
+{
+  "name": "barcode-bites",
+  "version": "1.0.0",
+  "description": "Barcode Bites is a Chrome extension that scans food barcodes and alerts users if they have any allergies, or if it does not meet their preferences. The extension will also output other health information.",
+  "main": "popup.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bulma": "^1.0.2"
+  }
+}
