@@ -1,31 +1,32 @@
 <!DOCTYPE html>
+<!-- Navbar stays at top even when scrolling. Footer stays at bottom even when scrolling -->
 <html lang="en" class="has-navbar-fixed-top has-navbar-fixed-bottom">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Barcode Bites</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css"> <!-- Bulma -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Custom Font -->
+  <link rel="stylesheet" href="styles.css"> <!-- CSS File -->
 </head>
 
 <body>
   <!-- Navbar -->
-  <nav class="navbar is-fixed-top" id="navbar"> <!--outer container-->
-    <div class="navbar-brand has-background-orange"> <!--left hand side-->
-      <img class="image is-inline-block is-64x64" src="images/cropped-logo.png">
-      <a class="navbar-item has-text-white remove-navbar-item" id="openPreferences">
+  <nav class="navbar is-fixed-top" id="navbar"> <!-- Outer Container -->
+    <div class="navbar-brand has-background-orange"> <!-- Left Hand Side -->
+      <img class="image is-inline-block is-64x64" src="images/cropped-logo.png"> <!-- Logo -->
+      <a class="navbar-item has-text-white remove-navbar-item" id="openPreferences"> <!-- Appears After Signup -->
 
       </a>
-      <a class="navbar-item has-text-white" id="openSignup">
+      <a class="navbar-item has-text-white" id="openSignup"> <!-- Opens Signup -->
         Signup
       </a>
-      <a class="navbar-item has-text-white remove-navbar-item" id="openProfile">
+      <a class="navbar-item has-text-white remove-navbar-item" id="openProfile"> <!-- Space for open profile button -->
         <!-- Set inner HTML for the word profile and remove the 'remove navbar item' class -->
       </a>
-      <a class="navbar-item has-text-white remove-navbar-item" id="openTutorial">
-        <!-- Set inner HTML for the word profile and remove the 'remove navbar item' class -->
+      <a class="navbar-item has-text-white remove-navbar-item" id="openTutorial"> <!-- Space for open tutorial button -->
+        <!-- Set inner HTML for the word tutorial and remove the 'remove navbar item' class -->
       </a>
     </div>
   </nav>
@@ -33,27 +34,29 @@
   <!-- Main Section-->
   <section class="section">
     <div class="container">
-      <!--Main Page-->
+      <!-- Main Page -->
       <div id="mainContent">
         <h1 class="title has-text-centered">Barcode Bites</h1>
-        <h2 class="subtitle has-text-centered" id="name-welcome">Welcome, Guest</h2>
+        <h2 class="subtitle has-text-centered" id="name-welcome">Welcome, Guest</h2> <!-- Dynamic Greeting depending on time -->
       </div>
+
       <br>
+
       <div class="columns no-wrap">
         <div class="column">
-          <button id="manualEntryButton" class="button is-primary">Manual Entry</button>
+          <button id="manualEntryButton" class="button is-primary">Manual Entry</button> <!-- Opens manual entry modal-->
         </div>
         <div class="column">
-          <!-- Add a button to capture the screenshot -->
-          <button class="button is-primary" id="captureScreenshotButton">Capture Screenshot</button>
+          <button class="button is-primary" id="captureScreenshotButton">Capture Screenshot</button> <!-- Capture Screenshot button-->
         </div>
       </div>
 
+      <!-- File Input -->
       <div class="file is-primary">
         <label class="file-label">
-          <input class="file-input" type="file" id="fileInput" accept="image/*" />
+          <input class="file-input" type="file" id="fileInput" accept="image/*" /> <!-- Input -->
           <span class="file-cta">
-            <span class="file-icon">
+            <span class="file-icon"> <!-- Icon -->
               <i class="fas fa-upload"></i>
             </span>
             <span class="file-label">Upload Barcode</span>
@@ -65,7 +68,27 @@
     </div>
   </section>
 
-  <!--Manual Entry Modal-->
+  <!-- Holds the Carousel -->
+  <div class="general__content">
+    <div class="outer-container">
+      <div class="carousel-container">
+        <div class="carousel">
+          <div class="carousel-item" style="flex-wrap: wrap;">
+            <img id="product-image-output" src="images/carousel-filler.png" alt="Product Image" class="image max-carousel-image-height">
+            <br>
+            <p id="product-name-output"></p>
+          </div>
+          <div class="carousel-item"><p id="vegetarian-vegan-output"></p></div>
+          <div class="carousel-item"><p id="brand-output"></p></div>
+          <div class="carousel-item"><p id="ingredients-output"></p></div>
+          <div class="carousel-item"><p id="note-output"></p></div>
+          <div class="carousel-item"><p id="grade-output"></p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Manual Entry Modal -->
   <div class="modal" id="modal-entry">
     <div class="modal-background" id="modal-background-entry"></div>
     <div class="modal-content modal-width has-background-warning has-text-black px-3">
@@ -81,7 +104,7 @@
     </div>
   </div>
 
-  <!--Log In-->
+  <!-- Log In Modal-->
   <div class="modal" id="modal-signup">
     <div class="modal-background" id="modal-background-signup"></div>
     <div class="modal-content modal-width has-background-warning has-text-black px-3">
@@ -125,7 +148,7 @@
     </div>
   </div>
 
-  <!--Manual Entry Modal-->
+  <!-- Modal for Tutorial -->
   <div class="modal" id="modal-tutorial">
     <div class="modal-background" id="modal-background-tutorial"></div>
     <div class="modal-content modal-width has-background-warning has-text-black px-3">
@@ -133,40 +156,15 @@
       <p class="has-text-centered"> Welcome to Barcode Bites. <br> Go to settings and add your preferences and allergies. <br>There are 3 options to test a barcode: <br>1. Enter the barcode number manually. <br>2. Upload a screenshot of barcode. <br>3. Have a barcode visible on screen and click the Automatic Scan button</p>
     </div>
   </div>
-
-  <div class="general__content">
-    <div class="outer-container">
-      <div class="carousel-container">
-        <div class="carousel">
-          <div class="carousel-item" style="flex-wrap: wrap;">
-            <img id="product-image-output" src="images/carousel-filler.png" alt="Product Image" class="image max-carousel-image-height">
-            <br>
-            <p id="product-name-output"></p>
-          </div>
-          <div class="carousel-item"><p id="vegetarian-vegan-output"></p></div>
-          <div class="carousel-item"><p id="brand-output"></p></div>
-          <div class="carousel-item"><p id="ingredients-output"></p></div>
-          <div class="carousel-item"><p id="note-output"></p></div>
-          <div class="carousel-item"><p id="grade-output"></p></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
+  
   <!-- Footer -->
-  <nav class="navbar is-fixed-bottom has-text-white" id="navbar">
-    <!-- Outer container -->
+  <nav class="navbar is-fixed-bottom has-text-white" id="navbar-footer">
     <div class="navbar-brand has-background-orange">
-      <!-- Left-hand side -->
-      <div class="navbar-item has-text-white">My Account</div>
-    </div>
-    <div class="navbar-menu">
-      <!-- Right-hand side -->
+      <a class="navbar-item has-text-white" href="https://github.com/Will-Georges/Barcode-Bites" target="_blank">Github</a>
     </div>
   </nav>
 
   <script src="popup.js"></script>
 
 </body>
-
 </html>

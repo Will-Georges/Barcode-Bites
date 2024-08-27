@@ -504,6 +504,12 @@ This extension only works with browsers that support Google Accounts Integration
     <summary>4.4.11 - (27/8/24 10:35am)</summary>
     - Added a LICENSE.
     </details>
+    <details>
+    <summary>4.4.11.1 - (27/8/24 2:10pm)</summary>
+    - Added link to GitHub.
+    <br>
+    - Commented out popup.html file
+    </details>
     <br>
 </details>
 
