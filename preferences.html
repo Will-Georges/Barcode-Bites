@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="has-navbar-fixed-top has-navbar-fixed-bottom">
+<!-- Navbar stays at top even when scrolling. Footer stays at bottom even when scrolling -->
 
 <head>
     <meta charset="UTF-8">
@@ -11,10 +12,10 @@
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar is-fixed-top" id="navbar"> <!--outer container-->
-        <div class="navbar-brand has-background-orange"> <!--left hand side-->
-            <img class="image is-inline-block is-64x64" src="images/cropped-logo.png">
-            <a class="navbar-item has-text-white" id="backToMain">
+    <nav class="navbar is-fixed-top" id="navbar">
+        <div class="navbar-brand has-background-orange">
+            <img class="image is-inline-block is-64x64" src="images/cropped-logo.png"> <!-- Logo -->
+            <a class="navbar-item has-text-white" id="backToMain"> <!-- Only needs return to home button -->
                 Home
             </a>
         </div>
@@ -25,45 +26,44 @@
         <div class="container">
             <h1 class="title">Preferences</h1>
             <div class="field">
-                <!--Checkbox to set icon to light or dark mode-->
+                <!-- Checkbox to set icon to light or dark mode -->
                 <input id="darkModeCheckbox" type="checkbox" class="switch is-rounded is-info">
                 <label for="darkModeCheckbox">Dark Mode</label>
                 <br>
-                <!--Checkbox for vegetarian-->
+                <!-- Checkbox for vegetarian -->
                 <input id="vegetarianCheckbox" type="checkbox" class="switch is-rounded is-info">
                 <label for="vegetarianCheckbox">Vegetarian</label>
                 <br>
-                <!--Checkbox for vegan-->
+                <!-- Checkbox for vegan -->
                 <input id="veganCheckbox" type="checkbox" class="switch is-rounded is-info">
                 <label for="veganCheckbox">Vegan</label>
 
+                <br>
+
+                <!-- Allergy Input Section -->
                 <h1 class="title">Allergy Preferences</h1>
-            <div class="field">
-                <label class="label" for="allergy-input">Add an Allergy</label>
-                <div class="control">
-                    <input class="input" type="text" id="allergy-input" placeholder="Enter allergy">
+                <div class="field">
+                    <div class="control">
+                        <input class="input" type="text" id="allergy-input" placeholder="Enter allergy">
+                        <!-- Add Allergy Input -->
+                    </div>
                 </div>
-            </div>
-            <div class="control">
-                <button class="button is-primary" id="add-allergy">Add Allergy</button>
-            </div>
-            <div class="section">
+                <div class="control">
+                    <button class="button is-primary" id="add-allergy">Add Allergy</button>
+                </div>
+                <br>
+                <!-- Lists all allergies -->
                 <h2 class="subtitle">Your Allergies:</h2>
                 <ul id="allergy-list"></ul>
-            </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <nav class="navbar is-fixed-bottom has-text-white" id="navbar">
-        <!-- Outer container -->
+    <nav class="navbar is-fixed-bottom has-text-white" id="navbar-footer">
         <div class="navbar-brand has-background-orange">
-            <!-- Left-hand side -->
-            <div class="navbar-item">My Account</div>
-        </div>
-        <div class="navbar-menu">
-            <!-- Right-hand side -->
+            <a class="navbar-item has-text-white" href="https://github.com/Will-Georges/Barcode-Bites"
+                target="_blank">Github</a> <!-- Link to Repository -->
         </div>
     </nav>
 

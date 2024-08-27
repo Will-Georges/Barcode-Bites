@@ -510,6 +510,12 @@ This extension only works with browsers that support Google Accounts Integration
     <br>
     - Commented out popup.html file
     </details>
+    <details>
+    <summary>4.4.11.2 - (27/8/24 2:10pm)</summary>
+    - Commented out preferences.html file
+    <br>
+    - Fixed footer in preferences page.
+    </details>
     <br>
 </details>
 
