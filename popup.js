@@ -8,6 +8,12 @@ const modalBackgroundTutorial = document.querySelector("#modal-background-tutori
 const modalTutorial = document.querySelector("#modal-tutorial");
 const openTutorial = document.querySelector("#openTutorial");
 
+// Logout Modal
+const openLogout = document.querySelector("#openLogout");
+const modalBackgroundLogout = document.querySelector("#modal-background-logout");
+const modalLogout = document.querySelector("#modal-logout");
+const confirmLogout = document.querySelector('#confirm-logout')
+
 // Signup Modal
 const openSignup = document.querySelector("#openSignup");
 const modalBackgroundSignup = document.querySelector("#modal-background-signup");
@@ -324,6 +330,11 @@ document.addEventListener("DOMContentLoaded", function () {
       modalTutorial.classList.add("is-active");
     });
 
+    // Open Logout Modal
+    openLogout.addEventListener("click", () => {
+      modalLogout.classList.add("is-active");
+    });
+
     // Close Manual Entry Modal
     modalBackgroundEntry.addEventListener("click", () => {
       modalEntry.classList.remove("is-active");
@@ -337,6 +348,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // Close Tutorial Modal
     modalBackgroundTutorial.addEventListener("click", () => {
       modalTutorial.classList.remove("is-active");
+    });
+
+    // Close Logout Modal
+    modalBackgroundLogout.addEventListener("click", () => {
+      modalLogout.classList.remove("is-active");
     });
 
     // Gets barcode number and runs fetchData
@@ -468,6 +484,8 @@ document.addEventListener("DOMContentLoaded", function () {
           openSignup.classList.add("remove-navbar-item");
           openTutorial.innerHTML = "Tutorial";
           openTutorial.classList.remove("remove-navbar-item");
+          openLogout.innerHTML = "Logout";
+          openLogout.classList.remove("remove-navbar-item");
           openPreferencesButton.classList.remove("remove-navbar-item");
           openPreferencesButton.innerHTML = "Settings";
         }

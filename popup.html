@@ -25,6 +25,9 @@
       <a class="navbar-item has-text-white remove-navbar-item" id="openTutorial"> <!-- Space for open tutorial button -->
         <!-- Set inner HTML for the word tutorial and remove the 'remove navbar item' class -->
       </a>
+      <a class="navbar-item has-text-white remove-navbar-item" id="openLogout"> <!-- Space for open logout button -->
+        <!-- Set inner HTML for the word tutorial and remove the 'remove navbar item' class -->
+      </a>
     </div>
   </nav>
 
@@ -151,6 +154,15 @@
     <div class="modal-content modal-width has-background-warning has-text-black px-3">
       <div class="title"> Tutorial </div>
       <p class="has-text-centered"> Welcome to Barcode Bites. <br> Go to settings and add your preferences and allergies. <br>There are 3 options to test a barcode: <br>1. Enter the barcode number manually. <br>2. Upload a screenshot of barcode. <br>3. Have a barcode visible on screen and click the Automatic Scan button</p>
+    </div>
+  </div>
+
+  <!-- Modal for Log Out -->
+  <div class="modal" id="modal-logout">
+    <div class="modal-background" id="modal-background-logout"></div>
+    <div class="modal-content modal-width has-background-warning has-text-black px-3">
+      <div class="title"> Are you sure you want to log out? </div>
+      <button class="button is-info" id="confirm-logout">Logout</button>
     </div>
   </div>
   

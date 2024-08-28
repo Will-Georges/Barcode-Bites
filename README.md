@@ -563,6 +563,10 @@ This extension only works with browsers that support Google Accounts Integration
     <summary>4.5.2.5 - (27/8/24 7:55pm)</summary>
     - Minor wording change
     </details>
+    <details>
+    <summary>4.5.3 - (28/8/24 10:00pm)</summary>
+    - Added logout modal that is accessed from navbar
+    </details>
     <br>
 </details>
 
