@@ -448,20 +448,96 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    // Sets all signup variables to Chrome Sync
-    function handleSignup() {
+    // Function to generate a random salt
+    async function generateSalt() {
+      const salt = new Uint8Array(16);
+      window.crypto.getRandomValues(salt);
+      return salt;
+    }
+
+    // Function to hash password with a salt
+    async function hashPassword(password, salt) {
+      const encoder = new TextEncoder();
+      const passwordBytes = encoder.encode(password);
+      const saltBytes = new Uint8Array(salt);
+
+      const data = new Uint8Array(passwordBytes.length + saltBytes.length);
+      data.set(passwordBytes);
+      data.set(saltBytes, passwordBytes.length);
+
+      const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+      return new Uint8Array(hashBuffer);
+    }
+
+    // Function to convert an ArrayBuffer to a base64 string
+    function arrayBufferToBase64(buffer) {
+      let binary = '';
+      const bytes = new Uint8Array(buffer);
+      const len = bytes.byteLength;
+      for (let i = 0; i < len; i++) {
+          binary += String.fromCharCode(bytes[i]);
+      }
+      return window.btoa(binary);
+    }
+
+    // Function to convert a base64 string to an ArrayBuffer
+    function base64ToArrayBuffer(base64) {
+      const binary_string = window.atob(base64);
+      const len = binary_string.length;
+      const bytes = new Uint8Array(len);
+      for (let i = 0; i < len; i++) {
+          bytes[i] = binary_string.charCodeAt(i);
+      }
+      return bytes.buffer;
+    }
+
+    // Handle Signup
+    async function handleSignup() {
       if (username.value.length > 0 && email.value.length > 0 && password.value.length > 0) {
-        modalSignup.classList.remove("is-active");
-        hasSignedUp = true;
-        chrome.storage.sync.set({ username: username.value });
-        chrome.storage.sync.set({ email: email.value });
-        chrome.storage.sync.set({ password: password.value });
-        chrome.storage.sync.set({ hasSignedUp: hasSignedUp });
-        checkSignedUp();
+          const salt = await generateSalt();
+          const hashedPassword = await hashPassword(password.value, salt);
+
+          // Store salt and hashed password in Chrome Sync
+          chrome.storage.sync.set({
+              username: username.value,
+              email: email.value,
+              password: arrayBufferToBase64(hashedPassword),
+              salt: arrayBufferToBase64(salt),
+              hasSignedUp: hasSignedUp
+          });
+          modalSignup.classList.remove("is-active");
+          checkSignedUp();
       } else {
-        alert("One or more fields are blank."); // Won't save data if not all fields are filled.
+          alert("One or more fields are blank.");
       }
     }
+
+    /*
+    // Verify password
+    async function verifyPassword(inputPassword, storedSalt, storedHash) {
+      const salt = base64ToArrayBuffer(storedSalt);
+      const inputHash = await hashPassword(inputPassword, salt);
+      const storedHashBuffer = base64ToArrayBuffer(storedHash);
+      
+      return inputHash.every((byte, i) => byte === storedHashBuffer[i]);
+    }
+
+    // Example login check
+    async function loginUser(inputUsername, inputPassword) {
+      chrome.storage.sync.get(["username", "password", "salt"], async (result) => {
+          if (result.username === inputUsername) {
+              const isValid = await verifyPassword(inputPassword, result.salt, result.passwordHash);
+              if (isValid) {
+                  console.log("Login successful!");
+              } else {
+                  console.log("Invalid password.");
+              }
+          } else {
+              console.log("Username not found.");
+          }
+      });
+    }
+    */
 
     // Checks if the user is signed up
     function checkSignedUp() {

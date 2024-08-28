@@ -570,6 +570,16 @@ This extension only works with browsers that support Google Accounts Integration
     <br>
 </details>
 
+<details>
+<summary>4.6</summary>
+    <br>
+    <details>
+    <summary>4.6.0 - (28/8/24 10:25pm)</summary>
+    - Password is now stored in hash and not plain text.
+    </details>
+    <br>
+</details>
+
 ## License
 
 [![CC BY-NC 4.0][cc-by-nc-shield]][cc-by-nc]
