@@ -455,17 +455,17 @@ document.addEventListener("DOMContentLoaded", function () {
       return salt;
     }
 
-    // Function to hash password with a salt
-    async function hashPassword(password, salt) {
+    // Function to hash data with a salt
+    async function hashData(data, salt) {
       const encoder = new TextEncoder();
-      const passwordBytes = encoder.encode(password);
+      const dataBytes = encoder.encode(data);
       const saltBytes = new Uint8Array(salt);
 
-      const data = new Uint8Array(passwordBytes.length + saltBytes.length);
-      data.set(passwordBytes);
-      data.set(saltBytes, passwordBytes.length);
+      const combinedData = new Uint8Array(dataBytes.length + saltBytes.length);
+      combinedData.set(dataBytes);
+      combinedData.set(saltBytes, dataBytes.length);
 
-      const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', combinedData);
       return new Uint8Array(hashBuffer);
     }
 
@@ -495,20 +495,24 @@ document.addEventListener("DOMContentLoaded", function () {
     async function handleSignup() {
       if (username.value.length > 0 && email.value.length > 0 && password.value.length > 0) {
           const salt = await generateSalt();
-          const hashedPassword = await hashPassword(password.value, salt);
 
-          // Store salt and hashed password in Chrome Sync
+          // Hash the password and email
+          const hashedPassword = await hashData(password.value, salt);
+          const hashedEmail = await hashData(email.value, salt);
+
+          // Store username, hashed email, hashed password, and salt in Chrome Sync
           chrome.storage.sync.set({
-              username: username.value,
-              email: email.value,
+              username: username.value, // Keep the username as it is
+              email: arrayBufferToBase64(hashedEmail),
               password: arrayBufferToBase64(hashedPassword),
               salt: arrayBufferToBase64(salt),
-              hasSignedUp: hasSignedUp
+              hasSignedUp: true
           });
+
           modalSignup.classList.remove("is-active");
           checkSignedUp();
       } else {
-          alert("One or more fields are blank.");
+          alert("Please fill out all fields.");
       }
     }
 

@@ -577,6 +577,10 @@ This extension only works with browsers that support Google Accounts Integration
     <summary>4.6.0 - (28/8/24 10:25pm)</summary>
     - Password is now stored in hash and not plain text.
     </details>
+    <details>
+    <summary>4.6.1 - (29/8/24 9:45am)</summary>
+    - Email is now also stored in hash and not plain text.
+    </details>
     <br>
 </details>
 
