@@ -564,5 +564,9 @@
     <summary>5.0.1 - (29/8/24 10:20pm)</summary>
     - Adjusted Code file structure.
     </details>
+    <details>
+    <summary>5.0.2 - (29/8/24 10:30pm)</summary>
+    - Minor changes to viewable code in GitHub
+    </details>
     <br>
 </details>
