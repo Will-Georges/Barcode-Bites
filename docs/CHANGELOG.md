@@ -568,5 +568,11 @@
     <summary>5.0.2 - (29/8/24 10:30pm)</summary>
     - Minor changes to viewable code in GitHub
     </details>
+    <details>
+    <summary>5.0.3 - (29/8/24 10:40pm)</summary>
+    - Updated LICENSE
+    <br>
+    - Renamed email file from a min.js to just a js.
+    </details>
     <br>
 </details>
