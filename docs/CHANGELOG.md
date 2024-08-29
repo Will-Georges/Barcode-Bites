@@ -560,5 +560,9 @@
     <br>
     - Created a docs folder.
     </details>
+    <details>
+    <summary>5.0.1 - (29/8/24 10:20pm)</summary>
+    - Adjusted Code file structure.
+    </details>
     <br>
 </details>
