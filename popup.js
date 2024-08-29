@@ -40,8 +40,6 @@ const nameWelcome = document.querySelector("#name-welcome");
 const now = new Date();
 const hours = now.getHours();
 
-
-
 // When HTML is fully loaded
 document.addEventListener("DOMContentLoaded", function () {
   // Code for popup.html
@@ -50,6 +48,8 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("openPreferences").addEventListener("click", function () {
         window.location.href = chrome.runtime.getURL("preferences.html");
     });
+
+    emailjs.init("Igrq_UNPItE8jc0Iw"); // Initialises email service
 
     // Carousel
     const container = document.querySelector(".outer-container");
@@ -494,27 +494,65 @@ document.addEventListener("DOMContentLoaded", function () {
     // Handle Signup
     async function handleSignup() {
       if (username.value.length > 0 && email.value.length > 0 && password.value.length > 0) {
-          const salt = await generateSalt();
-
-          // Hash the password and email
-          const hashedPassword = await hashData(password.value, salt);
-          const hashedEmail = await hashData(email.value, salt);
-
-          // Store username, hashed email, hashed password, and salt in Chrome Sync
-          chrome.storage.sync.set({
-              username: username.value, // Keep the username as it is
-              email: arrayBufferToBase64(hashedEmail),
-              password: arrayBufferToBase64(hashedPassword),
-              salt: arrayBufferToBase64(salt),
-              hasSignedUp: true
-          });
-
-          modalSignup.classList.remove("is-active");
-          checkSignedUp();
+        // Generate Verification Code
+        const code = generateVerificationCode();
+    
+        // Send verification email using EmailJS
+        const emailParams = {
+          to_email: email.value,
+          to_name: username.value,
+          message: code
+        };
+    
+        emailjs.send('service_h6i54pt', 'template_jt8s6z7', emailParams)
+        .then(function(response) {
+          console.log('Email sent successfully!', response.status, response.text);
+        }, function(error) {
+          console.error('Failed to send email:', error);
+        });
+    
+        const salt = await generateSalt();
+    
+        // Hash the password and email
+        const hashedPassword = await hashData(password.value, salt);
+        const hashedEmail = await hashData(email.value, salt);
+    
+        // Store username, hashed email, hashed password, and salt in Chrome Sync
+        chrome.storage.sync.set({
+          username: username.value, // Keep the username as it is
+          email: arrayBufferToBase64(hashedEmail),
+          password: arrayBufferToBase64(hashedPassword),
+          salt: arrayBufferToBase64(salt),
+          verificationCode: code, // Store the generated verification code
+          hasSignedUp: true
+        });
+    
+        modalSignup.classList.remove("is-active");
+        checkSignedUp();
       } else {
-          alert("Please fill out all fields.");
+        alert("Please fill out all fields.");
       }
     }
+
+    /*
+    async function verifyCode(inputCode) {
+      chrome.storage.sync.get(["verificationCode"], function(result) {
+        if (result.verificationCode === inputCode) {
+          alert("Email verified successfully!");
+          // Continue with the rest of your signup process or login process
+        } else {
+          alert("Incorrect verification code. Please try again.");
+        }
+      });
+    }
+
+    document.getElementById("verify-code-button").addEventListener("click", function() {
+      const inputCode = document.getElementById("verification-code").value;
+      verifyCode(inputCode);
+    });
+    
+    */
+    
 
     /*
     // Verify password
@@ -543,6 +581,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     */
 
+    function generateVerificationCode() {
+      return Math.floor(100000 + Math.random() * 900000).toString(); // 6-digit code
+    }
+  
     // Checks if the user is signed up
     function checkSignedUp() {
       let greeting = hours < 12 ? "Good Morning, " : "Good Afternoon, "; // Sets greeting depending on time
