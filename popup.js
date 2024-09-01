@@ -18,12 +18,21 @@ let hasVerified = false;
 const openLogout = document.querySelector("#openLogout");
 const modalBackgroundLogout = document.querySelector("#modal-background-logout");
 const modalLogout = document.querySelector("#modal-logout");
-const confirmLogout = document.querySelector('#confirm-logout')
+const confirmLogout = document.querySelector('#confirm-logout');
+
+// Login Modal
+const openLogin = document.querySelector("#openLogin");
+const modalBackgroundLogin = document.querySelector("#modal-background-login");
+const modalLogin = document.querySelector("#modal-login");
+const loginUsername = document.querySelector("#login-username");
+const loginPassword = document.querySelector("#login-password");
+const submitLogin = document.querySelector("#submit-login");
 
 // Signup Modal
 const openSignup = document.querySelector("#openSignup");
 const modalBackgroundSignup = document.querySelector("#modal-background-signup");
 const modalSignup = document.querySelector("#modal-signup");
+const goFromSignupToLogin = document.querySelector("#go-from-signup-to-login");
 
 // Submit Barcode
 const submitBarcode = document.getElementById("submitBarcode");
@@ -371,6 +380,20 @@ document.addEventListener("DOMContentLoaded", function () {
       modalLogout.classList.remove("is-active");
     });
 
+    // Close Login Modal
+    modalBackgroundLogin.addEventListener("click", () => {
+      modalLogin.classList.remove("is-active");
+    });
+
+    goFromSignupToLogin.addEventListener("click", () => {
+      modalSignup.classList.remove("is-active");
+      modalLogin.classList.add("is-active");
+    });
+
+    submitLogin.addEventListener("click", () => {
+      loginUser(loginUsername.value, loginPassword.value);
+    });
+
     // Gets barcode number and runs fetchData
     submitBarcode.addEventListener("click", () => {
       var barcodeEntry = document.getElementById("barcodeEntry");
@@ -378,6 +401,19 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log(barcodeNumber);
       fetchData(barcodeNumber);
       modalEntry.classList.remove("is-active");
+    });
+
+    confirmLogout.addEventListener("click", function() {
+      console.log("Logged out");
+      openSignup.innerHTML = "Signup";
+      openSignup.classList.remove("remove-navbar-item");
+      openTutorial.innerHTML = "";
+      openTutorial.classList.add("remove-navbar-item");
+      openLogout.innerHTML = "";
+      openLogout.classList.add("remove-navbar-item");
+      openPreferencesButton.classList.add("remove-navbar-item");
+      openPreferencesButton.innerHTML = "";
+      modalLogout.classList.remove("is-active");
     });
 
     async function fetchData(barcode) {
@@ -569,24 +605,28 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     
     
-
-    /*
-    // Verify password
-    async function verifyPassword(inputPassword, storedSalt, storedHash) {
-      const salt = base64ToArrayBuffer(storedSalt);
-      const inputHash = await hashPassword(inputPassword, salt);
-      const storedHashBuffer = base64ToArrayBuffer(storedHash);
-      
-      return inputHash.every((byte, i) => byte === storedHashBuffer[i]);
-    }
-
-    // Example login check
     async function loginUser(inputUsername, inputPassword) {
       chrome.storage.sync.get(["username", "password", "salt"], async (result) => {
+          // Retrieve and log stored values for debugging
+          console.log("Retrieved Username:", result.username);
+          console.log("Retrieved Salt (Base64):", result.salt);
+          console.log("Retrieved Password Hash (Base64):", result.password);
+  
+          // Check if the retrieved username matches the input username
           if (result.username === inputUsername) {
-              const isValid = await verifyPassword(inputPassword, result.salt, result.passwordHash);
+              // Verify the password
+              const isValid = await verifyPassword(inputPassword, result.salt, result.password);
               if (isValid) {
                   console.log("Login successful!");
+                  openSignup.innerHTML = "";
+                  openSignup.classList.add("remove-navbar-item");
+                  openTutorial.innerHTML = "Tutorial";
+                  openTutorial.classList.remove("remove-navbar-item");
+                  openLogout.innerHTML = "Logout";
+                  openLogout.classList.remove("remove-navbar-item");
+                  openPreferencesButton.classList.remove("remove-navbar-item");
+                  openPreferencesButton.innerHTML = "Settings";
+                  modalLogin.classList.remove("is-active");
               } else {
                   console.log("Invalid password.");
               }
@@ -595,7 +635,32 @@ document.addEventListener("DOMContentLoaded", function () {
           }
       });
     }
-    */
+    
+    async function verifyPassword(inputPassword, storedSalt, storedHash) {
+      try {
+          // Convert stored salt and hash from Base64
+          const salt = base64ToArrayBuffer(storedSalt);
+          const storedHashBuffer = base64ToArrayBuffer(storedHash);
+  
+          // Log the contents of the ArrayBuffer by converting to Uint8Array
+          console.log("Converted Salt:", new Uint8Array(salt));
+          console.log("Converted Hash Buffer:", new Uint8Array(storedHashBuffer));
+  
+          // Hash the input password with the same salt
+          const inputHash = await hashData(inputPassword, salt);
+  
+          // Log the input hash for comparison
+          console.log("Converted Input Hash:", inputHash);
+  
+          // Compare the input hash with the stored hash byte-by-byte
+          return inputHash.every((byte, i) => byte === new Uint8Array(storedHashBuffer)[i]);
+      } catch (error) {
+          console.error("Error verifying password:", error);
+          return false;
+      }
+    }
+  
+  
 
     function generateVerificationCode() {
       return Math.floor(100000 + Math.random() * 900000).toString(); // 6-digit code

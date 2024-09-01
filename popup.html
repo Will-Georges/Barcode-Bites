@@ -108,7 +108,7 @@
     </div>
   </div>
 
-  <!-- Log In Modal-->
+  <!-- Sign Up Modal-->
   <div class="modal" id="modal-signup">
     <div class="modal-background" id="modal-background-signup"></div>
     <div class="modal-content modal-width has-background-warning has-text-black px-3">
@@ -148,6 +148,8 @@
       <br>
       <button class="button is-info" id="submit-signup">Signup</button>
       <br>
+      <a id="go-from-signup-to-login">Log In</a>
+      <br>
       <br>
     </div>
   </div>
@@ -178,14 +180,40 @@
     </div>
   </div>
 
-  
-
   <!-- Modal for Log Out -->
   <div class="modal" id="modal-logout">
     <div class="modal-background" id="modal-background-logout"></div>
     <div class="modal-content modal-width has-background-warning has-text-black px-3">
       <div class="title"> Are you sure you want to log out? </div>
       <button class="button is-info" id="confirm-logout">Logout</button>
+    </div>
+  </div>
+
+  <!-- Login Modal-->
+  <div class="modal" id="modal-login">
+    <div class="modal-background" id="modal-background-login"></div>
+    <div class="modal-content modal-width has-background-warning has-text-black px-3">
+      <br>
+      <div class="title"> Login </div>
+      <div class="field">
+        <p class="control has-icons-left">
+          <input class="input" type="text" placeholder="Username" id="login-username" autocomplete="on"/>
+          <span class="icon is-small is-left">
+            <i class="fas fa-signature"></i>
+          </span>
+        </p>
+      </div>
+      <div class="field">
+        <p class="control has-icons-left">
+          <input class="input" type="password" placeholder="Password" id="login-password" autocomplete="on"/>
+          <span class="icon is-small is-left">
+            <i class="fas fa-lock"></i>
+          </span>
+        </p>
+      </div>
+      <button class="button is-info" id="submit-login">Login</button>
+      <br>
+      <br>
     </div>
   </div>
   
