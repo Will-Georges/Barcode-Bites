@@ -8,6 +8,12 @@ const modalBackgroundTutorial = document.querySelector("#modal-background-tutori
 const modalTutorial = document.querySelector("#modal-tutorial");
 const openTutorial = document.querySelector("#openTutorial");
 
+// Verification Modal
+const modalBackgroundVerification = document.querySelector("#modal-background-verification");
+const modalVerification = document.querySelector("#modal-verification");
+const openVerification = document.querySelector("#openVerification");
+let hasVerified = false;
+
 // Logout Modal
 const openLogout = document.querySelector("#openLogout");
 const modalBackgroundLogout = document.querySelector("#modal-background-logout");
@@ -330,6 +336,11 @@ document.addEventListener("DOMContentLoaded", function () {
       modalTutorial.classList.add("is-active");
     });
 
+    // Open Verification Modal
+    openVerification.addEventListener("click", () => {
+      modalVerification.classList.add("is-active");
+    });
+
     // Open Logout Modal
     openLogout.addEventListener("click", () => {
       modalLogout.classList.add("is-active");
@@ -343,6 +354,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // Close Signup Modal
     modalBackgroundSignup.addEventListener("click", () => {
       modalSignup.classList.remove("is-active");
+    });
+
+    // Close Verification Modal
+    modalBackgroundVerification.addEventListener("click", () => {
+      modalVerification.classList.remove("is-active");
     });
 
     // Close Tutorial Modal
@@ -524,7 +540,8 @@ document.addEventListener("DOMContentLoaded", function () {
           password: arrayBufferToBase64(hashedPassword),
           salt: arrayBufferToBase64(salt),
           verificationCode: code, // Store the generated verification code
-          hasSignedUp: true
+          hasSignedUp: true,
+          hasVerified: false
         });
     
         modalSignup.classList.remove("is-active");
@@ -533,13 +550,13 @@ document.addEventListener("DOMContentLoaded", function () {
         alert("Please fill out all fields.");
       }
     }
-
-    /*
     async function verifyCode(inputCode) {
       chrome.storage.sync.get(["verificationCode"], function(result) {
         if (result.verificationCode === inputCode) {
           alert("Email verified successfully!");
-          // Continue with the rest of your signup process or login process
+          modalVerification.classList.remove("is-active");
+          chrome.storage.sync.set({ hasVerified: true });
+          checkSignedUp();
         } else {
           alert("Incorrect verification code. Please try again.");
         }
@@ -551,7 +568,6 @@ document.addEventListener("DOMContentLoaded", function () {
       verifyCode(inputCode);
     });
     
-    */
     
 
     /*
@@ -598,12 +614,23 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
 
-      // If signed up, removes signup from navbar, adds setting and tutorial as navbar item.
+      // If signed up, removes signup from navbar, adds verification as navbar item.
       chrome.storage.sync.get("hasSignedUp", (result) => {
         if (result.hasSignedUp === true) {
           console.log("signed up");
           openSignup.innerHTML = "";
           openSignup.classList.add("remove-navbar-item");
+          openVerification.innerHTML = "Verify";
+          openVerification.classList.remove("remove-navbar-item");
+        }
+      });
+
+      // If verified, removes verified from navbar, adds setting and tutorial as navbar item.
+      chrome.storage.sync.get("hasVerified", (result) => {
+        if (result.hasVerified === true) {
+          console.log("verified up");
+          openVerification.innerHTML = "";
+          openVerification.classList.add("remove-navbar-item");
           openTutorial.innerHTML = "Tutorial";
           openTutorial.classList.remove("remove-navbar-item");
           openLogout.innerHTML = "Logout";

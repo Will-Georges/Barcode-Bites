@@ -574,5 +574,11 @@
     <br>
     - Renamed email file from a min.js to just a js.
     </details>
+    <details>
+    <summary>5.1.0 - (1/9/24 5:05pm)</summary>
+    - Added Verification Modal
+    <br>
+    - Implemented Verification Code after signing up.
+    </details>
     <br>
 </details>
