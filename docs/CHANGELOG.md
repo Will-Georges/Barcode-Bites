@@ -600,5 +600,9 @@
     <summary>5.2.0.1 - (2/9/24 1:35pm)</summary>
     - Verification Modal opens after signup, instead of Tutorial.
     </details>
+    <details>
+    <summary>5.2.0.2 - (2/9/24 1:50pm)</summary>
+    - Changed Signup Verification Logic
+    </details>
     <br>
 </details>

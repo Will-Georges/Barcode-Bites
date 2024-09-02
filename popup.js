@@ -322,11 +322,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Checks if the submit signup button is clicked
     submitSignup.addEventListener("click", () => {
-      if (passwordValidity() && emailValidity()) { // Checks if password and email is valid
+      if (passwordValidity() && emailValidity() && username.value.length > 0) { // Checks if password and email is valid
         handleSignup();
         modalVerification.classList.add("is-active");
       } else {
-        alert("Email or password does not meet the criteria"); // If not valid alerts the user that a criteria is not met
+        alert("Email, password or username does not meet the criteria"); // If not valid alerts the user that a criteria is not met
       }
     });
 
@@ -545,7 +545,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Handle Signup
     async function handleSignup() {
-      if (username.value.length > 0 && email.value.length > 0 && password.value.length > 0) {
         // Generate Verification Code
         const code = generateVerificationCode();
     
@@ -582,9 +581,6 @@ document.addEventListener("DOMContentLoaded", function () {
     
         modalSignup.classList.remove("is-active");
         checkSignedUp();
-      } else {
-        alert("Please fill out all fields.");
-      }
     }
     async function verifyCode(inputCode) {
       chrome.storage.sync.get(["verificationCode"], function(result) {
