@@ -687,34 +687,41 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Checks if the user is signed up
     function checkSignedUp() {
-      // If signed up, removes signup from navbar, adds verification as navbar item.
-      chrome.storage.sync.get("hasSignedUp", (result) => {
-        if (result.hasSignedUp === true) {
-          console.log("signed up");
-          openSignup.innerHTML = "";
-          openSignup.classList.add("remove-navbar-item");
-          openVerification.innerHTML = "Verify";
-          openVerification.classList.remove("remove-navbar-item");
+      chrome.storage.sync.get("activeLogin", (result) => {
+        if (result.activeLogin === true) {
+          // If signed up, removes signup from navbar, adds verification as navbar item.
+          chrome.storage.sync.get("hasSignedUp", (result) => {
+            if (result.hasSignedUp === true) {
+              console.log("signed up");
+              openSignup.innerHTML = "";
+              openSignup.classList.add("remove-navbar-item");
+              openVerification.innerHTML = "Verify";
+              openVerification.classList.remove("remove-navbar-item");
+            }
+          });
+
+          // If verified, removes verified from navbar, adds setting and tutorial as navbar item.
+          chrome.storage.sync.get("hasVerified", (result) => {
+            if (result.hasVerified === true) {
+              console.log("verified up");
+              openVerification.innerHTML = "";
+              openVerification.classList.add("remove-navbar-item");
+              openTutorial.innerHTML = "Tutorial";
+              openTutorial.classList.remove("remove-navbar-item");
+              openLogout.innerHTML = "Logout";
+              openLogout.classList.remove("remove-navbar-item");
+              openPreferencesButton.classList.remove("remove-navbar-item");
+              openPreferencesButton.innerHTML = "Settings";
+            }
+          });
         }
       });
 
-      // If verified, removes verified from navbar, adds setting and tutorial as navbar item.
-      chrome.storage.sync.get("hasVerified", (result) => {
-        if (result.hasVerified === true) {
-          console.log("verified up");
-          openVerification.innerHTML = "";
-          openVerification.classList.add("remove-navbar-item");
-          openTutorial.innerHTML = "Tutorial";
-          openTutorial.classList.remove("remove-navbar-item");
-          openLogout.innerHTML = "Logout";
-          openLogout.classList.remove("remove-navbar-item");
-          openPreferencesButton.classList.remove("remove-navbar-item");
-          openPreferencesButton.innerHTML = "Settings";
-        }
-      });
+      
     }
 
     checkSignedUp();
+    handleGreeting();
 
     // Checks if user adds image
     document.getElementById("fileInput").addEventListener("change", function (event) {

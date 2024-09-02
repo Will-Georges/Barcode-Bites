@@ -608,5 +608,9 @@
     <summary>5.2.0.3 - (2/9/24 3:25pm)</summary>
     - Fixed problem where username was still shown after sign up
     </details>
+    <details>
+    <summary>5.2.0.4 - (3/9/24 9:40pm)</summary>
+    - Fixed problem where navbar items weren't correct depending on active login.
+    </details>
     <br>
 </details>
