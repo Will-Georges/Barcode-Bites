@@ -604,5 +604,9 @@
     <summary>5.2.0.2 - (2/9/24 1:50pm)</summary>
     - Changed Signup Verification Logic
     </details>
+    <details>
+    <summary>5.2.0.3 - (2/9/24 3:25pm)</summary>
+    - Fixed problem where username was still shown after sign up
+    </details>
     <br>
 </details>

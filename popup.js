@@ -49,6 +49,7 @@ const email = document.querySelector("#email");
 const password = document.querySelector("#password");
 const submitSignup = document.querySelector("#submit-signup");
 let hasSignedUp = false;
+let activeLogin = false;
 
 // Time Control and Greeting
 const nameWelcome = document.querySelector("#name-welcome");
@@ -405,6 +406,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     confirmLogout.addEventListener("click", function() {
       console.log("Logged out");
+      chrome.storage.sync.set({ activeLogin: false });
+      handleGreeting();
       openSignup.innerHTML = "Signup";
       openSignup.classList.remove("remove-navbar-item");
       openTutorial.innerHTML = "";
@@ -576,11 +579,13 @@ document.addEventListener("DOMContentLoaded", function () {
           salt: arrayBufferToBase64(salt),
           verificationCode: code, // Store the generated verification code
           hasSignedUp: true,
-          hasVerified: false
+          hasVerified: false,
+          activeLogin: true
         });
     
         modalSignup.classList.remove("is-active");
         checkSignedUp();
+        handleGreeting();
     }
     async function verifyCode(inputCode) {
       chrome.storage.sync.get(["verificationCode"], function(result) {
@@ -589,6 +594,7 @@ document.addEventListener("DOMContentLoaded", function () {
           modalVerification.classList.remove("is-active");
           chrome.storage.sync.set({ hasVerified: true });
           checkSignedUp();
+          handleGreeting();
         } else {
           alert("Incorrect verification code. Please try again.");
         }
@@ -623,6 +629,9 @@ document.addEventListener("DOMContentLoaded", function () {
                   openPreferencesButton.classList.remove("remove-navbar-item");
                   openPreferencesButton.innerHTML = "Settings";
                   modalLogin.classList.remove("is-active");
+                  chrome.storage.sync.set({ activeLogin: true });
+                  checkSignedUp();
+                  handleGreeting();
               } else {
                   console.log("Invalid password.");
               }
@@ -662,19 +671,22 @@ document.addEventListener("DOMContentLoaded", function () {
       return Math.floor(100000 + Math.random() * 900000).toString(); // 6-digit code
     }
   
-    // Checks if the user is signed up
-    function checkSignedUp() {
+    function handleGreeting() {
       let greeting = hours < 12 ? "Good Morning, " : "Good Afternoon, "; // Sets greeting depending on time
 
       // Outputs welcome greeting with username
-      chrome.storage.sync.get("username", (result) => {
-        if (result.username) {
+      chrome.storage.sync.get(["username", "activeLogin"], (result) => {
+        console.log(result.activeLogin);
+        if (result.activeLogin === true) {
           nameWelcome.innerHTML = greeting + result.username;
         } else {
           nameWelcome.innerHTML = greeting + "Guest";
         }
       });
+    }
 
+    // Checks if the user is signed up
+    function checkSignedUp() {
       // If signed up, removes signup from navbar, adds verification as navbar item.
       chrome.storage.sync.get("hasSignedUp", (result) => {
         if (result.hasSignedUp === true) {
