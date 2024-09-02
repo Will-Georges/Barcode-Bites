@@ -596,5 +596,9 @@
     <summary>5.2.0 - (1/9/24 6:25pm)</summary>
     - Implemented Login Feature.
     </details>
+    <details>
+    <summary>5.2.0.1 - (2/9/24 1:35pm)</summary>
+    - Verification Modal opens after signup, instead of Tutorial.
+    </details>
     <br>
 </details>

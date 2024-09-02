@@ -324,7 +324,7 @@ document.addEventListener("DOMContentLoaded", function () {
     submitSignup.addEventListener("click", () => {
       if (passwordValidity() && emailValidity()) { // Checks if password and email is valid
         handleSignup();
-        modalTutorial.classList.add("is-active");
+        modalVerification.classList.add("is-active");
       } else {
         alert("Email or password does not meet the criteria"); // If not valid alerts the user that a criteria is not met
       }
