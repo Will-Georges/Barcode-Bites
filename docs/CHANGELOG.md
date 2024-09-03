@@ -640,5 +640,9 @@
     <summary>5.2.3 - (3/9/24 12:30pm)</summary>
     - Styled Logout Modal
     </details>
+    <details>
+    <summary>5.2.3.1 - (3/9/24 12:40pm)</summary>
+    - Fixed problems where capture screen would cause errors.
+    </details>
     <br>
 </details>

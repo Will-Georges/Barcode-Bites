@@ -439,9 +439,9 @@ document.addEventListener("DOMContentLoaded", function () {
           const product = data.product;
           const productName = product.product_name_en || product.product_name;
           const productBrand = product.brands || "Unknown Brand";
-          const productGrade = product.nutriscore_data.grade;
+          const productGrade = product.nutriscore_data || "No Grade";
           const productIngredients = product.ingredients_text_en || product.ingredients_text || "Ingredients not available";
-          const productImageUrl = product.image_url || "default_image_url"; // Replace with a default image URL if needed
+          const productImageUrl = product.image_url || "images/carousel-filler.png"; // Replace with a default image URL if needed
 
           // Check ingredients analysis tags
           const ingredientsAnalysisTags = product.ingredients_analysis_tags || [];
