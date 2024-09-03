@@ -662,5 +662,11 @@
     <summary>5.2.5.2 - (3/9/24 8:05pm)</summary>
     - Updated Upload Barcode Button styling
     </details>
+    <details>
+    <summary>5.2.6 - (3/9/24 8:20pm)</summary>
+    - Added icon to verification navbar item
+    <br>
+    - Added icon to barcode input buttons
+    </details>
     <br>
 </details>

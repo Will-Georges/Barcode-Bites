@@ -52,21 +52,29 @@
 
       <div class="columns no-wrap">
         <div class="column">
-          <button id="manualEntryButton" class="button is-info">Manual Entry</button>
+          <button id="manualEntryButton" class="button is-info">
+            <span class="icon is-small">
+              <i class="fa-regular fa-keyboard"></i>
+            </span>
+            <span>Manual Entry</span>
+          </button>
           <!-- Opens manual entry modal-->
         </div>
         <div class="column">
-          <button class="button is-info" id="captureScreenshotButton">Automatic Scan</button>
+          <button class="button is-info" id="captureScreenshotButton"><span class="icon is-small">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+          </span>
+          <span>Automatic Scan</span></button>
           <!-- Capture Screenshot button-->
         </div>
       </div>
 
       <!-- File Input -->
-      <div class="columns no-wrap">
+      <div class="columns has-text-centered">
         <div class="column">
           <label class="button is-info">
             <span class="icon is-small">
-              <i class="fas fa-upload"></i>
+              <i class="fa-solid fa-file-arrow-up"></i>
             </span>
             <span>Upload Barcode</span>
             <input class="file-input" type="file" id="fileInput" accept="image/*" style="display: none;" />
