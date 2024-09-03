@@ -7,7 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Barcode Bites</title>
   <link rel="stylesheet" href="node_modules/bulma/css/bulma.min.css"> <!-- Bulma -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Custom Font -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Custom Font -->
   <link rel="stylesheet" href="styles.css"> <!-- CSS File -->
   <script src="email.js"></script> <!-- Email Verification Script-->
 </head>
@@ -23,13 +24,15 @@
       <a class="navbar-item has-text-white" id="openSignup"> <!-- Opens Signup -->
         Signup
       </a>
-      <a class="navbar-item has-text-white remove-navbar-item" id="openTutorial"> <!-- Space for open tutorial button -->
+      <a class="navbar-item has-text-white remove-navbar-item" id="openTutorial">
+        <!-- Space for open tutorial button -->
         <!-- Set inner HTML for the word tutorial and remove the 'remove navbar item' class -->
       </a>
       <a class="navbar-item has-text-white remove-navbar-item" id="openLogout"> <!-- Space for open logout button -->
         <!-- Set inner HTML for the word tutorial and remove the 'remove navbar item' class -->
       </a>
-      <a class="navbar-item has-text-white remove-navbar-item" id="openVerification"> <!-- Space for open verification button -->
+      <a class="navbar-item has-text-white remove-navbar-item" id="openVerification">
+        <!-- Space for open verification button -->
         <!-- Set inner HTML for the word tutorial and remove the 'remove navbar item' class -->
       </a>
     </div>
@@ -41,17 +44,20 @@
       <!-- Main Page -->
       <div id="mainContent">
         <h1 class="title has-text-centered">Barcode Bites</h1>
-        <h2 class="subtitle has-text-centered" id="name-welcome">Welcome, Guest</h2> <!-- Dynamic Greeting depending on time -->
+        <h2 class="subtitle has-text-centered" id="name-welcome">Welcome, Guest</h2>
+        <!-- Dynamic Greeting depending on time -->
       </div>
 
       <br>
 
       <div class="columns no-wrap">
         <div class="column">
-          <button id="manualEntryButton" class="button is-primary">Manual Entry</button> <!-- Opens manual entry modal-->
+          <button id="manualEntryButton" class="button is-primary">Manual Entry</button>
+          <!-- Opens manual entry modal-->
         </div>
         <div class="column">
-          <button class="button is-primary" id="captureScreenshotButton">Capture Screenshot</button> <!-- Capture Screenshot button-->
+          <button class="button is-primary" id="captureScreenshotButton">Capture Screenshot</button>
+          <!-- Capture Screenshot button-->
         </div>
       </div>
 
@@ -78,15 +84,26 @@
       <div class="carousel-container">
         <div class="carousel">
           <div class="carousel-item" style="flex-wrap: wrap;">
-            <img id="product-image-output" src="images/carousel-filler.png" alt="Product Image" class="image max-carousel-image-height">
+            <img id="product-image-output" src="images/carousel-filler.png" alt="Product Image"
+              class="image max-carousel-image-height">
             <br>
             <p id="product-name-output"></p>
           </div>
-          <div class="carousel-item"><p id="vegetarian-vegan-output"></p></div>
-          <div class="carousel-item"><p id="brand-output"></p></div>
-          <div class="carousel-item"><p id="ingredients-output"></p></div>
-          <div class="carousel-item"><p id="note-output"></p></div>
-          <div class="carousel-item"><p id="grade-output"></p></div>
+          <div class="carousel-item">
+            <p id="vegetarian-vegan-output"></p>
+          </div>
+          <div class="carousel-item">
+            <p id="brand-output"></p>
+          </div>
+          <div class="carousel-item">
+            <p id="ingredients-output"></p>
+          </div>
+          <div class="carousel-item">
+            <p id="note-output"></p>
+          </div>
+          <div class="carousel-item">
+            <p id="grade-output"></p>
+          </div>
         </div>
       </div>
     </div>
@@ -130,7 +147,8 @@
           </span>
         </p>
       </div>
-      <div id="email-validity" class="has-text-info"><i class="fas fa-times"></i><strong> Valid email address</strong></div>
+      <div id="email-validity" class="has-text-info"><i class="fas fa-times"></i><strong> Valid email address</strong>
+      </div>
       <div class="field custom-line-break-height">
         <p class="control has-icons-left">
           <input class="input" type="password" placeholder="Password" id="password" autocomplete="on" />
@@ -141,16 +159,18 @@
       </div>
       <div id="password-criteria">
         <p id="length" class="has-text-info"><i class="fas fa-times"></i> <strong>At least 8 characters</strong></p>
-        <p id="special" class="has-text-info"><i class="fas fa-times"></i> <strong>At least 1 special character</strong></p>
-        <p id="number" class="has-text-info custom-bottom-margin"><i class="fas fa-times"></i> <strong>At least 1 number</strong></p>
+        <p id="special" class="has-text-info"><i class="fas fa-times"></i> <strong>At least 1 special character</strong>
+        </p>
+        <p id="number" class="has-text-info custom-bottom-margin"><i class="fas fa-times"></i> <strong>At least 1
+            number</strong></p>
       </div>
       <div class="field has-addons">
         <p class="control">
-        <button class="button is-info" id="submit-signup">Signup</button>
-      </p>
-      <p class="control">
-        <button class="button is-info is-inverted" id="go-from-signup-to-login">Go to Log In</button>
-      </p>
+          <button class="button is-info" id="submit-signup">Signup</button>
+        </p>
+        <p class="control">
+          <button class="button is-info is-inverted" id="go-from-signup-to-login">Go to Log In</button>
+        </p>
       </div>
     </div>
   </div>
@@ -158,13 +178,19 @@
   <!-- Modal for Tutorial -->
   <div class="modal" id="modal-tutorial">
     <div class="modal-background" id="modal-background-tutorial"></div>
-    <div class="modal-content modal-width has-background-warning has-text-black px-3">
-      <div class="title"> Tutorial </div>
-      <p class="has-text-centered"> Welcome to Barcode Bites. <br> Go to settings and add your preferences and allergies. <br>There are 3 options to test a barcode: <br>1. Enter the barcode number manually. <br>2. Upload a screenshot of barcode. <br>3. Have a barcode visible on screen and click the Automatic Scan button</p>
+    <div class="modal-content modal-width has-background-orange has-text-black px-3">
+      <br>
+      <div class="title has-text-centered"> Tutorial </div>
+      <p><strong> Go to settings and add your preferences and allergies. <br><br>There are 3 options to scan a barcode: <br>1. Enter the barcode number manually. <br>2. Upload a
+        screenshot of barcode. <br>3. Have a barcode visible on screen and click the Automatic Scan button<br><br>For a more detail tutorial, access the <a href="https://github.com/Will-Georges/Barcode-Bites" class="has-text-info" target="_blank">GitHub</a>.</p></strong>
+        
+
+      <br>
+      <br>
     </div>
   </div>
 
-  <!-- Modal for Verification Code --> 
+  <!-- Modal for Verification Code -->
   <div id="modal-verification" class="modal">
     <div class="modal-background" id="modal-background-verification"></div>
     <div class="modal-content modal-width has-background-orange px-3">
@@ -172,7 +198,7 @@
       <h1 class="title has-text-centered">Verify</h1>
       <div class="field">
         <p class="control has-icons-left">
-          <input class="input" type="number" placeholder="Enter Verification Code" id="verification-code"/>
+          <input class="input" type="number" placeholder="Enter Verification Code" id="verification-code" />
           <span class="icon is-small is-left">
             <i class="fas fa-hashtag"></i>
           </span>
@@ -189,7 +215,7 @@
     <div class="modal-background" id="modal-background-logout"></div>
     <div class="modal-content modal-width has-background-orange has-text-black px-3">
       <br>
-      <div class="title"> Confirm Logout </div>
+      <div class="title has-text-centered"> Confirm Logout </div>
       <button class="button is-info" id="confirm-logout">Logout</button>
       <br>
       <br>
@@ -204,7 +230,7 @@
       <div class="title has-text-centered"> Login </div>
       <div class="field">
         <p class="control has-icons-left">
-          <input class="input" type="text" placeholder="Username" id="login-username" autocomplete="on"/>
+          <input class="input" type="text" placeholder="Username" id="login-username" autocomplete="on" />
           <span class="icon is-small is-left">
             <i class="fas fa-signature"></i>
           </span>
@@ -212,7 +238,7 @@
       </div>
       <div class="field">
         <p class="control has-icons-left">
-          <input class="input" type="password" placeholder="Password" id="login-password" autocomplete="on"/>
+          <input class="input" type="password" placeholder="Password" id="login-password" autocomplete="on" />
           <span class="icon is-small is-left">
             <i class="fas fa-lock"></i>
           </span>
@@ -224,17 +250,19 @@
       <br>
     </div>
   </div>
-  
+
   <!-- Footer -->
   <nav class="navbar is-fixed-bottom has-text-white" id="navbar-footer">
     <div class="navbar-brand has-background-orange">
-      <a class="navbar-item has-text-white" href="https://github.com/Will-Georges/Barcode-Bites" target="_blank"><span class="icon">
-        <i class="fab fa-github"></i>
-      </span>GitHub</a> <!-- Link to Repository -->
+      <a class="navbar-item has-text-white" href="https://github.com/Will-Georges/Barcode-Bites" target="_blank"><span
+          class="icon">
+          <i class="fab fa-github"></i>
+        </span>GitHub</a> <!-- Link to Repository -->
     </div>
   </nav>
 
   <script src="popup.js"></script>
 
 </body>
+
 </html>

@@ -644,5 +644,9 @@
     <summary>5.2.3.1 - (3/9/24 12:40pm)</summary>
     - Fixed problems where capture screen would cause errors.
     </details>
+    <details>
+    <summary>5.2.4 - (3/9/24 12:50pm)</summary>
+    - Styled the Tutorial Modal
+    </details>
     <br>
 </details>
