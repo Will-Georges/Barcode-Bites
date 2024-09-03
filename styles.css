@@ -3,14 +3,19 @@ html,
 body {
   padding: 2em 0;
   margin: 0;
-  min-height: 100vh;
-  height: 800px;
+  height: 545px;
   width: 400px;
 }
 
 /* Custom Colour because Bulma doesn't have orange.*/
 .has-background-orange { 
   background-color: rgb(254, 108, 9);
+}
+
+/*Used to set custom margin and padding of main content*/
+.main-margins {
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 
 /*Used where column sizes need to be custom set*/

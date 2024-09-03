@@ -609,8 +609,14 @@
     - Fixed problem where username was still shown after sign up
     </details>
     <details>
-    <summary>5.2.0.4 - (3/9/24 9:40pm)</summary>
+    <summary>5.2.0.4 - (3/9/24 9:40am)</summary>
     - Fixed problem where navbar items weren't correct depending on active login.
+    </details>
+    <details>
+    <summary>5.2.0.5 - (3/9/24 10:25am)</summary>
+    - Fixed issue where there was scrolling to blank space
+    <br>
+    - Adjusted padding on main content so everything fits without scrolling
     </details>
     <br>
 </details>
