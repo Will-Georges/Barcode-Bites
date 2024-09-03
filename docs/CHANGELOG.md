@@ -686,5 +686,9 @@
     <summary>5.2.8.2 - (3/9/24 9:15pm)</summary>
     - Connected input and button for verification code
     </details>
+    <details>
+    <summary>5.2.9 - (3/9/24 10:00pm)</summary>
+    - Added Privacy Policy
+    </details>
     <br>
 </details>

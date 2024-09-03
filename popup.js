@@ -274,6 +274,10 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
+    document.getElementById('openPrivacyPolicy').addEventListener('click', () => {
+      chrome.tabs.create({ url: chrome.runtime.getURL('docs/PRIVACY-POLICY.md') });
+    });
+
     // Add an event listener to the capture screenshot button
     document.getElementById("captureScreenshotButton").addEventListener("click", captureScreenshot);
 
@@ -794,6 +798,10 @@ document.addEventListener("DOMContentLoaded", function () {
   if (window.location.pathname.endsWith("preferences.html")) { // If on the settings page
     document.getElementById("backToMain").addEventListener("click", function () {
         window.location.href = chrome.runtime.getURL("popup.html"); // Returns to main page if home button clicked
+    });
+
+    document.getElementById('openPrivacyPolicy').addEventListener('click', () => {
+      chrome.tabs.create({ url: chrome.runtime.getURL('docs/PRIVACY-POLICY.md') });
     });
 
     // Checkbox variables
