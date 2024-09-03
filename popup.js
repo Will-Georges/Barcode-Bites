@@ -262,13 +262,13 @@ document.addEventListener("DOMContentLoaded", function () {
     // Changes colour and icon if test is valid
     function updateCriteria(element, isValid) {
       if (isValid) {
-        element.classList.remove("has-text-danger");
+        element.classList.remove("has-text-white");
         element.classList.add("has-text-success");
         element.querySelector("i").classList.remove("fa-times");
         element.querySelector("i").classList.add("fa-check");
       } else {
         element.classList.remove("has-text-success");
-        element.classList.add("has-text-danger");
+        element.classList.add("has-text-white");
         element.querySelector("i").classList.remove("fa-check");
         element.querySelector("i").classList.add("fa-times");
       }

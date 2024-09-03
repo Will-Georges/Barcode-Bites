@@ -618,5 +618,9 @@
     <br>
     - Adjusted padding on main content so everything fits without scrolling
     </details>
+    <details>
+    <summary>5.2.0.6 - (3/9/24 10:45am)</summary>
+    - Styled Signup Modal
+    </details>
     <br>
 </details>

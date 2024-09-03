@@ -111,7 +111,7 @@
   <!-- Sign Up Modal-->
   <div class="modal" id="modal-signup">
     <div class="modal-background" id="modal-background-signup"></div>
-    <div class="modal-content modal-width has-background-warning has-text-black px-3">
+    <div class="modal-content modal-width has-background-orange has-text-black px-3">
       <br>
       <div class="title"> Signup </div>
       <div class="field">
@@ -129,10 +129,9 @@
             <i class="fas fa-envelope"></i>
           </span>
         </p>
-        <br>
-        <div id="email-validity" class="has-text-danger"><i class="fas fa-times"></i> Invalid email address</div>
       </div>
-      <div class="field">
+      <div id="email-validity" class="has-text-info"><i class="fas fa-times"></i><strong> Valid email address</strong></div>
+      <div class="field custom-line-break-height">
         <p class="control has-icons-left">
           <input class="input" type="password" placeholder="Password" id="password" autocomplete="on" />
           <span class="icon is-small is-left">
@@ -141,11 +140,10 @@
         </p>
       </div>
       <div id="password-criteria">
-        <p id="length" class="has-text-danger"><i class="fas fa-times"></i> At least 8 characters</p>
-        <p id="special" class="has-text-danger"><i class="fas fa-times"></i> At least 1 special character</p>
-        <p id="number" class="has-text-danger"><i class="fas fa-times"></i> At least 1 number</p>
+        <p id="length" class="has-text-info"><i class="fas fa-times"></i> <strong>At least 8 characters</strong></p>
+        <p id="special" class="has-text-info"><i class="fas fa-times"></i> <strong>At least 1 special character</strong></p>
+        <p id="number" class="has-text-info custom-bottom-margin"><i class="fas fa-times"></i> <strong>At least 1 number</strong></p>
       </div>
-      <br>
       <button class="button is-info" id="submit-signup">Signup</button>
       <br>
       <a id="go-from-signup-to-login">Log In</a>

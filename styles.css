@@ -32,7 +32,18 @@ body {
 /*Sets custom width of modal*/
 .modal-width {
   width: 375px;
+  height: 100%;
   border-radius: 5px;
+}
+
+/*Used for spacing between inputs*/
+.custom-line-break-height {
+  margin-top: 12px;
+}
+
+/*Used for spacing between inputs*/
+.custom-bottom-margin {
+  margin-bottom: 12px;
 }
 
 /* Hides navbar item when it shouldn't be displayed.*/
