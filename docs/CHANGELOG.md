@@ -648,5 +648,9 @@
     <summary>5.2.4 - (3/9/24 12:50pm)</summary>
     - Styled the Tutorial Modal
     </details>
+    <details>
+    <summary>5.2.5 - (3/9/24 1:05pm)</summary>
+    - Styled the Manual Entry Modal
+    </details>
     <br>
 </details>
