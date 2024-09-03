@@ -632,5 +632,9 @@
     <br>
     - Styled Login Modal
     </details>
+    <details>
+    <summary>5.2.2 - (3/9/24 12:05pm)</summary>
+    - Styled Verification Modal
+    </details>
     <br>
 </details>
