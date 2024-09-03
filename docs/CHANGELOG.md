@@ -682,5 +682,9 @@
     <br>
     - Connected input and button for allergies
     </details>
+    <details>
+    <summary>5.2.8.2 - (3/9/24 9:15pm)</summary>
+    - Connected input and button for verification code
+    </details>
     <br>
 </details>

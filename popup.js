@@ -695,7 +695,7 @@ document.addEventListener("DOMContentLoaded", function () {
               console.log("signed up");
               openSignup.innerHTML = "";
               openSignup.classList.add("remove-navbar-item");
-              openVerification.innerHTML = '<i class="fa-regular fa-circle-check"></i> Verify';
+              openVerification.innerHTML = 'Verify';
               openVerification.classList.remove("remove-navbar-item");
             }
           });
