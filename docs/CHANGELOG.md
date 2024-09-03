@@ -636,5 +636,9 @@
     <summary>5.2.2 - (3/9/24 12:05pm)</summary>
     - Styled Verification Modal
     </details>
+    <details>
+    <summary>5.2.3 - (3/9/24 12:30pm)</summary>
+    - Styled Logout Modal
+    </details>
     <br>
 </details>
