@@ -32,8 +32,12 @@ body {
 /*Sets custom width of modal*/
 .modal-width {
   width: 375px;
-  height: 100%;
   border-radius: 5px;
+}
+
+/*Custom height for signup modal*/
+.signup-height {
+  height: 100%;
 }
 
 /*Used for spacing between inputs*/

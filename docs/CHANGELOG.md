@@ -626,5 +626,11 @@
     <summary>5.2.0.7 - (3/9/24 12:00pm)</summary>
     - Fixed styling problems on signup modal
     </details>
+    <details>
+    <summary>5.2.1 - (3/9/24 12:05pm)</summary>
+    - Centered Title on Signup Modal
+    <br>
+    - Styled Login Modal
+    </details>
     <br>
 </details>
