@@ -672,5 +672,9 @@
     <summary>5.2.7 - (3/9/24 8:40pm)</summary>
     - Changed Checkboxes into toggles in settings
     </details>
+    <details>
+    <summary>5.2.8 - (3/9/24 9:00pm)</summary>
+    - Put custom scrollbar for allergy list
+    </details>
     <br>
 </details>

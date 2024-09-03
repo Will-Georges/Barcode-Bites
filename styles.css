@@ -231,3 +231,32 @@ input:checked + .slider {
 input:checked + .slider:before {
   transform: translateX(25px);
 }
+
+/*Allows allergy list to be scrolled*/
+.scrolling-allergies {
+  max-height: 120px; 
+  overflow-y: auto;
+}
+
+/* Custom Scrollbar Styles */
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 15px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(102, 209, 255);
+  border-radius: 15px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(73, 173, 216);
+}
