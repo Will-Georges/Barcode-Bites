@@ -652,5 +652,11 @@
     <summary>5.2.5 - (3/9/24 1:05pm)</summary>
     - Styled the Manual Entry Modal
     </details>
+    <details>
+    <summary>5.2.5.1 - (3/9/24 6:15pm)</summary>
+    - Changed Colour of main buttons
+    <br>
+    - Added GitHub icon for preferences page.
+    </details>
     <br>
 </details>

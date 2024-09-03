@@ -8,7 +8,7 @@
   <title>Barcode Bites</title>
   <link rel="stylesheet" href="node_modules/bulma/css/bulma.min.css"> <!-- Bulma -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- Custom Font -->
+  <!-- Custom Icons -->
   <link rel="stylesheet" href="styles.css"> <!-- CSS File -->
   <script src="email.js"></script> <!-- Email Verification Script-->
 </head>
@@ -56,13 +56,13 @@
           <!-- Opens manual entry modal-->
         </div>
         <div class="column">
-          <button class="button is-primary" id="captureScreenshotButton">Capture Screenshot</button>
+          <button class="button is-info" id="captureScreenshotButton">Automatic Scan</button>
           <!-- Capture Screenshot button-->
         </div>
       </div>
 
       <!-- File Input -->
-      <div class="file is-primary">
+      <div class="file is-info">
         <label class="file-label">
           <input class="file-input" type="file" id="fileInput" accept="image/*" /> <!-- Input -->
           <span class="file-cta">
@@ -117,7 +117,7 @@
       <div class="title has-text-centered"> Manual Entry </div>
       <div class="field">
         <p class="control has-icons-left">
-          <input class="input" type="text" placeholder="Barcode Number" id="barcodeEntry"/>
+          <input class="input" type="text" placeholder="Barcode Number" id="barcodeEntry" />
           <span class="icon is-small is-left">
             <i class="fa-solid fa-barcode"></i>
           </span>
