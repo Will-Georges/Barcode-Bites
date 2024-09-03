@@ -234,7 +234,7 @@ input:checked + .slider:before {
 
 /*Allows allergy list to be scrolled*/
 .scrolling-allergies {
-  max-height: 120px; 
+  max-height: 168px; 
   overflow-y: auto;
 }
 

@@ -55,15 +55,18 @@
                 <br>
 
                 <h1 class="title">Allergies</h1>
-                <div class="field">
+                <div class="field has-addons">
+                    <p class="control has-icons-left is-expanded">
+                      <input class="input" type="text" placeholder="Enter Allergy" id="allergy-input" />
+                      <span class="icon is-small is-left">
+                        <i class="fa-solid fa-apple-whole"></i>
+                      </span>
+                    </p>
                     <div class="control">
-                        <input class="input" type="text" id="allergy-input" placeholder="Enter Allergy">
+                        <button class="button is-info" id="add-allergy">Add</button>
                     </div>
                 </div>
-                <div class="control">
-                    <button class="button is-info" id="add-allergy">Add Allergy</button>
-                </div>
-                <br>
+                
                 <!-- Scrollable Allergy List Container -->
                 <div class="scrolling-allergies">
                     <ul id="allergy-list"></ul>

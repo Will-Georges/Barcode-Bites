@@ -676,5 +676,11 @@
     <summary>5.2.8 - (3/9/24 9:00pm)</summary>
     - Put custom scrollbar for allergy list
     </details>
+    <details>
+    <summary>5.2.8.1 - (3/9/24 9:10pm)</summary>
+    - Added icon to allergy input
+    <br>
+    - Connected input and button for allergies
+    </details>
     <br>
 </details>
