@@ -62,17 +62,18 @@
       </div>
 
       <!-- File Input -->
-      <div class="file is-info">
-        <label class="file-label">
-          <input class="file-input" type="file" id="fileInput" accept="image/*" /> <!-- Input -->
-          <span class="file-cta">
-            <span class="file-icon"> <!-- Icon -->
+      <div class="columns no-wrap">
+        <div class="column">
+          <label class="button is-info">
+            <span class="icon is-small">
               <i class="fas fa-upload"></i>
             </span>
-            <span class="file-label">Upload Barcode</span>
-          </span>
-        </label>
+            <span>Upload Barcode</span>
+            <input class="file-input" type="file" id="fileInput" accept="image/*" style="display: none;" />
+          </label>
+        </div>
       </div>
+
       <img id="uploadedImage" style="display: none;" />
       <p id="barcodeResult"></p>
     </div>

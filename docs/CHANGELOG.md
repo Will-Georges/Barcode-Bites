@@ -658,5 +658,9 @@
     <br>
     - Added GitHub icon for preferences page.
     </details>
+    <details>
+    <summary>5.2.5.2 - (3/9/24 8:05pm)</summary>
+    - Updated Upload Barcode Button styling
+    </details>
     <br>
 </details>
