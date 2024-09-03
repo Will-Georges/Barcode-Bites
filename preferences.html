@@ -28,34 +28,41 @@
         <div class="container">
             <h1 class="title">Preferences</h1>
             <div class="field">
-                <!-- Checkbox to set icon to light or dark mode -->
-                <input id="darkModeCheckbox" type="checkbox" class="switch is-rounded is-info">
-                <label for="darkModeCheckbox">Dark Mode</label>
-                <br>
-                <!-- Checkbox for vegetarian -->
-                <input id="vegetarianCheckbox" type="checkbox" class="switch is-rounded is-info">
-                <label for="vegetarianCheckbox">Vegetarian</label>
-                <br>
-                <!-- Checkbox for vegan -->
-                <input id="veganCheckbox" type="checkbox" class="switch is-rounded is-info">
-                <label for="veganCheckbox">Vegan</label>
-
-                <br>
+                <!-- Toggle for Dark Mode -->
+                <label class="toggle-switch">
+                    <input id="darkModeCheckbox" type="checkbox">
+                    <span class="slider"></span>
+                </label>
+                <label for="darkModeCheckbox" class="has-text-white"><strong>Dark Mode</strong></label>
                 <br>
 
-                <!-- Allergy Input Section -->
+                <!-- Toggle for Vegetarian -->
+                <label class="toggle-switch">
+                    <input id="vegetarianCheckbox" type="checkbox">
+                    <span class="slider"></span>
+                </label>
+                <label for="vegetarianCheckbox" class="has-text-white"><strong>Vegetarian</strong></label>
+                <br>
+
+                <!-- Toggle for Vegan -->
+                <label class="toggle-switch">
+                    <input id="veganCheckbox" type="checkbox">
+                    <span class="slider"></span>
+                </label>
+                <label for="veganCheckbox" class="has-text-white"><strong>Vegan</strong></label>
+                <br>
+                <br>
+
                 <h1 class="title">Allergy Preferences</h1>
                 <div class="field">
                     <div class="control">
                         <input class="input" type="text" id="allergy-input" placeholder="Enter allergy">
-                        <!-- Add Allergy Input -->
                     </div>
                 </div>
                 <div class="control">
                     <button class="button is-primary" id="add-allergy">Add Allergy</button>
                 </div>
                 <br>
-                <!-- Lists all allergies -->
                 <h2 class="subtitle">Your Allergies:</h2>
                 <ul id="allergy-list"></ul>
             </div>

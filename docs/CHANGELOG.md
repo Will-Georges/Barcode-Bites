@@ -668,5 +668,9 @@
     <br>
     - Added icon to barcode input buttons
     </details>
+    <details>
+    <summary>5.2.7 - (3/9/24 8:40pm)</summary>
+    - Changed Checkboxes into toggles in settings
+    </details>
     <br>
 </details>
