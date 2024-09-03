@@ -622,5 +622,9 @@
     <summary>5.2.0.6 - (3/9/24 10:45am)</summary>
     - Styled Signup Modal
     </details>
+    <details>
+    <summary>5.2.0.7 - (3/9/24 12:00pm)</summary>
+    - Fixed styling problems on signup modal
+    </details>
     <br>
 </details>

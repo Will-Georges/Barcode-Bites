@@ -144,11 +144,14 @@
         <p id="special" class="has-text-info"><i class="fas fa-times"></i> <strong>At least 1 special character</strong></p>
         <p id="number" class="has-text-info custom-bottom-margin"><i class="fas fa-times"></i> <strong>At least 1 number</strong></p>
       </div>
-      <button class="button is-info" id="submit-signup">Signup</button>
-      <br>
-      <a id="go-from-signup-to-login">Log In</a>
-      <br>
-      <br>
+      <div class="field has-addons">
+        <p class="control">
+        <button class="button is-info" id="submit-signup">Signup</button>
+      </p>
+      <p class="control">
+        <button class="button is-info is-inverted" id="go-from-signup-to-login">Go to Log In</button>
+      </p>
+      </div>
     </div>
   </div>
 
@@ -218,7 +221,9 @@
   <!-- Footer -->
   <nav class="navbar is-fixed-bottom has-text-white" id="navbar-footer">
     <div class="navbar-brand has-background-orange">
-      <a class="navbar-item has-text-white" href="https://github.com/Will-Georges/Barcode-Bites" target="_blank">GitHub</a> <!-- Link to Repository -->
+      <a class="navbar-item has-text-white" href="https://github.com/Will-Georges/Barcode-Bites" target="_blank"><span class="icon">
+        <i class="fab fa-github"></i>
+      </span>GitHub</a> <!-- Link to Repository -->
     </div>
   </nav>
 
