@@ -53,7 +53,7 @@ This work is licensed under a
 ## Credit
 
 - This project utilises the OpenFoodFacts API.
-- This project uses an adapted version of a Carousel by @programmer.cs
+- This project uses an adapted version of a Carousel by [@programmer.cs](https://www.instagram.com/programador.cs/)
 
 ## Contact
 

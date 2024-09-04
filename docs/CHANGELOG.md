@@ -718,5 +718,9 @@
     <summary>5.2.11 - (4/9/24 10:15pm)</summary>
     - Updated README and and added features section
     </details>
+    <details>
+    <summary>5.2.11.1 - (4/9/24 10:20pm)</summary>
+    - README change
+    </details>
     <br>
 </details>
