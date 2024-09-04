@@ -690,5 +690,9 @@
     <summary>5.2.9 - (3/9/24 10:00pm)</summary>
     - Added Privacy Policy
     </details>
+    <details>
+    <summary>5.2.9.1 - (4/9/24 1:30pm)</summary>
+    - Minor adjustment to allergy list styling
+    </details>
     <br>
 </details>

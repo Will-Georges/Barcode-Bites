@@ -840,7 +840,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Display allergy in the list with a remove button
     function displayAllergy(allergy) {
       const li = document.createElement("li"); // Creates list element
-      li.classList.add("is-flex", "is-align-items-center"); // Adds styling to list item
+      li.classList.add("is-flex", "is-align-items-center", "has-text-weight-bold", "has-text-white"); // Adds styling to list item
 
       // Creates remove Button
       const removeButton = document.createElement("button");
