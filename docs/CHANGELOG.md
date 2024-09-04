@@ -702,5 +702,11 @@
     <summary>5.2.10.1 - (4/9/24 2:05pm)</summary>
     - Combined Manual Entry input and submit button
     </details>
+    <details>
+    <summary>5.2.10.2 - (4/9/24 9:35pm)</summary>
+    - Automatic scan captures windows instead of screens
+    <br>
+    - Alerts user if no barcode is detected
+    </details>
     <br>
 </details>

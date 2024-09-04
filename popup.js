@@ -284,7 +284,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Function to capture the screenshot
     async function captureScreenshot() {
       // Request desktop capture permission
-      chrome.desktopCapture.chooseDesktopMedia(["screen"], (streamId) => {
+      chrome.desktopCapture.chooseDesktopMedia(["window"], (streamId) => {
         // Create a new MediaStream object
         navigator.mediaDevices.getUserMedia({
           video: {
@@ -778,6 +778,7 @@ document.addEventListener("DOMContentLoaded", function () {
               fetchData(barcodes[0].rawValue); // Calls fetchData function
             } else {
               console.log("No barcode detected");
+              alert("No barcode was detected! Try entering the code manually, or take a screenshot and upload it.")
             }
           }).catch((error) => {
               console.error("Error detecting barcode:", error);
