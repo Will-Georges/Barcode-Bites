@@ -698,5 +698,9 @@
     <summary>5.2.10 - (4/9/24 2:00pm)</summary>
     - Updated food preference logic
     </details>
+    <details>
+    <summary>5.2.10.1 - (4/9/24 2:05pm)</summary>
+    - Combined Manual Entry input and submit button
+    </details>
     <br>
 </details>
