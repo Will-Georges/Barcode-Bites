@@ -714,5 +714,9 @@
     <br>
     - Added that the user agrees to privacy policy when signing up
     </details>
+    <details>
+    <summary>5.2.11 - (4/9/24 10:15pm)</summary>
+    - Updated README and and added features section
+    </details>
     <br>
 </details>
