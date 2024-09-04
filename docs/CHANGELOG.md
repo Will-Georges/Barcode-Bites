@@ -724,3 +724,15 @@
     </details>
     <br>
 </details>
+
+<details>
+<summary>5.3</summary>
+    <br>
+    <details>
+    <summary>5.3.0 - (5/9/24 10:00am)</summary>
+    - Added Gluten Free check in preferences
+    <br>
+    - Added Organic check in preferences
+    </details>
+    <br>
+</details>

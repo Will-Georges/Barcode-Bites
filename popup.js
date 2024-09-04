@@ -449,8 +449,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
           // Checks ingredients analysis tags
           const ingredientsAnalysisTags = product.ingredients_analysis_tags || [];
+          const labelsHierachy = product.labels_hierachy || [];
           let isProductVegetarian = false;
           let isProductVegan = false;
+          let isProductGlutenFree = false;
+          let isProductOrganic = false;
 
           // Determine vegetarian and vegan status based on tags
           if (ingredientsAnalysisTags.includes("en:non-vegetarian")) {
@@ -469,10 +472,28 @@ document.addEventListener("DOMContentLoaded", function () {
               isProductVegan = false;
           }
 
+          if (labelsHierachy.includes("en:no-gluten")) {
+            isGlutenFree = true;
+          } else if (labelsHierachy.includes("en:gluten-status-unkown")) {
+            isGlutenFree = false;
+          } else {
+            isGlutenFree = false;
+          }
+
+          if (labelsHierachy.includes("en:organic")) {
+            isOrganic = true;
+          } else if (labelsHierachy.includes("en:organic-status-unkown")) {
+            isOrganic = false;
+          } else {
+            isOrganic = false;
+          }
+
           // Retrieve vegetarian and vegan preference from storage and compare
-          chrome.storage.sync.get(["vegetarian", "vegan"], (data) => {
+          chrome.storage.sync.get(["vegetarian", "vegan", "glutenFree", "organic"], (data) => {
               const userPrefersVegetarian = data.vegetarian || false;
               const userPrefersVegan = data.vegan || false;
+              const userPrefersGlutenFree = data.glutenFree || false;
+              const userPrefersOrganic = data.organic || false;
 
               if (userPrefersVegetarian && !isProductVegetarian) {
                   alert("This is not vegetarian safe for you. You might want to avoid it."); // Alerts user if it is not vegetarian
@@ -480,6 +501,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
               if (userPrefersVegan && !isProductVegan) {
                   alert("This is not vegan safe for you. You might want to avoid it."); // Alerts the user if it is not vegan
+              }
+
+              if (userPrefersGlutenFree && !isProductGlutenFree) {
+                alert("This is not gluten free safe for you. You might want to avoid it."); // Alerts the user if it is not gluten free
+              }
+
+              if (userPrefersOrganic && !isProductOrganic) {
+                alert("This is not organic safe for you. You might want to avoid it."); // Alerts the user if it is not gluten free
               }
           });
 
@@ -824,6 +853,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Checkbox variables
     const darkModeCheckbox = document.getElementById("darkModeCheckbox");
+    const glutenFreeCheckbox = document.getElementById("glutenFreeCheckbox");
+    const organicCheckbox = document.getElementById("organicCheckbox");
     const vegetarianCheckbox = document.getElementById("vegetarianCheckbox");
     const veganCheckbox = document.getElementById("veganCheckbox");
 
@@ -896,6 +927,16 @@ document.addEventListener("DOMContentLoaded", function () {
       updateIcon(darkModeCheckbox.checked); // Updates icon
     });
 
+    // Load the saved state of Gluten Free
+    chrome.storage.sync.get("glutenFree", (data) => {
+      glutenFreeCheckbox.checked = data.glutenFree || false; // Checks if it already exists in chrome storage.
+    });
+
+    // Load the saved state of Organic
+    chrome.storage.sync.get("organic", (data) => {
+      organicCheckbox.checked = data.organic || false; // Checks if it already exists in chrome storage.
+    });
+
     // Load the saved state of Vegetarian
     chrome.storage.sync.get("vegetarian", (data) => {
       vegetarianCheckbox.checked = data.vegetarian || false; // Checks if it already exists in chrome storage.
@@ -911,6 +952,18 @@ document.addEventListener("DOMContentLoaded", function () {
       const isDarkMode = darkModeCheckbox.checked; // Sets variable depending on if checkbox is ticked.
       chrome.storage.sync.set({ darkMode: isDarkMode }); // Stores this setting in chrome storage.
       updateIcon(darkModeCheckbox.checked); // Calls the update Icon function
+    });
+
+    // Handle gluten free checkbox change
+    glutenFreeCheckbox.addEventListener("change", () => {
+      const isGlutenFree = glutenFreeCheckbox.checked; // Sets variable depending on if checkbox is ticked.
+      chrome.storage.sync.set({ glutenFree: isGlutenFree }); // stores this setting in chrome storage.
+    });
+
+    // Handle organic checkbox change
+    organicCheckbox.addEventListener("change", () => {
+      const isOrganic = organicCheckbox.checked; // Sets variable depending on if checkbox is ticked.
+      chrome.storage.sync.set({ organic: isOrganic }); // stores this setting in chrome storage.
     });
 
     // Handle vegetarian checkbox change
