@@ -447,27 +447,44 @@ document.addEventListener("DOMContentLoaded", function () {
           const productIngredients = product.ingredients_text_en || product.ingredients_text || "Ingredients not available";
           const productImageUrl = product.image_url || "images/carousel-filler.png"; // Replace with a default image URL if needed
 
-          // Check ingredients analysis tags
+          // Checks ingredients analysis tags
           const ingredientsAnalysisTags = product.ingredients_analysis_tags || [];
-          const isProductVegetarian = ingredientsAnalysisTags.includes("vegetarian");
-          const isProductVegan = ingredientsAnalysisTags.includes("vegan");
+          let isProductVegetarian = false;
+          let isProductVegan = false;
+
+          // Determine vegetarian and vegan status based on tags
+          if (ingredientsAnalysisTags.includes("en:non-vegetarian")) {
+              isProductVegetarian = false;
+          } else if (ingredientsAnalysisTags.includes("en:vegetarian")) {
+              isProductVegetarian = true;
+          } else if (ingredientsAnalysisTags.includes("en:vegetarian-status-unknown")) {
+              isProductVegetarian = false;
+          }
+
+          if (ingredientsAnalysisTags.includes("en:non-vegan")) {
+              isProductVegan = false;
+          } else if (ingredientsAnalysisTags.includes("en:vegan")) {
+              isProductVegan = true;
+          } else if (ingredientsAnalysisTags.includes("en:vegan-status-unknown")) {
+              isProductVegan = false;
+          }
 
           // Retrieve vegetarian and vegan preference from storage and compare
           chrome.storage.sync.get(["vegetarian", "vegan"], (data) => {
-            const userPrefersVegetarian = data.vegetarian || false;
-            const userPrefersVegan = data.vegan || false;
+              const userPrefersVegetarian = data.vegetarian || false;
+              const userPrefersVegan = data.vegan || false;
 
-            if (userPrefersVegetarian && !isProductVegetarian) {
-              alert("This is not vegetarian safe for you. You might want to avoid it."); // Alerts user if it is not vegetarian
-            }
+              if (userPrefersVegetarian && !isProductVegetarian) {
+                  alert("This is not vegetarian safe for you. You might want to avoid it."); // Alerts user if it is not vegetarian
+              }
 
-            if (userPrefersVegan && !isProductVegan) {
-              alert("This is not vegan safe for you. You might want to avoid it."); // Alerts the user if it is not vegan
-            }
+              if (userPrefersVegan && !isProductVegan) {
+                  alert("This is not vegan safe for you. You might want to avoid it."); // Alerts the user if it is not vegan
+              }
           });
 
           const allergens = product.allergens || []; // Create list of allergens from data
-          var allergySafe = false;
+          var allergySafe = true;
 
           // Retrieve the user's allergy list from Chrome Sync
           chrome.storage.sync.get(["allergies"], function (result) {
