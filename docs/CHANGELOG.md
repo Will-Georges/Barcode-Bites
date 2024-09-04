@@ -708,5 +708,11 @@
     <br>
     - Alerts user if no barcode is detected
     </details>
+    <details>
+    <summary>5.2.10.3 - (4/9/24 9:35pm)</summary>
+    - Updated `PRIVACY-POLICY.MD`
+    <br>
+    - Added that the user agrees to privacy policy when signing up
+    </details>
     <br>
 </details>
