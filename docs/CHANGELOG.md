@@ -764,5 +764,9 @@
     <br>
     - Added health rating and nova-group images/icons.
     </details>
+    <details>
+    <summary>5.5.1 - (5/9/24 5:45pm)</summary>
+    - Vegetarian/vegan/etc output now uses colour and a tick/cross rather than a yes/no
+    </details>
     <br>
 </details>

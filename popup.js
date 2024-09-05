@@ -535,9 +535,32 @@ document.addEventListener("DOMContentLoaded", function () {
           });
 
           // Print data in carousel
-          document.getElementById("vegetarian-vegan-output").innerHTML = `<strong>Vegetarian: ${isProductVegetarian ? "Yes" : "No"} <br>Vegan: ${isProductVegan ? "Yes" : "No"} <br>Allergy Safe: ${allergySafe ? "Yes" : "No"} <br>Gluten Free: ${isProductGlutenFree ? "Yes" : "No"} <br>Organic: ${isOrganic ? "Yes" : "No"}</strong>`;
+          document.getElementById("vegetarian-vegan-output").innerHTML = `
+          <strong>
+            <span class="${isProductVegetarian ? 'has-text-success' : 'has-text-danger'}">
+              <i class="fas ${isProductVegetarian ? 'fa-check' : 'fa-times'}"></i> 
+              Vegetarian
+            </span> <br>
+            <span class="${isProductVegan ? 'has-text-success' : 'has-text-danger'}">
+              <i class="fas ${isProductVegan ? 'fa-check' : 'fa-times'}"></i> 
+              Vegan
+            </span> <br>
+            <span class="${allergySafe ? 'has-text-success' : 'has-text-danger'}">
+              <i class="fas ${allergySafe ? 'fa-check' : 'fa-times'}"></i> 
+              Allergy Safe
+            </span> <br>
+            <span class="${isProductGlutenFree ? 'has-text-success' : 'has-text-danger'}">
+              <i class="fas ${isProductGlutenFree ? 'fa-check' : 'fa-times'}"></i> 
+              Gluten Free
+            </span> <br>
+            <span class="${isOrganic ? 'has-text-success' : 'has-text-danger'}">
+              <i class="fas ${isOrganic ? 'fa-check' : 'fa-times'}"></i> 
+              Organic
+            </span>
+          </strong>
+          `;
+
           document.getElementById("product-image-output").src = productImageUrl;
-          
           document.getElementById("product-name-output").innerHTML = "<strong>" + productName + "</strong>";
           
           document.getElementById("brand-text-heading").innerHTML = "<strong class='has-text-black'>Brand</strong>";
