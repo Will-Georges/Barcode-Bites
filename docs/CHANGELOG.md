@@ -776,5 +776,9 @@
     <summary>5.5.1.2 - (5/9/24 6:05pm)</summary>
     - Commenting and formatting styles.css
     </details>
+    <details>
+    <summary>5.5.1.3 - (5/9/24 6:10pm)</summary>
+    - Commenting and formatting preferences.html
+    </details>
     <br>
 </details>

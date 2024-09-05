@@ -6,11 +6,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Preferences</title>
-
-    <link rel="stylesheet" href="node_modules/bulma/css/bulma.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Custom Icons -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="node_modules/bulma/css/bulma.min.css"> <!-- Bulma -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome for custom icons -->
+    <link rel="stylesheet" href="styles.css"> <!-- Main Styling -->
 </head>
 
 <body>
@@ -27,6 +25,7 @@
     <!-- Main Section -->
     <section class="section main-margins">
         <div class="container">
+            <!-- Preferences Settings -->
             <h1 class="title">Preferences</h1>
             <div class="field">
                 <!-- Toggle for Dark Mode -->
@@ -70,19 +69,20 @@
                 <br>
                 <br>
 
+                <!-- Allergies Settings -->
                 <h1 class="title">Allergies</h1>
                 <div class="field has-addons">
                     <p class="control has-icons-left is-expanded">
-                      <input class="input" type="text" placeholder="Enter Allergy" id="allergy-input" />
-                      <span class="icon is-small is-left">
-                        <i class="fa-solid fa-apple-whole"></i>
-                      </span>
+                        <input class="input" type="text" placeholder="Enter Allergy" id="allergy-input" />
+                        <span class="icon is-small is-left">
+                            <i class="fa-solid fa-apple-whole"></i>
+                        </span>
                     </p>
                     <div class="control">
                         <button class="button is-info" id="add-allergy">Add</button>
                     </div>
                 </div>
-                
+
                 <!-- Scrollable Allergy List Container -->
                 <div class="scrolling-allergies">
                     <ul id="allergy-list"></ul>
@@ -98,7 +98,7 @@
                 target="_blank"><span class="icon">
                     <i class="fab fa-github"></i>
                 </span>GitHub</a> <!-- Link to Repository -->
-                <a class="navbar-item has-text-white" id="openPrivacyPolicy">Privacy Policy</a>
+            <a class="navbar-item has-text-white" id="openPrivacyPolicy">Privacy Policy</a> <!-- Link to Privacy Policy -->
         </div>
     </nav>
 
