@@ -1,3 +1,7 @@
+// Barcode Bites
+
+// Code provided by EmailJS to make email verification work
+
 var emailjs = (function (e) {
   "use strict";
   class t {

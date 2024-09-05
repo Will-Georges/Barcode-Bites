@@ -784,5 +784,11 @@
     <summary>5.5.1.4 - (5/9/24 6:15pm)</summary>
     - Commenting and formatting popup.html
     </details>
+    <details>
+    <summary>5.5.1.5 - (5/9/24 6:20pm)</summary>
+    - Commenting email.js
+    <br>
+    - Minor change to LICENSE
+    </details>
     <br>
 </details>
