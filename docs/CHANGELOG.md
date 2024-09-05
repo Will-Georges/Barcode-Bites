@@ -790,5 +790,13 @@
     <br>
     - Minor change to LICENSE
     </details>
+    <details>
+    <summary>5.5.1.6 - (5/9/24 6:40pm)</summary>
+    - Made Manual Entry input numbers only
+    <br>
+    - Formatted and Commented popup.js
+    <br>
+    - Reorganised carousel ordering
+    </details>
     <br>
 </details>

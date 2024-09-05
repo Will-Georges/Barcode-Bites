@@ -115,13 +115,6 @@
               class="image is-inline-block max-carousel-image-height">
             <p id="brand-output"></p>
           </div>
-          <!-- Product ingredients output -->
-          <div class="carousel-item has-text-centered" style="flex-wrap: wrap; display: block;">
-            <br>
-            <p id="ingredients-text-heading"></p>
-            <br>
-            <p id="ingredients-output" class="has-text-black"></p>
-          </div>
           <!-- Product nutritional grade output -->
           <div class="carousel-item has-text-centered" style="flex-wrap: wrap; display: block;">
             <br>
@@ -138,6 +131,13 @@
             <br>
             <p id="nova-output"></p>
           </div>
+          <!-- Product ingredients output -->
+          <div class="carousel-item has-text-centered" style="flex-wrap: wrap; display: block;">
+            <br>
+            <p id="ingredients-text-heading"></p>
+            <br>
+            <p id="ingredients-output" class="has-text-black"></p>
+          </div>
         </div>
       </div>
     </div>
@@ -151,7 +151,7 @@
       <div class="title has-text-centered"> Manual Entry </div>
       <div class="field has-addons">
         <p class="control has-icons-left is-expanded">
-          <input class="input" type="text" placeholder="Barcode Number" id="barcodeEntry" />
+          <input class="input" type="number" placeholder="Barcode Number" id="barcodeEntry" />
           <span class="icon is-small is-left">
             <i class="fa-solid fa-barcode"></i>
           </span>
@@ -260,6 +260,7 @@
           <button class="button is-info" id="verify-code-button">Verify</button>
         </div>
       </div>
+      <p class="is-size-7 has-text-white">An email was sent containing a verification code.</p>
       <br>
     </div>
   </div>
