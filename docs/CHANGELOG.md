@@ -736,3 +736,15 @@
     </details>
     <br>
 </details>
+
+<details>
+<summary>5.4</summary>
+    <br>
+    <details>
+    <summary>5.4.0 - (5/9/24 10:45am)</summary>
+    - Product brand now also shows the logo
+    <br>
+    - Other changes to ouput
+    </details>
+    <br>
+</details>

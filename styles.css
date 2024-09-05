@@ -73,10 +73,20 @@ body {
 
 /* Styling for image in carousel*/
 img {
+  border-radius: 5px;
   display: block;
   max-width: 100%;
   height: auto;
   object-fit: cover;
+}
+
+#product-image-output {
+  margin-top: 15px;
+}
+
+#brand-image-output {
+  margin-top: 2px;
+  margin-bottom: 2px;
 }
 
 /* Sets things for outer container of carousel */
@@ -110,6 +120,10 @@ img {
   font-size: 8px;
   width: 100%; /* Ensure items occupy full width */
   height: 100%; /* Ensure items occupy full height */
+}
+
+.product-name {
+  text-align: center; /* Centers the text below the image */
 }
 
 /*General carousel styling*/

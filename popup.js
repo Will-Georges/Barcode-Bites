@@ -530,9 +530,11 @@ document.addEventListener("DOMContentLoaded", function () {
           });
 
           // Print data in carousel
-          document.getElementById("vegetarian-vegan-output").innerHTML = `Vegetarian: ${isProductVegetarian ? "Yes" : "No"}, Vegan: ${isProductVegan ? "Yes" : "No"}, Allergy Safe: ${allergySafe ? "Yes" : "No"}`;
-          document.getElementById("product-name-output").innerHTML = "Product: " + productName;
-          document.getElementById("brand-output").innerHTML = "Brand: " + productBrand;
+          document.getElementById("vegetarian-vegan-output").innerHTML = `<strong>Vegetarian: ${isProductVegetarian ? "Yes" : "No"} <br>Vegan: ${isProductVegan ? "Yes" : "No"} <br>Allergy Safe: ${allergySafe ? "Yes" : "No"} <br>Gluten Free: ${isProductGlutenFree ? "Yes" : "No"} <br>Organic: ${isOrganic ? "Yes" : "No"}</strong>`;
+          document.getElementById("product-name-output").innerHTML = "<strong>" + productName + "</strong>";
+          document.getElementById("brand-text-heading").innerHTML = "<strong>Brand</strong>";
+          document.getElementById("brand-image-output").src = `https://img.logo.dev/${productBrand}.com?token=pk_HbFyEPf9TCekBuFORJvQ4Q`;
+          document.getElementById("brand-output").innerHTML = "<strong>" + productBrand + "</strong>";
           document.getElementById("ingredients-output").innerHTML = "Ingredients: " + productIngredients;
           document.getElementById("grade-output").innerHTML = "Grade: " + productGrade;
           document.getElementById("note-output").innerHTML = "Notes: ";

@@ -37,3 +37,7 @@ extension at your own risk.
 ## Further Information
 
 For any other queries, visit the GitHub.
+
+============================================================================
+
+Logos provided by Logo.dev at https://logo.dev
