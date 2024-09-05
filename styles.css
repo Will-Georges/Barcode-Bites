@@ -1,4 +1,8 @@
-/* Whole Extension Formatting*/
+/* Barcode Bites */
+
+/* Styling for popup.html (main page) and prefernces.html (settings) */
+
+/* Whole Extension Formatting */
 html,
 body {
   padding: 2em 0;
@@ -7,18 +11,18 @@ body {
   width: 400px;
 }
 
-/* Custom Colour because Bulma doesn't have orange.*/
-.has-background-orange { 
+/* Custom Colour because Bulma doesn't have orange */
+.has-background-orange {
   background-color: rgb(254, 108, 9);
 }
 
-/*Used to set custom margin and padding of main content*/
+/* Used to set custom margin and padding of main content */
 .main-margins {
   padding-top: 0px;
   padding-bottom: 0px;
 }
 
-/*Used where column sizes need to be custom set*/
+/* Used where column sizes need to be custom set */
 .no-wrap {
   display: flex;
   flex-wrap: nowrap;
@@ -26,43 +30,43 @@ body {
 
 /* Adjust column widths as needed */
 .column {
-  flex: 1 0 50%; 
+  flex: 1 0 50%;
 }
 
-/*Sets custom width of modal*/
+/* Sets custom width of modal */
 .modal-width {
   width: 375px;
   border-radius: 5px;
 }
 
-/*Custom height for signup modal*/
+/* Custom height for signup modal */
 .signup-height {
   height: 100%;
 }
 
-/*Used for spacing between inputs*/
+/* Used for spacing between inputs */
 .custom-line-break-height {
   margin-top: 12px;
 }
 
-/*Used for spacing between inputs*/
+/* Used for spacing between inputs */
 .custom-bottom-margin {
   margin-bottom: 12px;
 }
 
-/* Hides navbar item when it shouldn't be displayed.*/
+/* Hides navbar item when it shouldn't be displayed */
 .remove-navbar-item {
   width: 0px;
   padding: 0px;
   margin: 0px;
 }
 
-/*Sets height of carousel items*/
+/* Sets height of carousel items */
 .max-carousel-image-height {
   max-height: 100px;
 }
 
-/* Styling for Carousel items*/
+/* Styling for Carousel items */
 .general__content {
   display: flex;
   justify-content: center;
@@ -71,7 +75,7 @@ body {
   flex-direction: column;
 }
 
-/* Styling for image in carousel*/
+/* Styling for image in carousel */
 img {
   border-radius: 5px;
   display: block;
@@ -80,10 +84,12 @@ img {
   object-fit: cover;
 }
 
+/* Styling for produce image in the output */
 #product-image-output {
   margin-top: 15px;
 }
 
+/* Styling for brand logo in the output */
 #brand-image-output {
   margin-top: 2px;
   margin-bottom: 2px;
@@ -98,7 +104,7 @@ img {
   padding: 1em;
 }
 
-/* Styling for carousel container*/
+/* Styling for carousel container */
 .carousel-container {
   --widthItem: 300px;
   --heightItem: 200px;
@@ -107,7 +113,7 @@ img {
   perspective: 800px;
 }
 
-/*Styling for carousel item*/
+/* Styling for carousel item */
 .carousel-item {
   color: white;
   opacity: 0.8;
@@ -118,32 +124,30 @@ img {
   border-radius: 5px;
   transition: opacity 0.5s;
   font-size: 8px;
-  width: 100%; /* Ensure items occupy full width */
-  height: 100%; /* Ensure items occupy full height */
+  width: 100%;
+  height: 100%;
 }
 
+/* Styling for ingredient output to allow scrolling */
 #ingredients-output {
-  max-height: 110px; /* Adjust based on your design */
+  max-height: 110px;
   overflow-y: auto;
   padding-left: 10px;
 }
 
+/* Styling for ingredient list */
 #ingredients-output ul {
   padding: 0;
   margin: 0;
-  list-style-type: none;
+  list-style-type: none; /* Removes dot point */
 }
 
+/* Styling for ingredient list item */
 #ingredients-output li {
-  margin-bottom: 2px; /* Add some spacing between ingredients */
+  margin-bottom: 2px;
 }
 
-
-.product-name {
-  text-align: center; /* Centers the text below the image */
-}
-
-/*General carousel styling*/
+/* General carousel styling */
 .carousel {
   --rotatey: 0;
   font-size: 2rem;
@@ -159,56 +163,56 @@ img {
   opacity: 1;
 }
 
-/* Styling for both carousel and carousel items*/
+/* Styling for both carousel and carousel items */
 .carousel,
 .carousel-item {
   width: 100%;
   height: 100%;
 }
 
-/*Styling for the first carousel item*/
+/* Styling for the first carousel item */
 .carousel-item:nth-child(1) {
   --rotatey: 0;
   transform: rotatey(var(--rotatey)) translatez(var(--tz));
   background: linear-gradient(-229deg, #fbd52d, #ef3a7b);
 }
 
-/*Styling for the second carousel item*/
+/* Styling for the second carousel item */
 .carousel-item:nth-child(2) {
   --rotatey: 0;
   transform: rotatey(var(--rotatey)) translatez(var(--tz));
   background: linear-gradient(-229deg, #ff70af, #5fa8f5);
 }
 
-/*Styling for the third carousel item*/
+/* Styling for the third carousel item */
 .carousel-item:nth-child(3) {
   --rotatey: 0;
   transform: rotatey(var(--rotatey)) translatez(var(--tz));
   background: linear-gradient(-229deg, #0cebeb, #29ffc6);
 }
 
-/*Styling for the fourth carousel item*/
+/* Styling for the fourth carousel item */
 .carousel-item:nth-child(4) {
   --rotatey: 0;
   transform: rotatey(var(--rotatey)) translatez(var(--tz));
   background: linear-gradient(-229deg, #88f7f9, #048fff);
 }
 
-/*Styling for the fifth carousel item*/
+/* Styling for the fifth carousel item */
 .carousel-item:nth-child(5) {
   --rotate: 0;
   transform: rotatey(var(--rotatey)) translatez(var(--tz));
   background: linear-gradient(-229deg, #0093e9, #80d0c7);
 }
 
-/*Styling for the six carousel item*/
+/* Styling for the sixth carousel item */
 .carousel-item:nth-child(6) {
   --rotatey: 0;
   transform: rotatey(var(--rotatey)) translatez(var(--tz));
   background: linear-gradient(-229deg, #cf91ff, #5782f5);
 }
 
-/*Checks width of screen so that the carousel fits properly*/
+/* Checks width of screen so that the carousel fits properly */
 @media screen and (max-width: 450px) {
   .carousel-container {
     --widthItem: 200px; /* Set a smaller but reasonable width */
@@ -256,7 +260,7 @@ img {
 }
 
 input:checked + .slider {
-  background-color: rgb(102, 209, 255); /* Bulma info color */
+  background-color: rgb(102, 209, 255);
 }
 
 input:checked + .slider:before {
@@ -265,11 +269,12 @@ input:checked + .slider:before {
 
 /*Allows allergy list to be scrolled*/
 .scrolling-allergies {
-  max-height: 120px; 
+  max-height: 120px;
   overflow-y: auto;
 }
 
 /* Custom Scrollbar Styles */
+
 /* width */
 ::-webkit-scrollbar {
   width: 10px;

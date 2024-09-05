@@ -772,5 +772,9 @@
     <summary>5.5.1.1 - (5/9/24 5:55pm)</summary>
     - Added attributation for logo API
     </details>
+    <details>
+    <summary>5.5.1.2 - (5/9/24 6:05pm)</summary>
+    - Commenting and formatting styles.css
+    </details>
     <br>
 </details>
