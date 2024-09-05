@@ -808,3 +808,13 @@
     </details>
     <br>
 </details>
+
+<details>
+<summary>6.0</summary>
+    <br>
+    <details>
+    <summary>6.0.0 - (5/9/24 8:30pm)</summary>
+    - Final Release
+    </details>
+    <br>
+</details>
