@@ -816,5 +816,9 @@
     <summary>6.0.0 - (5/9/24 8:30pm)</summary>
     - Final Release
     </details>
+    <details>
+    <summary>6.0.1 - (5/9/24 9:15pm)</summary>
+    - Fixed bug where unknown nutritional score image would not show up
+    </details>
     <br>
 </details>
