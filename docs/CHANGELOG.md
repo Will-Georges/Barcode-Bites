@@ -799,8 +799,12 @@
     - Reorganised carousel ordering
     </details>
     <details>
-    <summary>5.5.1.7 - (5/9/24 8:10pm)</summary>
+    <summary>5.5.1.7 - (5/9/24 8:05pm)</summary>
     - README updated
+    </details>
+    <details>
+    <summary>5.5.1.8 - (5/9/24 8:10pm)</summary>
+    - README reordered
     </details>
     <br>
 </details>

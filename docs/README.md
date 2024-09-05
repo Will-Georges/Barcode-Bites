@@ -37,6 +37,12 @@ The version number of the extension is specified in the `manifest.json` file. Th
 
 There is limited support for the extension. The most reliable browser is Chrome. Browsers like Arc have some support for features, but are not very reliable. At a minimum, a browser should support Google Accounts Integration (GAIA).
 
+## API's
+
+- This project utilises the OpenFoodFacts API.
+- This project utilises the Logo API. <a href="https://logo.dev" alt="Logo API">Logos provided by Logo.dev</a>
+- This project utilises the EmailJS API.
+
 ## Changelog
 
 A version history can be found in the `docs` folder.
@@ -53,12 +59,6 @@ This work is licensed under a
 [cc-by-nc]: https://creativecommons.org/licenses/by-nc/4.0/
 [cc-by-nc-image]: https://licensebuttons.net/l/by-nc/4.0/88x31.png
 [cc-by-nc-shield]: https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg
-
-## API's
-
-- This project utilises the OpenFoodFacts API.
-- This project utilises the Logo API. <a href="https://logo.dev" alt="Logo API">Logos provided by Logo.dev</a>
-- This project utilises the EmailJS API.
 
 ## Contact
 
