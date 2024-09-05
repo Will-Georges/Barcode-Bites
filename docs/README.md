@@ -53,7 +53,8 @@ This work is licensed under a
 ## Credit
 
 - This project utilises the OpenFoodFacts API.
-- This project uses an adapted version of a Carousel by [@programmer.cs](https://www.instagram.com/programador.cs/)
+- This project utilises the Logo API. <a href="https://logo.dev" alt="Logo API">Logos provided by Logo.dev</a>
+- This project utilises the EmailJS API.
 
 ## Contact
 
