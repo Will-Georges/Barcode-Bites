@@ -1,3 +1,7 @@
+<!-- Barcode Bites -->
+
+<!-- Main Page that loads upon opening -->
+
 <!DOCTYPE html>
 <!-- Navbar stays at top even when scrolling. Footer stays at bottom even when scrolling -->
 <html lang="en" class="has-navbar-fixed-top has-navbar-fixed-bottom">
@@ -7,17 +11,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Barcode Bites</title>
   <link rel="stylesheet" href="node_modules/bulma/css/bulma.min.css"> <!-- Bulma -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- Custom Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome for Custom Icons -->
   <link rel="stylesheet" href="styles.css"> <!-- CSS File -->
   <script src="email.js"></script> <!-- Email Verification Script-->
 </head>
 
 <body>
   <!-- Navbar -->
-  <nav class="navbar is-fixed-top" id="navbar"> <!-- Outer Container -->
-    <div class="navbar-brand has-background-orange"> <!-- Left Hand Side -->
-      <img class="image is-inline-block is-64x64" src="images/cropped-logo.png"> <!-- Logo -->
+  <nav class="navbar is-fixed-top" id="navbar">
+    <div class="navbar-brand has-background-orange">
+      <img class="image is-inline-block is-64x64" src="images/cropped-logo.png">
       <a class="navbar-item has-text-white remove-navbar-item" id="openPreferences"> <!-- Appears After Signup -->
 
       </a>
@@ -26,14 +29,15 @@
       </a>
       <a class="navbar-item has-text-white remove-navbar-item" id="openTutorial">
         <!-- Space for open tutorial button -->
-        <!-- Set inner HTML for the word tutorial and remove the 'remove navbar item' class -->
+        <!-- Set inner HTML for the word tutorial and remove the 'remove-navbar-item' class when need -->
       </a>
-      <a class="navbar-item has-text-white remove-navbar-item" id="openLogout"> <!-- Space for open logout button -->
-        <!-- Set inner HTML for the word tutorial and remove the 'remove navbar item' class -->
+      <a class="navbar-item has-text-white remove-navbar-item" id="openLogout"> 
+        <!-- Space for open logout button -->
+        <!-- Set inner HTML for the word logout and remove the 'remove-navbar-item' class when needed -->
       </a>
       <a class="navbar-item has-text-white remove-navbar-item" id="openVerification">
         <!-- Space for open verification button -->
-        <!-- Set inner HTML for the word tutorial and remove the 'remove navbar item' class -->
+        <!-- Set inner HTML for the word verify and remove the 'remove-navbar-item' class when needed -->
       </a>
     </div>
   </nav>
@@ -52,20 +56,20 @@
 
       <div class="columns no-wrap">
         <div class="column">
+          <!-- Opens manual entry modal-->
           <button id="manualEntryButton" class="button is-info">
             <span class="icon is-small">
               <i class="fa-regular fa-keyboard"></i>
             </span>
             <span>Manual Entry</span>
-          </button>
-          <!-- Opens manual entry modal-->
+          </button>    
         </div>
         <div class="column">
+          <!-- Automatic Scan button-->
           <button class="button is-info" id="captureScreenshotButton"><span class="icon is-small">
               <i class="fa-solid fa-wand-magic-sparkles"></i>
             </span>
             <span>Automatic Scan</span></button>
-          <!-- Capture Screenshot button-->
         </div>
       </div>
 
@@ -92,15 +96,18 @@
     <div class="outer-container">
       <div class="carousel-container">
         <div class="carousel">
+          <!-- Product image and name output -->
           <div class="carousel-item has-text-centered" style="flex-wrap: wrap; display:block;">
             <img id="product-image-output" src="images/carousel-filler.png" alt="Product Image"
               class="image is-inline-block max-carousel-image-height">
             <br>
             <p id="product-name-output" class="product-name"></p>
           </div>
+          <!-- Product vegetarian/vegan/etc output -->
           <div class="carousel-item">
             <p id="vegetarian-vegan-output" class="is-size-6"></p>
           </div>
+          <!-- Product brand output -->
           <div class="carousel-item has-text-centered" style="flex-wrap: wrap; display: block;">
             <br>
             <p id="brand-text-heading"></p>
@@ -108,24 +115,27 @@
               class="image is-inline-block max-carousel-image-height">
             <p id="brand-output"></p>
           </div>
+          <!-- Product ingredients output -->
           <div class="carousel-item has-text-centered" style="flex-wrap: wrap; display: block;">
             <br>
             <p id="ingredients-text-heading"></p>
             <br>
             <p id="ingredients-output" class="has-text-black"></p>
           </div>
+          <!-- Product nutritional grade output -->
           <div class="carousel-item has-text-centered" style="flex-wrap: wrap; display: block;">
             <br>
             <p id="grade-text-heading"></p>
             <img id="grade-image-output" src="images/carousel-filler.png" alt="Nutrional Grade"
               class="image is-inline-block max-carousel-image-height">
           </div>
+          <!-- Product nova output -->
           <div class="carousel-item has-text-centered" style="flex-wrap: wrap; display: block;">
             <br>
             <img id="nova-image-output" src="images/carousel-filler.png" alt="NOVA Rating"
               class="image is-inline-block max-carousel-image-height">
-              <br>
-              <br>
+            <br>
+            <br>
             <p id="nova-output"></p>
           </div>
         </div>
@@ -154,7 +164,7 @@
     </div>
   </div>
 
-  <!-- Sign Up Modal-->
+  <!-- Sign Up Modal -->
   <div class="modal" id="modal-signup">
     <div class="modal-background" id="modal-background-signup"></div>
     <div class="modal-content modal-width signup-height has-background-orange has-text-black px-3">
@@ -176,6 +186,7 @@
           </span>
         </p>
       </div>
+      <!-- Checks email Validity -->
       <div id="email-validity" class="has-text-info"><i class="fas fa-times"></i><strong> Valid email address</strong>
       </div>
       <div class="field custom-line-break-height">
@@ -186,6 +197,7 @@
           </span>
         </p>
       </div>
+      <!-- Checks password Validity -->
       <div id="password-criteria">
         <p id="length" class="has-text-info"><i class="fas fa-times"></i> <strong>At least 8 characters</strong></p>
         <p id="special" class="has-text-info"><i class="fas fa-times"></i> <strong>At least 1 special character</strong>
@@ -197,6 +209,7 @@
         <p class="control">
           <button class="button is-info" id="submit-signup">Signup</button>
         </p>
+        <!-- Takes user to log in instead of sign up -->
         <p class="control">
           <button class="button is-info is-inverted" id="go-from-signup-to-login">Go to Log In</button>
         </p>
@@ -211,13 +224,20 @@
     <div class="modal-content modal-width has-background-orange has-text-black px-3">
       <br>
       <div class="title has-text-centered"> Tutorial </div>
-      <p><strong> Go to settings and add your preferences and allergies. <br><br>There are 3 options to scan a barcode:
-          <br>1. Enter the barcode number manually. <br>2. Upload a
-          screenshot of barcode. <br>3. Have a barcode visible on screen and click the Automatic Scan button<br><br>For
-          a more detail tutorial, access the <a href="https://github.com/Will-Georges/Barcode-Bites"
+      <p><strong> Go to settings and add your preferences and allergies. 
+        <br>
+        <br>
+        There are 3 options to scan a barcode:
+        <br>
+        1. Enter the barcode number manually. 
+        <br>
+        2. Upload a screenshot of barcode. 
+        <br>
+        3. Have a barcode visible on screen and click the Automatic Scan button
+        <br>
+        <br>
+        For a more detail tutorial, access the <a href="https://github.com/Will-Georges/Barcode-Bites"
             class="has-text-info" target="_blank">GitHub</a>.</p></strong>
-
-
       <br>
       <br>
     </div>
@@ -240,7 +260,6 @@
           <button class="button is-info" id="verify-code-button">Verify</button>
         </div>
       </div>
-      
       <br>
     </div>
   </div>
@@ -293,7 +312,7 @@
           class="icon">
           <i class="fab fa-github"></i>
         </span>GitHub</a> <!-- Link to Repository -->
-        <a class="navbar-item has-text-white" id="openPrivacyPolicy">Privacy Policy</a>
+      <a class="navbar-item has-text-white" id="openPrivacyPolicy">Privacy Policy</a> <!-- Link to Privacy Policy -->
     </div>
   </nav>
 
