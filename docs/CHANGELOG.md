@@ -748,3 +748,21 @@
     </details>
     <br>
 </details>
+
+<details>
+<summary>5.5</summary>
+    <br>
+    <details>
+    <summary>5.5.0 - (5/9/24 5:35pm)</summary>
+    - Updated Logo image
+    <br>
+    - Updated Ingredients output
+    <br>
+    - Added Health Rating section
+    <br>
+    - Added NOVA rating section
+    <br>
+    - Added health rating and nova-group images/icons.
+    </details>
+    <br>
+</details>

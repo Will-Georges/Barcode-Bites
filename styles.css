@@ -122,6 +122,23 @@ img {
   height: 100%; /* Ensure items occupy full height */
 }
 
+#ingredients-output {
+  max-height: 110px; /* Adjust based on your design */
+  overflow-y: auto;
+  padding-left: 10px;
+}
+
+#ingredients-output ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+#ingredients-output li {
+  margin-bottom: 2px; /* Add some spacing between ingredients */
+}
+
+
 .product-name {
   text-align: center; /* Centers the text below the image */
 }

@@ -443,10 +443,11 @@ document.addEventListener("DOMContentLoaded", function () {
           const product = data.product;
           const productName = product.product_name_en || product.product_name;
           const productBrand = product.brands || "Unknown Brand";
-          const productGrade = product.nutriscore_data || "No Grade";
+          const productGrade = product.nutrition_grades || "unknown";
+          const productNova = product.nova_groups || "unknown";
           const productIngredients = product.ingredients_text_en || product.ingredients_text || "Ingredients not available";
           const productImageUrl = product.image_url || "images/carousel-filler.png"; // Replace with a default image URL if needed
-
+          
           // Checks ingredients analysis tags
           const ingredientsAnalysisTags = product.ingredients_analysis_tags || [];
           const labelsHierachy = product.labels_hierachy || [];
@@ -454,6 +455,10 @@ document.addEventListener("DOMContentLoaded", function () {
           let isProductVegan = false;
           let isProductGlutenFree = false;
           let isProductOrganic = false;
+
+          // Split ingredients string by commas and wrap each one in a list item
+          const ingredientsArray = productIngredients.split(',').map(ingredient => ingredient.trim());
+          const ingredientsList = ingredientsArray.map(ingredient => `<li>${ingredient}</li>`).join('');
 
           // Determine vegetarian and vegan status based on tags
           if (ingredientsAnalysisTags.includes("en:non-vegetarian")) {
@@ -531,17 +536,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
           // Print data in carousel
           document.getElementById("vegetarian-vegan-output").innerHTML = `<strong>Vegetarian: ${isProductVegetarian ? "Yes" : "No"} <br>Vegan: ${isProductVegan ? "Yes" : "No"} <br>Allergy Safe: ${allergySafe ? "Yes" : "No"} <br>Gluten Free: ${isProductGlutenFree ? "Yes" : "No"} <br>Organic: ${isOrganic ? "Yes" : "No"}</strong>`;
-          document.getElementById("product-name-output").innerHTML = "<strong>" + productName + "</strong>";
-          document.getElementById("brand-text-heading").innerHTML = "<strong>Brand</strong>";
-          document.getElementById("brand-image-output").src = `https://img.logo.dev/${productBrand}.com?token=pk_HbFyEPf9TCekBuFORJvQ4Q`;
-          document.getElementById("brand-output").innerHTML = "<strong>" + productBrand + "</strong>";
-          document.getElementById("ingredients-output").innerHTML = "Ingredients: " + productIngredients;
-          document.getElementById("grade-output").innerHTML = "Grade: " + productGrade;
-          document.getElementById("note-output").innerHTML = "Notes: ";
           document.getElementById("product-image-output").src = productImageUrl;
+          
+          document.getElementById("product-name-output").innerHTML = "<strong>" + productName + "</strong>";
+          
+          document.getElementById("brand-text-heading").innerHTML = "<strong class='has-text-black'>Brand</strong>";
+          document.getElementById("brand-image-output").src = `https://img.logo.dev/${productBrand}.com?token=pk_HbFyEPf9TCekBuFORJvQ4Q`;
+          document.getElementById("brand-output").innerHTML = "<strong class='has-text-black'>" + productBrand + "</strong>";
+          
+          document.getElementById("ingredients-text-heading").innerHTML = "<strong class='has-text-black'>Ingredients</strong>";
+          document.getElementById("ingredients-output").innerHTML = `<ul>${ingredientsList}</ul>`;
+          
+          document.getElementById("grade-text-heading").innerHTML = "<strong>Nutritional Grade</strong>";
+          document.getElementById("grade-image-output").src = `images/health-rating/${productGrade}.png`;
+          
+          document.getElementById("nova-image-output").src = `images/nova-group/${productNova}.png`;
+          document.getElementById("nova-output").innerHTML = "(1-4) Higher is more processed";
+          
 
           // Logs all information
           console.log(`Product Name: ${productName}`);
+          console.log(`Product Grade: ${productGrade}`);
           console.log(`Brand: ${productBrand}`);
           console.log(`Ingredients: ${productIngredients}`);
           console.log(`Image URL: ${productImageUrl}`);
