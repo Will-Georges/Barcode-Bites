@@ -316,6 +316,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Function to capture the screenshot
     async function captureScreenshot() {
+      // Parts from https://developer.chrome.com/docs/extensions/reference/api/desktopCapture
+      // Parts from https://github.com/wpp/ScreenStream
+      // Parts from https://www.w3schools.com/graphics/canvas_drawing.asp
+      // Parts from https://www.w3schools.com/html/html5_canvas.asp
+
       // Request desktop capture permission
       chrome.desktopCapture.chooseDesktopMedia(["window"], (streamId) => {
         // Create a new MediaStream object
@@ -466,6 +471,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Main API call function
     async function fetchData(barcode) {
+      // Some Information from https://openfoodfacts.github.io/openfoodfacts-server/api/tutorial-off-api/
       try {
         // Makes API call
         const response = await fetch(
@@ -715,6 +721,8 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
+
+    // Parts found in https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API
     // Function to generate a random salt
     async function generateSalt() {
       const salt = new Uint8Array(16);
@@ -976,6 +984,9 @@ document.addEventListener("DOMContentLoaded", function () {
         };
       });
 
+      
+    // Mostly From https://developer.mozilla.org/en-US/docs/Web/API/BarcodeDetector
+
     // Function to scan the barcode
     async function scanBarcode(img) {
       // Creates a new Barcode Detector
@@ -1017,6 +1028,8 @@ document.addEventListener("DOMContentLoaded", function () {
           console.error("Error converting image to Blob:", error);
         });
     }
+
+    // Parts from https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob
 
     // Function to convert an HTMLImageElement to a Blob
     function imgToBlob(img) {
