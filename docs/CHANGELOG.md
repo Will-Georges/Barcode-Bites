@@ -820,5 +820,9 @@
     <summary>6.0.1 - (5/9/24 9:15pm)</summary>
     - Fixed bug where unknown nutritional score image would not show up
     </details>
+    <details>
+    <summary>6.0.2 - (24/11/24 2:40pm)</summary>
+    - Renamed Image to fix bug
+    </details>
     <br>
 </details>
