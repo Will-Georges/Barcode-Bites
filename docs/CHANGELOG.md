@@ -824,5 +824,9 @@
     <summary>6.0.2 - (24/11/24 2:40pm)</summary>
     - Renamed Image to fix bug
     </details>
+    <details>
+    <summary>6.0.3 - (24/11/24 2:45pm)</summary>
+    - Created Seperate Tutorial File
+    </details>
     <br>
 </details>
