@@ -828,5 +828,9 @@
     <summary>6.0.3 - (24/11/24 2:45pm)</summary>
     - Created Seperate Tutorial File
     </details>
+    <details>
+    <summary>6.0.4 - (9/7/25 3:40pm)</summary>
+    - Updated Bulma
+    </details>
     <br>
 </details>
