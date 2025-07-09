@@ -832,5 +832,9 @@
     <summary>6.0.4 - (9/7/25 3:40pm)</summary>
     - Updated Bulma
     </details>
+    <details>
+    <summary>6.0.5 - (9/7/25 3:50pm)</summary>
+    - Added Security Policy
+    </details>
     <br>
 </details>

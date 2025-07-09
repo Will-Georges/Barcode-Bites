@@ -22,6 +22,9 @@ Barcode Bites is a Chrome extension that scans food barcodes and alerts users if
 ## Tutorial
 A tutorial can me found in `docs/tutorial.md`.
 
+## Security
+Spot a security vulnerability? Please read `docs/SECURITY.md`.
+
 ## Version
 
 The version number of the extension is specified in the `manifest.json` file. The format used is `"Major.Minor.Patch.Revised"`
