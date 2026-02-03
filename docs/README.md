@@ -15,7 +15,6 @@ Barcode Bites is a Chrome extension that scans food barcodes and alerts users if
 - Settings with allergies where a user can add their allergies to a list.
 
 ### Minor Features
-- Signup functionality with email verification code.
 - Email and Password Validity Tests.
 - Dynamic Greeting depending on time of day.
 
@@ -27,12 +26,11 @@ Spot a security vulnerability? Please read `docs/SECURITY.md`.
 
 ## Version
 
-The version number of the extension is specified in the `manifest.json` file. The format used is `"Major.Minor.Patch.Revised"`
+The version number of the extension is specified in the `manifest.json` file. The format used is `"Major.Minor.Patch"`
 
 - **Major Version**: Increased when an API change or significant change is made.
 - **Minor Version**: Increased when functionality is added, or a medium-scale change is made.
 - **Patch Version**: Increased when bug fixes are made, or small things updated.
-- **Revised Version**: Increased when minor adjustments or fixes are made.
 
 ## Browser Compatability
 
@@ -42,7 +40,6 @@ There is limited support for the extension. The most reliable browser is Chrome.
 
 - This project utilises the OpenFoodFacts API.
 - This project utilises the Logo API. <a href="https://logo.dev" alt="Logo API">Logos provided by Logo.dev</a>
-- This project utilises the EmailJS API.
 
 ## Changelog
 
@@ -63,4 +60,4 @@ This work is licensed under a
 
 ## Contact
 
-For any questions or suggestions, please contact the developer @ barcodebites@gmail.com
+For any questions or suggestions, please contact the developer by opening a Discussion
