@@ -56,9 +56,11 @@ body {
 
 /* Hides navbar item when it shouldn't be displayed */
 .remove-navbar-item {
-  width: 0px;
-  padding: 0px;
-  margin: 0px;
+  display: none !important;
+}
+
+.navbar-item.remove-navbar-item {
+  display: none !important;
 }
 
 /* Sets height of carousel items */
@@ -295,4 +297,74 @@ input:checked + .slider:before {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: rgb(73, 173, 216);
+}
+
+/* Loading indicator */
+.loading-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 10px 0;
+  color: rgb(254, 108, 9);
+  font-weight: 600;
+}
+
+.loading-indicator.is-hidden {
+  display: none;
+}
+
+.loading-spinner {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid rgba(254, 108, 9, 0.25);
+  border-top-color: rgba(254, 108, 9, 0.9);
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Dark mode theme */
+html.theme-dark,
+body.theme-dark {
+  background-color: #151515;
+  color: #f2f2f2;
+}
+
+html.theme-dark .has-background-orange {
+  background-color: #d85b05;
+}
+
+html.theme-dark .modal-content {
+  background-color: #262626;
+  color: #f2f2f2;
+}
+
+html.theme-dark .input {
+  background-color: #1f1f1f;
+  color: #f2f2f2;
+  border-color: #444;
+}
+
+html.theme-dark .has-text-black {
+  color: #f2f2f2 !important;
+}
+
+html.theme-dark .navbar,
+html.theme-dark .section {
+  background-color: #151515;
+}
+
+html.theme-dark .loading-indicator {
+  color: rgb(254, 108, 9);
+}
+
+html.theme-dark .loading-spinner {
+  border-color: rgba(254, 108, 9, 0.25);
+  border-top-color: rgba(254, 108, 9, 0.9);
 }

@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Barcode Bites",
-  "version": "6.0.5",
+  "version": "7.0.0",
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self'"
   },
@@ -13,11 +13,5 @@
     "default_popup": "popup.html",
     "default_icon": "images/icon-light.png"
   },
-  "web_accessible_resources": [
-    {
-      "resources": ["preferences.html"],
-      "matches": ["<all_urls>"]
-    }
-  ],
-  "permissions": ["storage", "activeTab", "tabs", "scripting", "desktopCapture"]
+  "permissions": ["storage", "tabs", "desktopCapture"]
 }

@@ -838,3 +838,35 @@
     </details>
     <br>
 </details>
+
+<details>
+<summary>7.0</summary>
+    <br>
+    <details>
+    <summary>7.0.0 - (3/2/26 12:00pm)</summary>
+    - Removed unused/overbroad permissions (activeTab, scripting).
+    - Removed unused web_accessible_resources entry.
+    - Adjust Login button in navbar.
+    - Added Loading indicator UI.
+    - Added Delete Account button in login modal.
+    - Removed EmailJS script tag.
+    - Added rel="noopener noreferrer" to external links.
+    - Removed extra verification “write it down” text.
+    - Added Delete Account button in settings.
+    - Fixed .remove-navbar-item to fully hide empty navbar items.
+    - Added dark mode theme styling for backgrounds/inputs.
+    - Added loading indicator styles.
+    - Updated loading indicator to orange for visibility in light/dark.
+    - Added shared helpers: getStorage, setStorage, setNavState, setText, applyTheme, updateIcon.
+    - Implemented loading state (scan + fetch) and spinner toggles.
+    - Improved barcode validation, allergen matching, and ingredient rendering safety.
+    - Fixed gluten/organic label parsing and NOVA/grade fallbacks.
+    - Added verification code TTL + attempt limit.
+    - Reworked signup/verification for dev‑mode code alert + console log
+    - Added Delete Account logic (clears storage) and hooked to login + settings.
+    - Fixed login/logout navbar state behavior.
+    - Added BarcodeDetector fallback and improved screenshot capture cleanup.
+    - Removed captcha logic when you asked to drop it.
+    </details>
+    <br>
+</details>

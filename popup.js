@@ -20,7 +20,6 @@ const modalBackgroundVerification = document.querySelector(
 );
 const modalVerification = document.querySelector("#modal-verification");
 const openVerification = document.querySelector("#openVerification");
-let hasVerified = false;
 
 // Logout Modal
 const openLogout = document.querySelector("#openLogout");
@@ -51,17 +50,12 @@ const submitBarcode = document.getElementById("submitBarcode");
 
 // Navigation Variables
 const openPreferencesButton = document.getElementById("openPreferences");
-const backToMainButton = document.getElementById("backToMain");
-const mainContent = document.getElementById("mainContent");
-const preferencesContent = document.getElementById("preferencesContent");
 
 // Signup functionality
 const username = document.querySelector("#username");
 const email = document.querySelector("#email");
 const password = document.querySelector("#password");
 const submitSignup = document.querySelector("#submit-signup");
-let hasSignedUp = false;
-let activeLogin = false;
 
 // Time Control and Greeting
 const nameWelcome = document.querySelector("#name-welcome");
@@ -70,6 +64,195 @@ const hours = now.getHours();
 
 // When HTML is fully loaded
 document.addEventListener("DOMContentLoaded", function () {
+  const VERIFICATION_CODE_TTL_MS = 15 * 60 * 1000;
+  const MAX_VERIFICATION_ATTEMPTS = 5;
+  const VALID_GRADES = new Set(["a", "b", "c", "d", "e", "unknown"]);
+  const VALID_NOVA = new Set(["1", "2", "3", "4"]);
+
+  const showElement = (el, show) => {
+    if (!el) return;
+    el.classList.toggle("remove-navbar-item", !show);
+    el.hidden = !show;
+  };
+
+  const setText = (el, text) => {
+    if (!el) return;
+    el.textContent = text;
+  };
+
+  const applyTheme = (isDarkMode) => {
+    document.documentElement.classList.toggle("theme-dark", isDarkMode);
+    document.body.classList.toggle("theme-dark", isDarkMode);
+  };
+
+  const updateIcon = (isDarkMode) => {
+    const iconPath = isDarkMode
+      ? "images/icon-light.png"
+      : "images/icon-dark.png";
+    chrome.action.setIcon({ path: iconPath });
+  };
+
+  const setNavState = (state) => {
+    const activeLogin = Boolean(state.activeLogin);
+    const hasSignedUp = Boolean(state.hasSignedUp);
+    const hasVerified = Boolean(state.hasVerified);
+
+    const showSignup = !activeLogin && !hasSignedUp;
+    const showLogin = !activeLogin && hasSignedUp;
+
+    showElement(openSignup, showSignup);
+    showElement(openLogin, showLogin);
+    showElement(openVerification, activeLogin && hasSignedUp && !hasVerified);
+    showElement(openTutorial, activeLogin && hasVerified);
+    showElement(openLogout, activeLogin && hasVerified);
+    showElement(openPreferencesButton, activeLogin && hasVerified);
+
+    if (openSignup && showSignup) {
+      openSignup.textContent = "Signup";
+    }
+    if (openLogin && showLogin) {
+      openLogin.textContent = "Login";
+    }
+    if (openVerification && activeLogin && hasSignedUp && !hasVerified) {
+      openVerification.textContent = "Verify";
+    }
+    if (openTutorial && activeLogin && hasVerified) {
+      openTutorial.textContent = "Tutorial";
+    }
+    if (openLogout && activeLogin && hasVerified) {
+      openLogout.textContent = "Logout";
+    }
+    if (openPreferencesButton && activeLogin && hasVerified) {
+      openPreferencesButton.textContent = "Settings";
+    }
+  };
+
+  const loadingIndicator = document.getElementById("loadingIndicator");
+  const loadingText = document.getElementById("loadingText");
+  const deleteAccountButton = document.getElementById("delete-account");
+  const setLoading = (isLoading, message) => {
+    if (!loadingIndicator || !loadingText) return;
+    loadingText.textContent = message || "Loading...";
+    loadingIndicator.classList.toggle("is-hidden", !isLoading);
+  };
+
+  const EMAIL_VERIFICATION_ENDPOINT = "";
+
+  const getStorage = (keys) =>
+    new Promise((resolve) => chrome.storage.sync.get(keys, resolve));
+
+  const setStorage = (data) =>
+    new Promise((resolve) => chrome.storage.sync.set(data, resolve));
+
+  const handleGreeting = async () => {
+    const greeting = hours < 12 ? "Good Morning, " : "Good Afternoon, ";
+    const result = await getStorage(["username", "activeLogin"]);
+    if (result.activeLogin === true) {
+      setText(nameWelcome, greeting + (result.username || "User"));
+    } else {
+      setText(nameWelcome, greeting + "Guest");
+    }
+  };
+
+  const checkSignedUp = async () => {
+    const state = await getStorage([
+      "activeLogin",
+      "hasSignedUp",
+      "hasVerified",
+    ]);
+    setNavState(state);
+  };
+
+  const clearAccount = async () => {
+    await setStorage({
+      username: null,
+      email: null,
+      password: null,
+      salt: null,
+      verificationCode: null,
+      verificationExpiresAt: null,
+      verificationAttempts: 0,
+      hasSignedUp: false,
+      hasVerified: false,
+      activeLogin: false,
+      allergies: [],
+    });
+    await checkSignedUp();
+    handleGreeting();
+    if (window.location.pathname.endsWith("preferences.html")) {
+      window.location.href = chrome.runtime.getURL("popup.html");
+    }
+  };
+
+  const validateBarcode = (barcode) => {
+    const trimmed = String(barcode || "").trim();
+    if (!/^\d{8,14}$/.test(trimmed)) return null;
+    return trimmed;
+  };
+
+  const normalizeAllergenTag = (value) => {
+    return String(value || "")
+      .trim()
+      .toLowerCase()
+      .replace(/^([a-z]{2}:)/, "")
+      .replace(/[\s_-]+/g, " ")
+      .trim();
+  };
+
+  const parseAllergens = (product) => {
+    if (Array.isArray(product.allergens_tags)) {
+      return product.allergens_tags.map(normalizeAllergenTag).filter(Boolean);
+    }
+    if (typeof product.allergens === "string") {
+      return product.allergens
+        .split(",")
+        .map(normalizeAllergenTag)
+        .filter(Boolean);
+    }
+    return [];
+  };
+
+  const buildIngredientsList = (container, ingredientsText) => {
+    if (!container) return;
+    const list = document.createElement("ul");
+    const ingredientsArray = String(ingredientsText || "")
+      .split(",")
+      .map((ingredient) => ingredient.trim())
+      .filter(Boolean);
+    if (ingredientsArray.length === 0) {
+      const li = document.createElement("li");
+      li.textContent = "Ingredients not available";
+      list.appendChild(li);
+    } else {
+      ingredientsArray.forEach((ingredient) => {
+        const li = document.createElement("li");
+        li.textContent = ingredient;
+        list.appendChild(li);
+      });
+    }
+    container.replaceChildren(list);
+  };
+
+  const safeImageUrl = (url, fallback) => {
+    try {
+      if (!url) return fallback;
+      const parsed = new URL(url, window.location.href);
+      if (parsed.protocol === "http:" || parsed.protocol === "https:") {
+        return parsed.href;
+      }
+    } catch (error) {
+      console.warn("Invalid image URL, using fallback.", error);
+    }
+    return fallback;
+  };
+
+  const getBrandLogoUrl = (brand) => {
+    const rawBrand = String(brand || "").split(",")[0].trim();
+    const slug = rawBrand.toLowerCase().replace(/[^a-z0-9-]/g, "");
+    if (!slug) return "images/carousel-filler.png";
+    return `https://img.logo.dev/${slug}.com?token=pk_HbFyEPf9TCekBuFORJvQ4Q`;
+  };
+
   // Code for popup.html
   if (window.location.pathname.endsWith("popup.html")) {
     // Redirects user to settings
@@ -79,7 +262,11 @@ document.addEventListener("DOMContentLoaded", function () {
         window.location.href = chrome.runtime.getURL("preferences.html");
       });
 
-    emailjs.init("Igrq_UNPItE8jc0Iw"); // Initialises email service with public API key
+    getStorage(["darkMode"]).then((data) => {
+      const isDarkMode = Boolean(data.darkMode);
+      applyTheme(isDarkMode);
+      updateIcon(isDarkMode);
+    });
 
     // Carousel
     const container = document.querySelector(".outer-container");
@@ -98,7 +285,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const emailValidityDiv = document.querySelector("#email-validity");
 
     // Password validity variables
-    const password = document.querySelector("#password");
     const lengthCriteria = document.querySelector("#length");
     const specialCriteria = document.querySelector("#special");
     const numberCriteria = document.querySelector("#number");
@@ -288,13 +474,17 @@ document.addEventListener("DOMContentLoaded", function () {
     // Changes colour and icon if test is valid
     function updateCriteria(element, isValid) {
       if (isValid) {
-        element.classList.remove("has-text-white");
+        element.classList.remove(
+          "has-text-white",
+          "has-text-info",
+          "has-text-danger"
+        );
         element.classList.add("has-text-success");
         element.querySelector("i").classList.remove("fa-times");
         element.querySelector("i").classList.add("fa-check");
       } else {
-        element.classList.remove("has-text-success");
-        element.classList.add("has-text-white");
+        element.classList.remove("has-text-success", "has-text-info");
+        element.classList.add("has-text-danger");
         element.querySelector("i").classList.remove("fa-check");
         element.querySelector("i").classList.add("fa-times");
       }
@@ -322,59 +512,64 @@ document.addEventListener("DOMContentLoaded", function () {
       // Parts from https://www.w3schools.com/html/html5_canvas.asp
 
       // Request desktop capture permission
-      chrome.desktopCapture.chooseDesktopMedia(["window"], (streamId) => {
-        // Create a new MediaStream object
-        navigator.mediaDevices
-          .getUserMedia({
+      chrome.desktopCapture.chooseDesktopMedia(["window"], async (streamId) => {
+        if (!streamId) {
+          console.warn("Desktop capture was cancelled.");
+          return;
+        }
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({
             video: {
               mandatory: {
                 chromeMediaSource: "desktop",
                 chromeMediaSourceId: streamId,
               },
             },
-          })
-          .then((stream) => {
-            // Create a video element to capture the screen
-            const video = document.createElement("video");
-            video.srcObject = stream;
-
-            // Create a canvas element to capture the screenshot
-            const canvas = document.createElement("canvas");
-            canvas.width = screen.availWidth;
-            canvas.height = screen.availHeight;
-
-            // Draw the video on the canvas
-            video.play().then(() => {
-              canvas
-                .getContext("2d")
-                .drawImage(video, 0, 0, canvas.width, canvas.height);
-
-              // Get the screenshot as a data URL
-              const dataUrl = canvas.toDataURL();
-
-              // Create an image element from the screenshot
-              const img = new Image();
-              img.src = dataUrl;
-              img.onload = () => {
-                // Run the scanBarcode function with the screenshot
-                scanBarcode(img);
-              };
-            });
-          })
-          .catch((error) => {
-            console.error("Error getting user media:", error);
           });
+
+          const video = document.createElement("video");
+          video.srcObject = stream;
+          video.muted = true;
+
+          await new Promise((resolve) => {
+            video.onloadedmetadata = () => resolve();
+          });
+
+          await video.play();
+
+          const canvas = document.createElement("canvas");
+          canvas.width = video.videoWidth || screen.availWidth;
+          canvas.height = video.videoHeight || screen.availHeight;
+          canvas.getContext("2d").drawImage(video, 0, 0, canvas.width, canvas.height);
+
+          stream.getTracks().forEach((track) => track.stop());
+
+          const dataUrl = canvas.toDataURL();
+          const img = new Image();
+          img.src = dataUrl;
+          img.onload = () => {
+            scanBarcode(img);
+          };
+        } catch (error) {
+          console.error("Error getting user media:", error);
+        }
       });
     }
 
     // Checks if the submit signup button is clicked
-    submitSignup.addEventListener("click", () => {
-      if (passwordValidity() && emailValidity() && username.value.length > 0) {
+    submitSignup.addEventListener("click", async () => {
+      if (
+        passwordValidity() &&
+        emailValidity() &&
+        username.value.length > 0
+      ) {
         // Checks if password and email is valid
-        handleSignup();
-        modalVerification.classList.add("is-active");
+        const signupSuccess = await handleSignup();
+        if (signupSuccess) {
+          modalVerification.classList.add("is-active");
+        }
       } else {
-        alert("Email, password or username does not meet the criteria"); // If not valid alerts the user that a criteria is not met
+        alert("Please complete all fields correctly."); // If not valid alerts the user that a criteria is not met
       }
     });
 
@@ -386,6 +581,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // Open Signup Modal
     openSignup.addEventListener("click", () => {
       modalSignup.classList.add("is-active");
+    });
+
+    // Open Login Modal
+    openLogin.addEventListener("click", () => {
+      modalLogin.classList.add("is-active");
     });
 
     // Open Tutorial Modal
@@ -441,198 +641,159 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Checks if the user clicks login
     submitLogin.addEventListener("click", () => {
-      loginUser(loginUsername.value, loginPassword.value);
+      loginUser(loginUsername.value.trim(), loginPassword.value);
     });
+
+    // Delete account
+    if (deleteAccountButton) {
+      deleteAccountButton.addEventListener("click", async () => {
+        const confirmDelete = confirm(
+          "Delete your account and all stored data? This cannot be undone."
+        );
+        if (!confirmDelete) return;
+        await clearAccount();
+        modalLogin.classList.remove("is-active");
+      });
+    }
 
     // Gets barcode number from manual entry and runs fetchData
     submitBarcode.addEventListener("click", () => {
       var barcodeEntry = document.getElementById("barcodeEntry");
-      var barcodeNumber = barcodeEntry.value;
-      console.log(barcodeNumber);
+      var barcodeNumber = validateBarcode(barcodeEntry.value);
+      if (!barcodeNumber) {
+        alert("Please enter a valid barcode (8-14 digits).");
+        return;
+      }
       fetchData(barcodeNumber);
       modalEntry.classList.remove("is-active");
     });
 
     // Handles after user logs out
-    confirmLogout.addEventListener("click", function () {
-      console.log("Logged out");
-      chrome.storage.sync.set({ activeLogin: false });
+    confirmLogout.addEventListener("click", async function () {
+      await setStorage({ activeLogin: false });
+      await checkSignedUp();
       handleGreeting();
-      openSignup.innerHTML = "Signup";
-      openSignup.classList.remove("remove-navbar-item");
-      openTutorial.innerHTML = "";
-      openTutorial.classList.add("remove-navbar-item");
-      openLogout.innerHTML = "";
-      openLogout.classList.add("remove-navbar-item");
-      openPreferencesButton.classList.add("remove-navbar-item");
-      openPreferencesButton.innerHTML = "";
       modalLogout.classList.remove("is-active");
     });
 
     // Main API call function
     async function fetchData(barcode) {
       // Some Information from https://openfoodfacts.github.io/openfoodfacts-server/api/tutorial-off-api/
+      const validatedBarcode = validateBarcode(barcode);
+      if (!validatedBarcode) {
+        alert("Please enter a valid barcode (8-14 digits).");
+        return;
+      }
       try {
-        // Makes API call
-        const response = await fetch(
-          `https://world.openfoodfacts.net/api/v2/product/${barcode}`
-        );
+          setLoading(true, "Loading product...");
+          const response = await fetch(
+            `https://world.openfoodfacts.net/api/v2/product/${validatedBarcode}`
+          );
         if (!response.ok) {
           throw new Error("Network response was not OK");
         }
-        // Puts all data in a variable
         const data = await response.json();
 
-        // Wait for the HTML content to be loaded (Helps with image handeling)
-        await new Promise((resolve) => {
-          setTimeout(resolve, 100);
-        });
+        if (data.status === 1) {
+          const product = data.product || {};
 
-        // If product is found
-        if (data.status === 1) {   
-          // Assigns data to a variable
-          const product = data.product;
-
-          // Set the data to individual variables
-          const productName = product.product_name_en || product.product_name || "No Name";
+          const productName =
+            product.product_name_en || product.product_name || "No Name";
           const productBrand = product.brands || "Unknown Brand";
-          const productGrade = product.nutrition_grades || "unknown";
-          const productNova = product.nova_groups || "unknown";
+          const productGradeRaw = String(product.nutrition_grades || "unknown").toLowerCase();
+          const productGrade = VALID_GRADES.has(productGradeRaw)
+            ? productGradeRaw
+            : "unknown";
+          const productNovaRaw = String(product.nova_groups || "");
+          const productNova = VALID_NOVA.has(productNovaRaw) ? productNovaRaw : "";
           const productIngredients =
             product.ingredients_text_en ||
             product.ingredients_text ||
             "Ingredients not available";
-          const productImageUrl =
-            product.image_url || "images/carousel-filler.png"; // Replace with a default image URL if needed
+          const productImageUrl = safeImageUrl(
+            product.image_url,
+            "images/carousel-filler.png"
+          );
 
-          // Checks ingredients analysis tags
           const ingredientsAnalysisTags =
             product.ingredients_analysis_tags || [];
-          const labelsHierachy = product.labels_hierachy || [];
-          
-          // Create checking variables
+          const labelsHierarchy = product.labels_hierarchy || [];
+
           let isProductVegetarian = false;
           let isProductVegan = false;
           let isProductGlutenFree = false;
           let isProductOrganic = false;
 
-          // Split ingredients string by commas and wrap each one in a list item
-          const ingredientsArray = productIngredients
-            .split(",")
-            .map((ingredient) => ingredient.trim());
-          const ingredientsList = ingredientsArray
-            .map((ingredient) => `<li>${ingredient}</li>`)
-            .join("");
-
-          // Determine vegetarian status based on tags
           if (ingredientsAnalysisTags.includes("en:non-vegetarian")) {
             isProductVegetarian = false;
           } else if (ingredientsAnalysisTags.includes("en:vegetarian")) {
             isProductVegetarian = true;
-          } else if (
-            ingredientsAnalysisTags.includes("en:vegetarian-status-unknown")
-          ) {
-            isProductVegetarian = false;
           }
 
-          // Determine vegan status based on tags
           if (ingredientsAnalysisTags.includes("en:non-vegan")) {
             isProductVegan = false;
           } else if (ingredientsAnalysisTags.includes("en:vegan")) {
             isProductVegan = true;
-          } else if (
-            ingredientsAnalysisTags.includes("en:vegan-status-unknown")
+          }
+
+          if (
+            labelsHierarchy.includes("en:no-gluten") ||
+            labelsHierarchy.includes("en:gluten-free")
           ) {
-            isProductVegan = false;
+            isProductGlutenFree = true;
+          } else if (labelsHierarchy.includes("en:gluten-status-unknown")) {
+            isProductGlutenFree = false;
           }
 
-          // Determine gluten status based on tags
-          if (labelsHierachy.includes("en:no-gluten")) {
-            isGlutenFree = true;
-          } else if (labelsHierachy.includes("en:gluten-status-unkown")) {
-            isGlutenFree = false;
-          } else {
-            isGlutenFree = false;
+          if (labelsHierarchy.includes("en:organic")) {
+            isProductOrganic = true;
+          } else if (labelsHierarchy.includes("en:organic-status-unknown")) {
+            isProductOrganic = false;
           }
 
-          // Determine organic status based on tags
-          if (labelsHierachy.includes("en:organic")) {
-            isOrganic = true;
-          } else if (labelsHierachy.includes("en:organic-status-unkown")) {
-            isOrganic = false;
-          } else {
-            isOrganic = false;
+          const userPrefs = await getStorage([
+            "vegetarian",
+            "vegan",
+            "glutenFree",
+            "organic",
+          ]);
+          if (userPrefs.vegetarian && !isProductVegetarian) {
+            alert(
+              "This is not vegetarian safe for you. You might want to avoid it."
+            );
+          }
+          if (userPrefs.vegan && !isProductVegan) {
+            alert("This is not vegan safe for you. You might want to avoid it.");
+          }
+          if (userPrefs.glutenFree && !isProductGlutenFree) {
+            alert(
+              "This is not gluten free safe for you. You might want to avoid it."
+            );
+          }
+          if (userPrefs.organic && !isProductOrganic) {
+            alert(
+              "This is not organic safe for you. You might want to avoid it."
+            );
           }
 
-          // Retrieve vegetarian, vegan, gluten and organic preference from storage and compare
-          chrome.storage.sync.get(
-            ["vegetarian", "vegan", "glutenFree", "organic"],
-            (data) => {
-              // Assigns users preference to variable
-              const userPrefersVegetarian = data.vegetarian || false;
-              const userPrefersVegan = data.vegan || false;
-              const userPrefersGlutenFree = data.glutenFree || false;
-              const userPrefersOrganic = data.organic || false;
-
-              // Checks if not vegetarian safe
-              if (userPrefersVegetarian && !isProductVegetarian) {
-                alert(
-                  "This is not vegetarian safe for you. You might want to avoid it."
-                ); // Alerts user if it is not vegetarian
-              }
-
-              // Checks if not vegan safe
-              if (userPrefersVegan && !isProductVegan) {
-                alert(
-                  "This is not vegan safe for you. You might want to avoid it."
-                ); // Alerts the user if it is not vegan
-              }
-
-              // Checks if not gluten free
-              if (userPrefersGlutenFree && !isProductGlutenFree) {
-                alert(
-                  "This is not gluten free safe for you. You might want to avoid it."
-                ); // Alerts the user if it is not gluten free
-              }
-
-              // Checks if not organic
-              if (userPrefersOrganic && !isProductOrganic) {
-                alert(
-                  "This is not organic safe for you. You might want to avoid it."
-                ); // Alerts the user if it is not organic
-              }
-            }
+          const allergens = parseAllergens(product);
+          const allergyData = await getStorage(["allergies"]);
+          const userAllergies = (allergyData.allergies || []).map(
+            normalizeAllergenTag
+          );
+          const allergySafe = !userAllergies.some((allergy) =>
+            allergens.includes(normalizeAllergenTag(allergy))
           );
 
-          // Create list of allergens from data
-          const allergens = product.allergens || []; 
-          var allergySafe = true;
+          if (!allergySafe) {
+            alert(
+              "This is not allergy safe for you. You might want to avoid it."
+            );
+          }
 
-          // Retrieve the user's allergy list from Chrome Sync
-          chrome.storage.sync.get(["allergies"], function (result) {
-            const userAllergies = result.allergies || [];
-            // Loops through users allergies
-            for (const allergy of userAllergies) {
-              if (allergens.includes(allergy)) {
-                // Checks if the the allergens from the data includes the user allergy
-                alert(
-                  "This is not allergy safe for you. You might want to avoid it."
-                ); // Alerts user if it is not safe
-                allergySafe = false;
-              } else {
-                allergySafe = true;
-              }
-            }
-          });
-
-          // Print data in carousel
-
-          // Name and image carousel item
           document.getElementById("product-image-output").src = productImageUrl;
-          document.getElementById("product-name-output").innerHTML =
-            "<strong>" + productName + "</strong>";
+          setText(document.getElementById("product-name-output"), productName);
 
-          // Carousel item with all prefernce checks
           document.getElementById("vegetarian-vegan-output").innerHTML = `
           <strong>
             <span class="${
@@ -663,61 +824,55 @@ document.addEventListener("DOMContentLoaded", function () {
               }"></i> 
               Gluten Free
             </span> <br>
-            <span class="${isOrganic ? "has-text-success" : "has-text-danger"}">
-              <i class="fas ${isOrganic ? "fa-check" : "fa-times"}"></i> 
+            <span class="${
+              isProductOrganic ? "has-text-success" : "has-text-danger"
+            }">
+              <i class="fas ${isProductOrganic ? "fa-check" : "fa-times"}"></i> 
               Organic
             </span>
           </strong>
           `;
 
-          // Brand Carousel item
-          document.getElementById("brand-text-heading").innerHTML =
-            "<strong class='has-text-black'>Brand</strong>";
-          
-          // API call to get logo of the brand
-          document.getElementById(
-            "brand-image-output"
-          ).src = `https://img.logo.dev/${productBrand}.com?token=pk_HbFyEPf9TCekBuFORJvQ4Q`;
-          document.getElementById("brand-output").innerHTML =
-            "<strong class='has-text-black'>" + productBrand + "</strong>";
+          const brandHeading = document.getElementById("brand-text-heading");
+          setText(brandHeading, "Brand");
+          brandHeading.classList.add("has-text-black");
+          document.getElementById("brand-image-output").src = safeImageUrl(
+            getBrandLogoUrl(productBrand),
+            "images/carousel-filler.png"
+          );
+          setText(document.getElementById("brand-output"), productBrand);
 
-          // Ingredients Carousel Item
-          document.getElementById("ingredients-text-heading").innerHTML =
-            "<strong class='has-text-black'>Ingredients</strong>";
-          document.getElementById(
-            "ingredients-output"
-          ).innerHTML = `<ul>${ingredientsList}</ul>`;
+          const ingredientsHeading = document.getElementById(
+            "ingredients-text-heading"
+          );
+          setText(ingredientsHeading, "Ingredients");
+          ingredientsHeading.classList.add("has-text-black");
+          buildIngredientsList(
+            document.getElementById("ingredients-output"),
+            productIngredients
+          );
 
-          // Nutritional Grade carousel item
-          document.getElementById("grade-text-heading").innerHTML =
-            "<strong>Nutritional Grade</strong>";
+          setText(document.getElementById("grade-text-heading"), "Nutritional Grade");
           document.getElementById(
             "grade-image-output"
           ).src = `images/health-rating/${productGrade}.png`;
 
-          // NOVA group carousel item
-          document.getElementById(
-            "nova-image-output"
-          ).src = `images/nova-group/${productNova}.png`;
-          document.getElementById("nova-output").innerHTML =
-            "(1-4) Higher is more processed";
-
-          // Logs information
-          console.log(`Product Name: ${productName}`);
-          console.log(`Product Grade: ${productGrade}`);
-          console.log(`Brand: ${productBrand}`);
-          console.log(`Ingredients: ${productIngredients}`);
-          console.log(`Image URL: ${productImageUrl}`);
+          document.getElementById("nova-image-output").src = productNova
+            ? `images/nova-group/${productNova}.png`
+            : "images/carousel-filler.png";
+          setText(
+            document.getElementById("nova-output"),
+            "(1-4) Higher is more processed"
+          );
         } else if (data.status === 0) {
-          // If product is not found
-          console.log("Product Not Found");
           alert("Product Not Found");
         } else {
-          // Checks for random error
-          console.log("Unknown Error");
+          console.warn("Unknown API status response.");
         }
       } catch (error) {
         console.error("There was a problem with your fetch request: ", error);
+      } finally {
+        setLoading(false);
       }
     }
 
@@ -768,116 +923,138 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Handle Signup
     async function handleSignup() {
-      // Generate Verification Code
       const code = generateVerificationCode();
 
-      // Sets email parameters to be sent
-      const emailParams = {
-        to_email: email.value,
-        to_name: username.value,
-        message: code,
-      };
-
-      // Send verification email using EmailJS
-      emailjs.send("service_h6i54pt", "template_jt8s6z7", emailParams).then(
-        function (response) {
-          console.log(
-            "Email sent successfully!",
-            response.status,
-            response.text
-          );
-        },
-        function (error) {
+      if (EMAIL_VERIFICATION_ENDPOINT) {
+        try {
+          const response = await fetch(EMAIL_VERIFICATION_ENDPOINT, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              to_email: email.value,
+              to_name: username.value,
+              code,
+            }),
+          });
+          if (!response.ok) {
+            throw new Error("Email service error");
+          }
+        } catch (error) {
           console.error("Failed to send email:", error);
+          alert("Verification email failed to send. Please try again.");
+          return false;
         }
-      );
+      } else {
+        // Simple dev mode for local testing without email services.
+        alert(
+          `Verification code: ${code}\nWrite it down and enter it in the verify box.`
+        );
+        console.log("Verification code:", code);
+      }
 
       const salt = await generateSalt();
-
-      // Hash the password and email
       const hashedPassword = await hashData(password.value, salt);
       const hashedEmail = await hashData(email.value, salt);
 
-      // Store username, hashed email, hashed password, salt, etc in Chrome Sync
-      chrome.storage.sync.set({
-        username: username.value, // Keep the username as it is
+      await setStorage({
+        username: username.value,
         email: arrayBufferToBase64(hashedEmail),
         password: arrayBufferToBase64(hashedPassword),
         salt: arrayBufferToBase64(salt),
-        verificationCode: code, // Store the generated verification code
+        verificationCode: code,
+        verificationExpiresAt: Date.now() + VERIFICATION_CODE_TTL_MS,
+        verificationAttempts: 0,
         hasSignedUp: true,
         hasVerified: false,
         activeLogin: true,
       });
 
       modalSignup.classList.remove("is-active");
-      checkSignedUp();
+      await checkSignedUp();
       handleGreeting();
+      return true;
     }
 
     // Verify Code function
     async function verifyCode(inputCode) {
-      chrome.storage.sync.get(["verificationCode"], function (result) {
-        if (result.verificationCode === inputCode) {
-          alert("Email verified successfully!");
-          modalVerification.classList.remove("is-active");
-          chrome.storage.sync.set({ hasVerified: true });
-          checkSignedUp();
-          handleGreeting();
-        } else {
-          alert("Incorrect verification code. Please try again.");
-        }
-      });
+      const data = await getStorage([
+        "verificationCode",
+        "verificationExpiresAt",
+        "verificationAttempts",
+      ]);
+      const attempts = Number(data.verificationAttempts || 0);
+
+      if (attempts >= MAX_VERIFICATION_ATTEMPTS) {
+        alert("Too many attempts. Please sign up again to get a new code.");
+        return;
+      }
+
+      if (!data.verificationCode || !data.verificationExpiresAt) {
+        alert("No verification code found. Please sign up again.");
+        return;
+      }
+
+      if (Date.now() > data.verificationExpiresAt) {
+        alert("Verification code expired. Please sign up again.");
+        return;
+      }
+
+      if (data.verificationCode === inputCode) {
+        alert("Email verified successfully!");
+        modalVerification.classList.remove("is-active");
+        await setStorage({
+          hasVerified: true,
+          verificationCode: null,
+          verificationExpiresAt: null,
+          verificationAttempts: 0,
+        });
+        await checkSignedUp();
+        handleGreeting();
+      } else {
+        await setStorage({ verificationAttempts: attempts + 1 });
+        alert("Incorrect verification code. Please try again.");
+      }
     }
 
     // Checks if the verify code button is clicked
     document
       .getElementById("verify-code-button")
       .addEventListener("click", function () {
-        const inputCode = document.getElementById("verification-code").value;
+        const inputCode = document
+          .getElementById("verification-code")
+          .value.trim();
         verifyCode(inputCode);
       });
 
     // Handles login feature
     async function loginUser(inputUsername, inputPassword) {
-      chrome.storage.sync.get(
-        ["username", "password", "salt"],
-        async (result) => {
-          // Retrieve and log stored values for debugging
-          console.log("Retrieved Username:", result.username);
-          console.log("Retrieved Salt (Base64):", result.salt);
-          console.log("Retrieved Password Hash (Base64):", result.password);
+      if (!inputUsername || !inputPassword) {
+        alert("Please enter both username and password.");
+        return;
+      }
+      const result = await getStorage(["username", "password", "salt"]);
+      if (!result.username || !result.password || !result.salt) {
+        alert("No account found. Please sign up first.");
+        return;
+      }
 
-          // Check if the retrieved username matches the input username
-          if (result.username === inputUsername) {
-            // Verify the password
-            const isValid = await verifyPassword(
-              inputPassword,
-              result.salt,
-              result.password
-            );
-            if (isValid) {
-              console.log("Login successful!");
-              openSignup.innerHTML = "";
-              openSignup.classList.add("remove-navbar-item");
-              openTutorial.innerHTML = "Tutorial";
-              openTutorial.classList.remove("remove-navbar-item");
-              openLogout.innerHTML = "Logout";
-              openLogout.classList.remove("remove-navbar-item");
-              openPreferencesButton.classList.remove("remove-navbar-item");
-              openPreferencesButton.innerHTML = "Settings";
-              modalLogin.classList.remove("is-active");
-              chrome.storage.sync.set({ activeLogin: true });
-              checkSignedUp();
-              handleGreeting();
-            } else {
-              console.log("Invalid password.");
-            }
-          } else {
-            console.log("Username not found.");
-          }
+      if (result.username === inputUsername) {
+        const isValid = await verifyPassword(
+          inputPassword,
+          result.salt,
+          result.password
+        );
+        if (isValid) {
+          modalLogin.classList.remove("is-active");
+          await setStorage({ activeLogin: true });
+          await checkSignedUp();
+          handleGreeting();
+        } else {
+          alert("Invalid password.");
         }
-      );
+      } else {
+        alert("Username not found.");
+      }
     }
 
     // Verifies password for logging in
@@ -887,15 +1064,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const salt = base64ToArrayBuffer(storedSalt);
         const storedHashBuffer = base64ToArrayBuffer(storedHash);
 
-        // Log the contents of the ArrayBuffer by converting to Uint8Array
-        console.log("Converted Salt:", new Uint8Array(salt));
-        console.log("Converted Hash Buffer:", new Uint8Array(storedHashBuffer));
-
         // Hash the input password with the same salt
         const inputHash = await hashData(inputPassword, salt);
-
-        // Log the input hash for comparison
-        console.log("Converted Input Hash:", inputHash);
 
         // Compare the input hash with the stored hash byte-by-byte
         return inputHash.every(
@@ -909,56 +1079,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Generates verification code
     function generateVerificationCode() {
-      return Math.floor(100000 + Math.random() * 900000).toString(); // 6-digit code
-    }
-
-    // Handles time dependent greeting
-    function handleGreeting() {
-      // Sets greeting depending on time
-      let greeting = hours < 12 ? "Good Morning, " : "Good Afternoon, ";
-
-      // Outputs welcome greeting with username
-      chrome.storage.sync.get(["username", "activeLogin"], (result) => {
-        console.log(result.activeLogin);
-        if (result.activeLogin === true) {
-          nameWelcome.innerHTML = greeting + result.username;
-        } else {
-          nameWelcome.innerHTML = greeting + "Guest";
-        }
-      });
-    }
-
-    // Checks if the user is signed up
-    function checkSignedUp() {
-      chrome.storage.sync.get("activeLogin", (result) => {
-        if (result.activeLogin === true) {
-          // If signed up, removes signup from navbar, adds verification as navbar item.
-          chrome.storage.sync.get("hasSignedUp", (result) => {
-            if (result.hasSignedUp === true) {
-              console.log("signed up");
-              openSignup.innerHTML = "";
-              openSignup.classList.add("remove-navbar-item");
-              openVerification.innerHTML = "Verify";
-              openVerification.classList.remove("remove-navbar-item");
-            }
-          });
-
-          // If verified, removes verified from navbar, adds setting and tutorial as navbar item.
-          chrome.storage.sync.get("hasVerified", (result) => {
-            if (result.hasVerified === true) {
-              console.log("verified up");
-              openVerification.innerHTML = "";
-              openVerification.classList.add("remove-navbar-item");
-              openTutorial.innerHTML = "Tutorial";
-              openTutorial.classList.remove("remove-navbar-item");
-              openLogout.innerHTML = "Logout";
-              openLogout.classList.remove("remove-navbar-item");
-              openPreferencesButton.classList.remove("remove-navbar-item");
-              openPreferencesButton.innerHTML = "Settings";
-            }
-          });
-        }
-      });
+      const randomValues = new Uint32Array(1);
+      window.crypto.getRandomValues(randomValues);
+      const code = (randomValues[0] % 900000) + 100000;
+      return code.toString();
     }
 
     checkSignedUp();
@@ -989,44 +1113,35 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Function to scan the barcode
     async function scanBarcode(img) {
-      // Creates a new Barcode Detector
-      const detector = new BarcodeDetector({
-        formats: ["code_39", "codabar", "ean_13"], // Creates list of accepted format
-      }); 
+      setLoading(true, "Scanning barcode...");
+      if (!("BarcodeDetector" in window)) {
+        alert(
+          "Barcode scanning is not supported in this browser. Please enter the barcode manually."
+        );
+        setLoading(false);
+        return;
+      }
 
-      // Convert the HTMLImageElement to a Blob (Binary Large Object)
-      // Barcode Detector requires an Image Bitmap for detection
-      imgToBlob(img)
-        .then((blob) => {
-          // Create an ImageBitmap from the Blob
-          createImageBitmap(blob)
-            .then((imageBitmap) => {
-              // Detect the barcode
-              detector
-                .detect(imageBitmap)
-                .then((barcodes) => {
-                  // Process the detected barcode
-                  if (barcodes.length > 0) {
-                    console.log("Barcode detected:", barcodes[0].rawValue);
-                    fetchData(barcodes[0].rawValue); // Calls fetchData function
-                  } else {
-                    console.log("No barcode detected");
-                    alert(
-                      "No barcode was detected! Try entering the code manually, or take a screenshot and upload it."
-                    );
-                  }
-                })
-                .catch((error) => {
-                  console.error("Error detecting barcode:", error);
-                });
-            })
-            .catch((error) => {
-              console.error("Error creating ImageBitmap:", error);
-            });
-        })
-        .catch((error) => {
-          console.error("Error converting image to Blob:", error);
-        });
+      const detector = new BarcodeDetector({
+        formats: ["code_39", "codabar", "ean_13", "ean_8", "upc_a", "upc_e"],
+      });
+
+      try {
+        const blob = await imgToBlob(img);
+        const imageBitmap = await createImageBitmap(blob);
+        const barcodes = await detector.detect(imageBitmap);
+        if (barcodes.length > 0) {
+          fetchData(barcodes[0].rawValue);
+        } else {
+          alert(
+            "No barcode was detected! Try entering the code manually, or take a screenshot and upload it."
+          );
+          setLoading(false);
+        }
+      } catch (error) {
+        console.error("Error detecting barcode:", error);
+        setLoading(false);
+      }
     }
 
     // Parts from https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob
@@ -1044,6 +1159,10 @@ document.addEventListener("DOMContentLoaded", function () {
         // Converts contents of canvas to blob
         canvas.toBlob(
           (blob) => {
+            if (!blob) {
+              reject(new Error("Unable to read image data."));
+              return;
+            }
             resolve(blob);
           },
           "image/png",
@@ -1082,6 +1201,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const allergyInput = document.getElementById("allergy-input");
     const addAllergyButton = document.getElementById("add-allergy");
     const allergyList = document.getElementById("allergy-list");
+    const deleteAccountSettingsButton = document.getElementById(
+      "delete-account-settings"
+    );
 
     // Load stored allergies and display them
     chrome.storage.sync.get(["allergies"], function (result) {
@@ -1151,6 +1273,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Load the saved state of Dark Mode
     chrome.storage.sync.get("darkMode", (data) => {
       darkModeCheckbox.checked = data.darkMode || false; // Checks if it already exists in chrome storage.
+      applyTheme(darkModeCheckbox.checked);
       updateIcon(darkModeCheckbox.checked); // Updates icon
     });
 
@@ -1178,6 +1301,7 @@ document.addEventListener("DOMContentLoaded", function () {
     darkModeCheckbox.addEventListener("change", () => {
       const isDarkMode = darkModeCheckbox.checked; // Sets variable depending on if checkbox is ticked.
       chrome.storage.sync.set({ darkMode: isDarkMode }); // Stores this setting in chrome storage.
+      applyTheme(isDarkMode);
       updateIcon(darkModeCheckbox.checked); // Calls the update Icon function
     });
 
@@ -1205,12 +1329,15 @@ document.addEventListener("DOMContentLoaded", function () {
       chrome.storage.sync.set({ vegan: isVegan }); // stores this setting in chrome storage.
     });
 
-    // Function to update the extension icon
-    function updateIcon(isDarkMode) {
-      const iconPath = isDarkMode
-        ? "images/icon-light.png"
-        : "images/icon-dark.png"; // Gets path to image depending on boolean
-      chrome.action.setIcon({ path: iconPath }); // Sets the icon
+    if (deleteAccountSettingsButton) {
+      deleteAccountSettingsButton.addEventListener("click", async () => {
+        const confirmDelete = confirm(
+          "Delete your account and all stored data? This cannot be undone."
+        );
+        if (!confirmDelete) return;
+        await clearAccount();
+      });
     }
+
   }
 });
