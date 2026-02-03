@@ -1100,10 +1100,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         const img = document.getElementById("uploadedImage");
-        img.src = URL.createObjectURL(file); // Creates temporary URL for image
+        const objectUrl = URL.createObjectURL(file);
+        img.src = objectUrl; // Creates temporary URL for image
         img.onload = () => {
           // Runs when image finished loading
-          URL.revokeObjectURL(img.src); // Revokes temporary URL created earlier
+          URL.revokeObjectURL(objectUrl); // Revokes temporary URL created earlier
           scanBarcode(img); // Calls function to scan barcode
         };
       });

@@ -869,4 +869,10 @@
     - Removed captcha logic when you asked to drop it.
     </details>
     <br>
+    <details>
+    <summary>7.0.1 - (3/2/26 12:30pm)</summary>
+    - Security improvements
+    - Update Bulma
+    </details>
+    <br>
 </details>
