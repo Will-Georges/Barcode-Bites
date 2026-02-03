@@ -875,4 +875,9 @@
     - Update Bulma
     </details>
     <br>
+    <details>
+    <summary>7.0.2 - (3/2/26 12:35pm)</summary>
+    - Security improvements
+    </details>
+    <br>
 </details>

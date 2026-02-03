@@ -1091,7 +1091,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Checks if user adds image
     document
       .getElementById("fileInput")
-      .addEventListener("change", function (event) {
+      .addEventListener("change", async function (event) {
         const file = event.target.files[0]; // Gets first image the user selected
 
         if (!file) {
@@ -1099,21 +1099,24 @@ document.addEventListener("DOMContentLoaded", function () {
           return;
         }
 
-        const img = document.getElementById("uploadedImage");
-        const objectUrl = URL.createObjectURL(file);
-        img.src = objectUrl; // Creates temporary URL for image
-        img.onload = () => {
-          // Runs when image finished loading
-          URL.revokeObjectURL(objectUrl); // Revokes temporary URL created earlier
-          scanBarcode(img); // Calls function to scan barcode
-        };
+        if (!file.type.startsWith("image/")) {
+          alert("Please upload a valid image file.");
+          return;
+        }
+
+        try {
+          const imageBitmap = await createImageBitmap(file);
+          scanBarcode(imageBitmap);
+        } catch (error) {
+          console.error("Error loading image:", error);
+        }
       });
 
       
     // Mostly From https://developer.mozilla.org/en-US/docs/Web/API/BarcodeDetector
 
     // Function to scan the barcode
-    async function scanBarcode(img) {
+    async function scanBarcode(imageSource) {
       setLoading(true, "Scanning barcode...");
       if (!("BarcodeDetector" in window)) {
         alert(
@@ -1128,8 +1131,10 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
       try {
-        const blob = await imgToBlob(img);
-        const imageBitmap = await createImageBitmap(blob);
+        const imageBitmap =
+          imageSource instanceof ImageBitmap
+            ? imageSource
+            : await createImageBitmap(await imgToBlob(imageSource));
         const barcodes = await detector.detect(imageBitmap);
         if (barcodes.length > 0) {
           fetchData(barcodes[0].rawValue);
